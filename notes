@@ -1,0 +1,18 @@
+my-react-app/
+├── public/
+│   └── images/                  # Images like logos, post images
+├── src/
+│   ├── assets/                  # Fonts, icons
+│   ├── components/              # React components (reusable parts)
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   └── PostCard.jsx         # Blog post card component
+│   ├── pages/                   # Different pages (e.g., Home, About)
+│   │   ├── HomePage.jsx
+│   │   └── AboutPage.jsx
+│   ├── App.jsx                  # Main app component
+│   ├── App.css                  # Global styles
+│   ├── main.jsx                 # Entry point for React
+│   ├── index.css                # Default styles
+├── package.json
+├── vite.config.js

@@ -1,0 +1,170 @@
+App.css
+
+/* --- Basic Reset --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+html, body {
+  font-family: Arial, sans-serif; /* Default font family */
+  line-height: 1.6;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Container and Layout --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Flexbox container for central alignment */
+.header, .card, .read-the-docs {
+  text-align: center;
+}
+
+/* --- Header Section Styling --- */
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+
+.header p {
+  font-size: 1.25rem;
+  color: #555;
+}
+
+/* --- Card Section Styling --- */
+.card {
+  background-color: white;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto; /* Center the card */
+}
+
+.card h2 {
+  font-size: 2rem;
+}
+
+.card p {
+  font-size: 1.5rem;
+}
+
+.card button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #646cff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #545bd9;
+}
+
+/* --- Footer Section Styling --- */
+.read-the-docs {
+  margin-top: 2rem;
+  color: #888;
+}
+
+/* --- Responsive Design --- */
+
+/* Mobile first */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem; /* Adjust title size */
+  }
+
+  .header p {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    max-width: 90%; /* Allow card to take more space on smaller screens */
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  .card p {
+    font-size: 1.2rem;
+  }
+
+  .card button {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .read-the-docs p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices (portrait phones) */
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+    max-width: 100%; /* Ensure full width on smaller screens */
+  }
+
+  .card h2 {
+    font-size: 1.25rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }
+
+  .card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .read-the-docs p {
+    font-size: 0.8rem;
+  }
+}
