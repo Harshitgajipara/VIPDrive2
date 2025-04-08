@@ -1,0 +1,30 @@
+/* Card Section Styles */
+.cardComponent .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem; /* Added gap to create space between cards */
+  padding: 20px; /* Added padding for better spacing */
+  margin: 0 auto; /* Center the row */
+}
+
+.col-sm-4 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 1rem; /* Added margin at the bottom for better spacing */
+  margin-top: 1rem;
+}
+
+@media (min-width: 576px) {
+  .col-sm-4 {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-sm-4 {
+    flex: 0 0 31%;
+    max-width: 31%;
+  }
+}

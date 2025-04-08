@@ -1,0 +1,155 @@
+/* Navbar Section */
+.NavbarSection {
+  background: linear-gradient(45deg, #007bff, #95dbff); /* Subtle gradient */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: background 0.3s ease-in-out;
+}
+
+.navbar {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover {
+  color: #ff00ff;
+}
+
+/* Navbar Links */
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); /* Adds a lift effect */
+}
+
+/* Navbar Toggler Button (for mobile) */
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar-toggler.active {
+  transform: rotate(90deg);
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  top: 8px;
+}
+
+.navbar-toggler-icon.active::before {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar-toggler-icon.active::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Responsive Design - Mobile View */
+@media (max-width: 768px) {
+  /* Hide links initially on mobile */
+  .navbar-nav {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  /* Show links when toggled */
+  .navbar-nav.open {
+    display: flex;
+    animation: slideIn 0.3s ease-in-out;
+  }
+
+  /* Show the navbar toggler */
+  .navbar-toggler {
+    display: block;
+  }
+
+  /* Adjust the nav link styling for mobile */
+  .nav-link {
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: #333;
+    background-color: #fff;
+  }
+}
+
+/* Animation for sliding menu */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

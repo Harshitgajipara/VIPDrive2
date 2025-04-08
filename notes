@@ -1,18 +1,52 @@
 my-react-app/
 ├── public/
-│   └── images/                  # Images like logos, post images
+│   ├── assets/                   # Static assets like images, fonts, etc.
+│   │   └── logo.png              # Example image (logo, hero, etc.)
+│   └── index.html                # Main HTML file that contains the root div
+│
 ├── src/
-│   ├── assets/                  # Fonts, icons
-│   ├── components/              # React components (reusable parts)
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   └── PostCard.jsx         # Blog post card component
-│   ├── pages/                   # Different pages (e.g., Home, About)
-│   │   ├── HomePage.jsx
-│   │   └── AboutPage.jsx
-│   ├── App.jsx                  # Main app component
-│   ├── App.css                  # Global styles
-│   ├── main.jsx                 # Entry point for React
-│   ├── index.css                # Default styles
-├── package.json
-├── vite.config.js
+│   ├── api/                      # API calls or services (optional)
+│   │   └── apiClient.js          # For managing API calls
+│   │   └── authService.js        # Authentication related API calls
+│   ├── assets/                   # Shared static assets (icons, logos, etc.)
+│   │   └── images/
+│   │       └── heroImg.jpg
+│   ├── components/               # Reusable UI components (Navbar, Footer, etc.)
+│   │   ├── Navbar/               # Folder for Navbar component
+│   │   │   ├── Navbar.jsx        # Component file
+│   │   │   ├── Navbar.css        # Component specific styles
+│   │   │   └── index.js          # Export file for easier imports
+│   │   ├── Footer/               # Folder for Footer component
+│   │   │   ├── Footer.jsx        # Component file
+│   │   │   ├── Footer.css        # Component specific styles
+│   │   │   └── index.js          # Export file for easier imports
+│   │   └── Button/               # Example of a reusable button component
+│   │       ├── Button.jsx
+│   │       └── Button.css
+│   ├── context/                  # For context API (global state)
+│   │   └── AppContext.js         # Manage global state with context
+│   ├── hooks/                    # Custom hooks
+│   │   └── useWindowWidth.js     # Example of custom hook
+│   ├── pages/                    # Pages (Home, About, etc.)
+│   │   ├── Home/                 # HomePage component folder
+│   │   │   ├── HomePage.jsx      # HomePage component
+│   │   │   └── HomePage.css      # Page-specific styles
+│   │   └── About/                # AboutPage component folder
+│   │       ├── AboutPage.jsx     # AboutPage component
+│   │       └── AboutPage.css     # Page-specific styles
+│   ├── services/                 # Business logic (optional)
+│   │   └── auth.js               # Handle user authentication logic
+│   ├── styles/                   # Global styles, themes, and resets
+│   │   ├── _variables.css        # Variables for colors, spacing, etc.
+│   │   ├── global.css            # Global reset and typography
+│   │   └── theme.css             # App-wide theme styles
+│   ├── App.jsx                   # Root component for the app
+│   ├── App.css                   # Global styles imported in App.jsx
+│   ├── index.js                  # Entry point for React app
+│   └── index.css                 # Global styles for the app, fonts, etc.
+│
+├── .gitignore                    # Git ignore file
+├── package.json                  # Project dependencies and scripts
+├── package-lock.json             # Specific versions of installed packages
+├── README.md                     # Project documentation
+└── vite.config.js                # Configuration for Vite bundler (if using Vite)
