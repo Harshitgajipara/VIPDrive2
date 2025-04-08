@@ -1,6 +1,6 @@
 /* Navbar Section */
 .NavbarSection {
-  background: linear-gradient(45deg, #007bff, #95dbff); /* Subtle gradient */
+  background: linear-gradient(45deg, #021932, #95dbff); /* Subtle gradient */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   transition: background 0.3s ease-in-out;
@@ -11,6 +11,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navbar-inner-list {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .navbar-brand {
@@ -72,7 +83,7 @@
 
 .navbar-toggler-icon::before,
 .navbar-toggler-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 30px;
   height: 3px;

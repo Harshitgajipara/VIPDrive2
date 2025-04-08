@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <div className="NavbarSection">
       <nav className="navbar">
-        <div className="container">
+        <div className="navbar-inner-list">
           <a className="navbar-brand" href="#">Brand</a>
 
           {/* Navbar Toggler for mobile */}
