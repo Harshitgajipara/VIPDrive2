@@ -27,7 +27,7 @@
 .feature-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform:  scale(1.05);
+  transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -46,19 +46,21 @@
   object-fit: cover;
 }
 
+/* Updated to position the text below initially */
 .feature-overlay {
   position: absolute;
-  bottom: 0;
+  bottom: -100%; /* Initially hidden below */
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 20px;
-  transition: background 0.3s;
+  transition: background 0.3s, bottom 0.3s ease-in-out; /* Animated transition for bottom */
 }
 
 .feature-card:hover .feature-overlay {
-  background: rgba(0, 0, 0, 0.7);
+  bottom: 0; /* Move text to the center on hover */
+  background: rgba(0, 0, 0, 0.7); /* Darker background on hover */
 }
 
 .feature-overlay h5 {

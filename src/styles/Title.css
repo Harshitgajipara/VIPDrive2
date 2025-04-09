@@ -1,0 +1,77 @@
+.webcoderskull {
+    font-size: 1em; /* Increased the font size to ensure it's visible */
+    font-weight: bold;
+    fill: none;
+    stroke: white;
+    stroke-width: 3px;
+  }
+  
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background: transparent; /* Set the background to transparent */
+    font: 6.5em/1 Arial;
+    display: block;
+    top: 10%; /* Center the SVG in its container */
+    transform: translateY(-50%);
+  }
+  
+  .g-ants use {
+    animation: stroke-offset 10s infinite ease;
+  }
+  
+  /* Unique stroke colors for each `use` tag */
+  .webcoderskull-1 {
+    stroke: #360745;
+    stroke-dasharray: 10% 28%;
+    stroke-dashoffset: 10%;
+  }
+  
+  .webcoderskull-2 {
+    stroke: #d61c59;
+    stroke-dasharray: 10% 28%;
+    stroke-dashoffset: 20%;
+  }
+  
+  .webcoderskull-3 {
+    stroke: #e7d84b;
+    stroke-dasharray: 10% 28%;
+    stroke-dashoffset: 30%;
+  }
+  
+  .webcoderskull-4 {
+    stroke: #efeac5;
+    stroke-dasharray: 10% 28%;
+    stroke-dashoffset: 40%;
+  }
+  
+  .webcoderskull-5 {
+    stroke: #1b8798;
+    stroke-dasharray: 10% 28%;
+    stroke-dashoffset: 50%;
+  }
+  
+  /* Keyframes for stroke-dashoffset animation */
+  @keyframes stroke-offset {
+    50% {
+      stroke-dashoffset: 35%;
+      stroke-dasharray: 0 87.5%;
+    }
+  }
+
+  .text--line .g-ants use {
+    animation: stroke-offset 7s infinite ease; /* Different animation timing if needed */
+  }
+  
+  .text--line {
+    stroke-width: 2px; /* Increased stroke width */
+  }
+  
+  .text--line .webcoderskull-1,
+  .text--line .webcoderskull-2,
+  .text--line .webcoderskull-3,
+  .text--line .webcoderskull-4,
+  .text--line .webcoderskull-5 {
+    stroke-width: 2px; /* Increase stroke width for animation */
+  }

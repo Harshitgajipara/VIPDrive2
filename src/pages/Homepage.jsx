@@ -8,6 +8,7 @@ import AboutUsSection from "../components/AboutUsSection";
 import ContactUsSection from "../components/ContactUsSection";
 import BlogSection from "../components/BlogSection";
 import Footer from "../components/Footer";
+import Free from "../components/Free";
 
 
 
@@ -23,6 +24,7 @@ function Homepage() {
       <ContactUsSection />
       <BlogSection />
       <Footer />
+      <Free />
     </div>
   );
 }

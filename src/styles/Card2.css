@@ -1,0 +1,64 @@
+/* Card Component Styles */
+.custom-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.3s;
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover; /* Ensure image covers the card top */
+  width: 100%; /* Ensure image is responsive and fills the card */
+}
+
+.card-title {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.card-text {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  color: #fffffff8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  transition: transform 0.2s, box-shadow 0.3s;
+}

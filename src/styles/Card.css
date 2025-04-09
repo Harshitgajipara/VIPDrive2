@@ -1,64 +1,131 @@
 /* Card Component Styles */
-.custom-card {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.3s;
-  overflow: hidden; /* Ensure content doesn't overflow */
-}
-
-.custom-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-  height: 200px;
-  object-fit: cover; /* Ensure image covers the card top */
-  width: 100%; /* Ensure image is responsive and fills the card */
-}
-
-.card-title {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  text-align: center;
-  text-decoration: none;
-}
-
-.card-text {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-  color: #fff;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  color: #fffffff8;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-  transition: transform 0.2s, box-shadow 0.3s;
-}
+.solution_card {
+    flex: 1; /* Make each card take equal width */
+    background: #fff; /* Fallback color for text */
+    background-size: cover; /* Ensure the background image covers the whole card */
+    background-position: center center; /* Ensure the image is centered */
+    box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+      0 5px 15px 0 rgba(37, 44, 97, 0.15);
+    border-radius: 15px;
+    margin: 8px;
+    padding: 10px 15px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 265px; /* Fixed height for the cards */
+    transition: 0.7s;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .solution_card:hover {
+    background: #309df0;
+    color: #fff;
+    transform: scale(1.05); /* Zoom effect on hover */
+    z-index: 9;
+  }
+  
+  /* Background zoom effect */
+  .solution_card:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+    background-size: 120%; /* Zoom background image */
+  }
+  
+  /* Hover bubble effect */
+  .hover_color_bubble {
+    position: absolute;
+    background: rgb(54 81 207 / 15%);
+    width: 100rem;
+    height: 100rem;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    top: 16rem;
+    border-radius: 50%;
+    transform: rotate(-36deg);
+    left: -18rem;
+    transition: 0.7s;
+  }
+  
+  .solution_card:hover .hover_color_bubble {
+    top: 0rem;
+  }
+  
+  .solution_card:hover .solu_title h3,
+  .solution_card:hover .solu_description p {
+    color: #fff;
+    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 10px #000;
+    transition: 0.7s;
+  }
+  
+  .solution_card:hover .solu_description button {
+    background: #fff !important;
+    color: #309df0;
+  }
+  
+  .solution_card .solu_title h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-top: 13px;
+    margin-bottom: 13px;
+  }
+  
+  .solution_card .solu_description p {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .solution_card .solu_description button {
+    border: 0;
+    border-radius: 15px;
+    background: linear-gradient(
+      140deg,
+      #42c3ca 0%,
+      #42c3ca 50%,
+      #42c3cac7 75%
+    ) !important;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 16px;
+  }
+  
+  /* Card Section Styles */
+  .section_our_solution {
+    margin-top: 20px;
+  }
+  
+  .our_solution_category {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .solution_cards_box {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    justify-content: space-between; /* Distribute the cards evenly */
+    width: 100%;
+  }
+  
+  /* Media Queries for responsive card layout */
+  @media screen and (max-width: 768px) {
+    .solution_cards_box .solution_card {
+      flex: 1 1 100%; /* Full width on small screens */
+      margin-bottom: 15px; /* Add space between cards */
+    }
+  }
+  
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .solution_cards_box .solution_card {
+      flex: 1 1 48%; /* Two cards in a row */
+    }
+  }
+  
+  @media only screen and (min-width: 1025px) {
+    .solution_cards_box .solution_card {
+      flex: 1 1 23%; /* Four cards in a row */
+    }
+  }
+  

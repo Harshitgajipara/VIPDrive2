@@ -1,14 +1,22 @@
-import React from 'react';
-import '../styles/Card.css';
+import React from "react";
+import "../styles/Card.css";
 
 function Card({ title, description, imageUrl, link }) {
   return (
-    <div className="card custom-card">
-      <img src={imageUrl} className="card-img-top" alt={title} />
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
-        <a href={link} className="btn btn-primary">Book Now</a>
+    <div
+      className="solution_card"
+      style={{ backgroundImage: `url(${imageUrl})` }}
+    >
+      <div className="hover_color_bubble"></div>
+
+      <div className="solu_title">
+        <h3>{title}</h3>
+      </div>
+      <div className="solu_description">
+        <p>{description}</p>
+        <button type="button" className="read_more_btn">
+          BOOK NOW
+        </button>
       </div>
     </div>
   );

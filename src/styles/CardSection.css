@@ -1,30 +1,46 @@
 /* Card Section Styles */
-.cardComponent .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem; /* Added gap to create space between cards */
-  padding: 20px; /* Added padding for better spacing */
-  margin: 0 auto; /* Center the row */
+
+.section_our_solution{
+    margin-top: 20px;
 }
 
-.col-sm-4 {
-  flex: 0 0 100%;
-  max-width: 100%;
-  margin-bottom: 1rem; /* Added margin at the bottom for better spacing */
-  margin-top: 1rem;
-}
-
-@media (min-width: 576px) {
-  .col-sm-4 {
-    flex: 0 0 48%;
-    max-width: 48%;
+.our_solution_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Ensure the cards stay in a single row */
+    justify-content: space-between;
+    width: 100%;
   }
-}
-
-@media (min-width: 768px) {
-  .col-sm-4 {
-    flex: 0 0 31%;
-    max-width: 31%;
+  
+  .solution_cards_box {
+    display: flex;
+    flex-direction: row; /* Layout cards horizontally */
+    justify-content: space-between; /* Distribute the cards evenly */
+    width: 100%;
   }
-}
+  
+  /* Media Queries */
+  @media screen and (min-width: 320px) {
+  
+    .our_solution_category {
+      width: 95%;
+      margin: 0 auto;
+    }
+  
+    .solution_cards_box {
+      flex: auto;
+      justify-content: space-between;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .solution_cards_box .solution_card {
+      flex: 1 1 48%; /* Flexibly allows two cards in a row */
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .solution_cards_box .solution_card {
+      flex: 1 1 23%; /* Flexibly allows four cards in a row */
+    }
+  }
