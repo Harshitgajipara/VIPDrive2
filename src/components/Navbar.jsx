@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "../styles/Navbar.css";
 
-const NavList = () => {
+const NavList = ({ openNav }) => {
   return (
-    <ul className="nav-list">
-      <li><a href="#">Products</a></li>
+    <ul className={`nav-list ${openNav ? 'open' : ''}`}>
+      <li><a href="#">Packages</a></li>
       <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">Support</a></li>
+      <li><a href="#">Testimonial</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Blogs</a></li>
     </ul>
   );
 };
@@ -42,10 +45,11 @@ const Navbar = () => {
     <nav className={`navbar ${scrollUp ? "nav-visible" : "nav-hidden"}`}>
       <div className="navbar-inner">
         <a href="#" className="logo">
-          <img
+          {/* <img
             src="./images/Logo3.png"
             alt="VIP Booking"
-          />
+          /> */}
+          <span>VIPDrive</span>
         </a>
 
         <div className="desktop-nav">
@@ -58,7 +62,7 @@ const Navbar = () => {
       </div>
 
       <div className={`mobile-nav ${openNav ? "open" : ""}`}>
-        <NavList />
+        <NavList openNav={openNav} />
       </div>
     </nav>
   );

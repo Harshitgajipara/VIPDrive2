@@ -5,7 +5,7 @@ import Title from './Title';
 function HeroSection() {
   return (
     <section className="HeroSection">
-      <img className="heroImg" src="images/heroImg.jpg" alt="Hero" />
+      <img className="heroImg" src="images/Hero.jpg" alt="Hero" />
       <Title />
       {/* <div className="overLayDiv">
         <h1>Arrive in Style, Leave in <span class="text-info">Luxury!</span></h1>

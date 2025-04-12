@@ -1,4 +1,3 @@
-
 /* Scroll visibility */
 .nav-hidden {
   transform: translateY(-100%);
@@ -8,18 +7,19 @@
 }
 
 .navbar {
-  background-color: #0a1124;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  backdrop-filter: blur(10px); /* Blur effect */
   color: white;
-  height: 75px; /* Fixed height for navbar */
+  height: 50px;
   font-family: 'Inter', sans-serif;
-  border-bottom: 1px solid #1f1f1f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
   transition: transform 0.4s ease-in-out;
-  padding: 0 2rem; /* Remove vertical padding */
+  padding: 0 2rem;
   display: flex;
   align-items: center;
 }
@@ -29,20 +29,28 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* ensures space between logo and toggle */
+  justify-content: space-between;
   width: 100%;
-  height: 60px; /* consistent navbar height */
-  padding: 0 1rem; /* horizontal padding */
+  height: 50px;
+  padding: 0 1rem;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
 
 .logo img {
-  height: 150px; /* Fits inside 64px navbar */
+  height: 40px;
   width: auto;
-  object-fit: contain;
-  display: block;
+  margin-right: 10px;
 }
 
+.logo span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #17a2b8;
+}
 
 /* Desktop Nav */
 .desktop-nav {
@@ -55,18 +63,18 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 100%;
+  height: 75px;
+  padding: 0 1rem;
 }
-
 
 .icon {
   width: 28px;
   height: 28px;
-  color: white;
+  color: #17a2b8;
   display: block;
-  margin: 0; /* ensure no unexpected shift */
+  margin: 0;
+  margin-top: 10px;
 }
-
 
 /* Nav List */
 .nav-list {
@@ -101,12 +109,17 @@
 
 .mobile-nav.open {
   display: block;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 /* Desktop View */
 @media (min-width: 960px) {
   .desktop-nav {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
   .toggle-btn {
@@ -123,4 +136,24 @@
   .mobile-nav {
     display: none !important;
   }
+
+}
+
+@media (min-width: 768px) {
+  .logo img {
+    height: 50px;
+  }
+  .logo span {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    height: 35px;
+  }
+  .navbar-inner {
+    height: 35px;
+  } 
 }

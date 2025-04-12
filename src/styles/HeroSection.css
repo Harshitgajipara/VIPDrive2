@@ -95,6 +95,14 @@
     .heroBookBtn h2 {
       font-size: 1rem;
     }
+
+    .HeroSection {
+      height: 400px;
+    }
+
+    .heroImg{
+      height: 400px;
+    }
   }
 
   
