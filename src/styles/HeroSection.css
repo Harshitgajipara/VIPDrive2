@@ -31,6 +31,7 @@
   .overLayDiv, .heroBookBtn {
     position: absolute;
     left: 50%;
+    top: 25%;
     transform: translateX(-50%);
     width: 100%;
     text-align: center;
@@ -52,19 +53,23 @@
     animation: slideIn 1s ease-out;
   }
   
-  .heroBookBtn {
-    top: 18%;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    animation: fadeIn 2s ease-in-out;
+  .heroBookBtn button {
+    background: linear-gradient(135deg, #007386, #000);
+    border: none;
+    border-radius: 999px;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+    transition: all 0.3s ease;
   }
   
-  .heroBookBtn h2 {
-    font-size: 1.5rem;
-    margin-top: 50px;
-    margin-bottom: 10px;
-    color: white;
-    animation: fadeIn 2s ease-in-out;
+  .heroBookBtn button:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+    background: linear-gradient(135deg,  #007386,   #000);
   }
   
   .text-info {
@@ -91,4 +96,5 @@
       font-size: 1rem;
     }
   }
+
   

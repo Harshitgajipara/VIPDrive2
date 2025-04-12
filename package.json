@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@heroui/react": "^2.7.6",
     "bootstrap": "^5.3.5",
     "gsap": "^3.12.7",
     "react": "^19.0.0",

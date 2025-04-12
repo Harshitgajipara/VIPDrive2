@@ -1,39 +1,67 @@
-import React, { useState } from 'react';
-import '../styles/Navbar.css';
+import React, { useState, useEffect } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import "../styles/Navbar.css";
 
-function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const NavList = () => {
+  return (
+    <ul className="nav-list">
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Support</a></li>
+    </ul>
+  );
+};
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+const Navbar = () => {
+  const [openNav, setOpenNav] = useState(false);
+  const [scrollUp, setScrollUp] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 960) {
+        setOpenNav(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollUp(currentScrollY < lastScrollY);
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <div className="NavbarSection">
-      <nav className="navbar">
-        <div className="navbar-inner-list">
-          <a className="navbar-brand" href="#">Brand</a>
+    <nav className={`navbar ${scrollUp ? "nav-visible" : "nav-hidden"}`}>
+      <div className="navbar-inner">
+        <a href="#" className="logo">
+          <img
+            src="./images/Logo3.png"
+            alt="VIP Booking"
+          />
+        </a>
 
-          {/* Navbar Toggler for mobile */}
-          <button
-            className={`navbar-toggler ${isMenuOpen ? 'active' : ''}`}
-            onClick={toggleMenu}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          {/* Navbar Links */}
-          <div className={`navbar-nav ${isMenuOpen ? 'open' : ''}`}>
-            <a className="nav-link" href="#features">Features</a>
-            <a className="nav-link" href="#about">About Us</a>
-            <a className="nav-link" href="#contact">Contact</a>
-            <a className="nav-link" href="#blog">Blog</a>
-          </div>
+        <div className="desktop-nav">
+          <NavList />
         </div>
-      </nav>
-    </div>
+
+        <div className="toggle-btn" onClick={() => setOpenNav(!openNav)}>
+          {openNav ? <XMarkIcon className="icon" /> : <Bars3Icon className="icon" />}
+        </div>
+      </div>
+
+      <div className={`mobile-nav ${openNav ? "open" : ""}`}>
+        <NavList />
+      </div>
+    </nav>
   );
-}
+};
 
 export default Navbar;

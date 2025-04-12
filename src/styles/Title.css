@@ -13,7 +13,7 @@
     background: transparent; /* Set the background to transparent */
     font: 6.5em/1 Arial;
     display: block;
-    top: 10%; /* Center the SVG in its container */
+    top: 18%; /* Center the SVG in its container */
     transform: translateY(-50%);
   }
   

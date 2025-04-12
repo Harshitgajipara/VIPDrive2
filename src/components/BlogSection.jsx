@@ -3,46 +3,42 @@ import "../styles/BlogSection.css";
 
 function BlogSection() {
   return (
-    <div class="blog-section">
-      <div class="main-card">
-        <div class="main-image">
-          <img src="images/blog1.jpg" alt="Blog 1"/>
-        </div>
-        <div class="main-content">
-          <p>December 26, 2021 • Blog</p>
-          <h2>Top 5 Luxury Cars for a Wedding</h2>
-          <p>Discover the best luxury cars to make your wedding day unforgettable..</p>
-          <button>Continue Reading →</button>
-        </div>
+    <div className="blog-section">
+      <div className="blog-header">
+        <h1>We drive experiences, not just cars.</h1>
+        <p className="subtitle">
+          Premium VIP chauffeur service, tailored for elegance and comfort.
+        </p>
+        <p className="description">
+          Explore the art of elite transportation with our expertly curated blog. From booking the perfect ride to maximizing luxury on the go — we’ve got your journey covered.
+        </p>
       </div>
-      <div class="sub-cards">
-        <div class="sub-card">
-          <div class="sub-image">
-            <img src="images/blog2.jpg" alt="Blog 2"/>
-          </div>
-          <div class="sub-content">
-            <p>December 26, 2021 • Blog</p>
-            <h3>I would like to die on Mars. Just not on impact.</h3>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-image">
-            <img src="images/blog3.jpg" alt="Blog 3"/>
-          </div>
-          <div class="sub-content">
-            <p>December 26, 2021 • Blog</p>
-            <h3>How to Choose the Perfect Wedding Car</h3>
+
+      <div className="blog-cards">
+        <div className="blog-card">
+          <img src="./images/blog1.jpg" alt="Luxury Car Experience" />
+          <div className="card-content">
+            <h3>Top 5 Benefits of Booking a VIP Chauffeur</h3>
+            <p className="date">April 1, 2025</p>
           </div>
         </div>
-        <div class="sub-card">
-          <div class="sub-image">
-            <img src="images/blog4.jpg" alt="Blog 4"/>
-          </div>
-          <div class="sub-content">
-            <p>December 26, 2021 • Blog</p>
-            <h3>Don't go through life, grow through life.</h3>
+
+        <div className="blog-card">
+          <img src="./images/blog2.jpg" alt="Luxury Fleet Interior" />
+          <div className="card-content">
+            <h3>How to Choose the Perfect Car for Your Event</h3>
+            <p className="date">March 20, 2025</p>
           </div>
         </div>
+
+        <div className="blog-card">
+          <img src="./images/blog3.jpg" alt="VIP Airport Transfer" />
+          <div className="card-content">
+            <h3>Why Executives Prefer Chauffeured Airport Transfers</h3>
+            <p className="date">February 28, 2025</p>
+          </div>
+        </div>
+
       </div>
     </div>
   );

@@ -1,171 +1,126 @@
-/* Navbar Section */
-.NavbarSection {
-  background: linear-gradient(45deg, #021932, #95dbff); /* Subtle gradient */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
-  transition: background 0.3s ease-in-out;
+
+/* Scroll visibility */
+.nav-hidden {
+  transform: translateY(-100%);
+}
+.nav-visible {
+  transform: translateY(0);
 }
 
 .navbar {
-  padding: 15px 20px;
+  background-color: #0a1124;
+  color: white;
+  height: 75px; /* Fixed height for navbar */
+  font-family: 'Inter', sans-serif;
+  border-bottom: 1px solid #1f1f1f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: transform 0.4s ease-in-out;
+  padding: 0 2rem; /* Remove vertical padding */
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.navbar-inner-list {
+.navbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
-  height: 30px;
+  align-items: center;
+  justify-content: space-between; /* ensures space between logo and toggle */
   width: 100%;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
+  height: 60px; /* consistent navbar height */
+  padding: 0 1rem; /* horizontal padding */
 }
 
-.navbar-brand {
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out;
-}
 
-.navbar-brand:hover {
-  color: #ff00ff;
-}
-
-/* Navbar Links */
-.navbar-nav {
-  display: flex;
-  gap: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.nav-link {
-  color: #fff;
-  font-size: 1.1rem;
-  transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.nav-link:hover {
-  color: #333;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px); /* Adds a lift effect */
-}
-
-/* Navbar Toggler Button (for mobile) */
-.navbar-toggler {
-  display: none;
-  background: none;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.navbar-toggler.active {
-  transform: rotate(90deg);
-}
-
-.navbar-toggler-icon {
+.logo img {
+  height: 150px; /* Fits inside 64px navbar */
+  width: auto;
+  object-fit: contain;
   display: block;
-  width: 30px;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  position: relative;
-  transition: background-color 0.3s ease;
 }
 
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s ease;
+
+/* Desktop Nav */
+.desktop-nav {
+  display: none;
 }
 
-.navbar-toggler-icon::before {
-  top: -8px;
+/* Toggle Button */
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
 }
 
-.navbar-toggler-icon::after {
-  top: 8px;
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: white;
+  display: block;
+  margin: 0; /* ensure no unexpected shift */
 }
 
-.navbar-toggler-icon.active::before {
-  transform: translateY(8px) rotate(45deg);
+
+/* Nav List */
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
 }
 
-.navbar-toggler-icon.active::after {
-  transform: translateY(-8px) rotate(-45deg);
+.nav-list li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Responsive Design - Mobile View */
-@media (max-width: 768px) {
-  /* Hide links initially on mobile */
-  .navbar-nav {
-    display: none;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-  }
+.nav-list li a:hover {
+  color: #06b6d4;
+  transform: translateX(5px);
+}
 
-  /* Show links when toggled */
-  .navbar-nav.open {
-    display: flex;
-    animation: slideIn 0.3s ease-in-out;
-  }
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  transition: max-height 0.4s ease;
+  overflow: hidden;
+  padding-left: 2rem;
+}
 
-  /* Show the navbar toggler */
-  .navbar-toggler {
+.mobile-nav.open {
+  display: block;
+}
+
+/* Desktop View */
+@media (min-width: 960px) {
+  .desktop-nav {
     display: block;
   }
 
-  /* Adjust the nav link styling for mobile */
-  .nav-link {
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    border-radius: 5px;
-    text-decoration: none;
+  .toggle-btn {
+    display: none;
   }
 
-  .nav-link:hover {
-    color: #333;
-    background-color: #fff;
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
   }
-}
 
-/* Animation for sliding menu */
-@keyframes slideIn {
-  0% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+  .mobile-nav {
+    display: none !important;
   }
 }
