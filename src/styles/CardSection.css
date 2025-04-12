@@ -1,7 +1,9 @@
 /* Card Section Styles */
 
 .section_our_solution{
-    margin-top: 20px;
+    margin-top: -15px;
+    background-color: black;
+    padding: 40px 0 25px 0;
 }
 
 .our_solution_category {

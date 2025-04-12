@@ -7,14 +7,36 @@ const TestimonialSection = () => {
   const testimonialSliderRef = useRef(null);
 
   const testimonials = [
-    { name: "John Doe", image: "images/reviewer1.jpg", text: "This is an amazing product!" },
-    { name: "Jane Smith", image: "images/reviewer2.jpg", text: "I had an excellent experience!" },
-    { name: "Michael Johnson", image: "images/reviewer3.jpg", text: "I highly recommend this service!" },
-    { name: "Emily Davis", image: "images/reviewer3.jpg", text: "Absolutely fantastic!" },
-    { name: "John Doe", image: "images/reviewer1.jpg", text: "This is an amazing product!" },
-    { name: "Jane Smith", image: "images/reviewer2.jpg", text: "I had an excellent experience!" },
-    { name: "Michael Johnson", image: "images/reviewer3.jpg", text: "I highly recommend this service!" },
-    { name: "Emily Davis", image: "images/reviewer3.jpg", text: "Absolutely fantastic!" },
+    { 
+      name: "Sophia Williams", 
+      image: "images/reviewer1.jpg", 
+      text: "VIPDrive transformed my travel experience. The luxury and comfort were unparalleled, making every moment memorable." 
+    },
+    { 
+      name: "Liam Brown", 
+      image: "images/reviewer2.jpg", 
+      text: "From the moment I booked, VIPDrive exceeded my expectations. The service was impeccable and the ride was pure elegance." 
+    },
+    { 
+      name: "Olivia Johnson", 
+      image: "images/reviewer3.jpg", 
+      text: "I felt like royalty with VIPDrive. The attention to detail and customer care were simply outstanding." 
+    },
+    { 
+      name: "Noah Smith", 
+      image: "images/reviewer1.jpg", 
+      text: "Absolutely fantastic! VIPDrive offers a seamless blend of luxury and professionalism. Highly recommended!" 
+    },
+    { 
+      name: "Emma Davis", 
+      image: "images/reviewer2.jpg", 
+      text: "The best car rental experience I've ever had. VIPDrive's commitment to excellence is evident in every detail." 
+    },
+    { 
+      name: "James Wilson", 
+      image: "images/reviewer3.jpg", 
+      text: "VIPDrive redefines luxury travel. The service was flawless, and the car was a masterpiece of comfort and style." 
+    },
   ];
 
   // Handle arrow clicks to scroll horizontally

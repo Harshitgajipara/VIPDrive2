@@ -1,6 +1,6 @@
 .footer {
-  background-color: #0a1124;
-  color: white;
+  background-color: yellow;
+  color: black;
   padding: 40px 20px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
@@ -29,6 +29,10 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+.logo img {
+  height: 200px;
 }
 
 .logo-icon {
@@ -79,7 +83,7 @@ hr {
 
 footer p {
   font-size: 14px;
-  color: #ccc;
+  color: black;
 }
 
 /* Medium devices (tablets) */

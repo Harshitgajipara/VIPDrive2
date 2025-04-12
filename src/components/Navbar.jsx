@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "../styles/Navbar.css";
 
-const NavList = ({ openNav }) => {
+const NavList = ({ openNav, handleScroll }) => {
   return (
     <ul className={`nav-list ${openNav ? 'open' : ''}`}>
-      <li><a href="#">Packages</a></li>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Testimonial</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="#">Blogs</a></li>
+      <li><a href="#" onClick={(e) => handleScroll(e, 'section_our_solution')}>Packages</a></li>
+      <li><a href="#" onClick={(e) => handleScroll(e, 'features-section')}>Features</a></li>
+      <li><a href="#" onClick={(e) => handleScroll(e, 'testimonial-section')}>Testimonial</a></li>
+      <li><a href="#parallax-world-of-ugg" >About Us</a></li>
+      <li><a href="#" onClick={(e) => handleScroll(e, 'contact-section')}>Contact Us</a></li>
+      <li><a href="#" onClick={(e) => handleScroll(e, 'blog-section')}>Blogs</a></li>
     </ul>
   );
 };
@@ -20,6 +19,14 @@ const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const [scrollUp, setScrollUp] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = (event, className) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    const element = document.querySelector(`.${className}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,16 +51,12 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrollUp ? "nav-visible" : "nav-hidden"}`}>
       <div className="navbar-inner">
-        <a href="#" className="logo">
-          {/* <img
-            src="./images/Logo3.png"
-            alt="VIP Booking"
-          /> */}
+        <a href="/" className="logo">
           <span>VIPDrive</span>
         </a>
 
         <div className="desktop-nav">
-          <NavList />
+          <NavList openNav={openNav} handleScroll={handleScroll} />
         </div>
 
         <div className="toggle-btn" onClick={() => setOpenNav(!openNav)}>
@@ -62,7 +65,7 @@ const Navbar = () => {
       </div>
 
       <div className={`mobile-nav ${openNav ? "open" : ""}`}>
-        <NavList openNav={openNav} />
+        <NavList openNav={openNav} handleScroll={handleScroll} />
       </div>
     </nav>
   );

@@ -1,6 +1,6 @@
 .contact-section {
   padding: 4rem 5%;
-  background: #f4f8ff;
+  background: yellow;
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -75,7 +75,8 @@
 }
 
 .contact-card {
-  background: #fff;
+  color: white;
+  background: black;
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -89,7 +90,7 @@
 }
 
 .subtext {
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
@@ -133,6 +134,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
 .input.full,
@@ -148,7 +150,6 @@
 .phone-input {
   flex: 1;
 }
-
 
 .submit-btn:hover {
   background-color: #0056cc;
@@ -182,7 +183,7 @@
   }
 
   .row {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .contact-columns {

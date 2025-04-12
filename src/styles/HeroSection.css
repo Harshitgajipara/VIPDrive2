@@ -1,108 +1,198 @@
 /* Hero Section */
 .HeroSection {
-    position: relative;
-    text-align: center;
-    color: white;
-    overflow: hidden;
-    border-radius: 0% 0% 15px 15px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000;
-    animation: fadeIn 2s ease-in-out;
-  }
-  
-  .heroImg {
-    width: 100%;
-    height: auto;
-    opacity: 0.7;
-    transition: opacity 0.5s ease-in-out;
-    border-radius: 0% 0% 15px 15px;
-    filter: brightness(0.8);
-    animation: zoomIn 7s forwards;
-  }
-  
-  .HeroSection:hover .heroImg {
-    opacity: 0.5;
-    filter: brightness(1);
-  }
-  
-  .overLayDiv, .heroBookBtn {
-    position: absolute;
-    left: 50%;
-    top: 25%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
-    z-index: 1;
-    animation: fadeIn 2s ease-in-out;
-  }
-  
-  .overLayDiv {
-    top: 40%;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    animation: fadeIn 2s ease-in-out;
-  }
-  
+  position: relative;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  border-radius: 0% 0% 15px 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+  transition: opacity 0.5s ease-in-out;
+  border-radius: 0% 0% 15px 15px;
+  filter: brightness(0.8);
+  animation: zoomIn 7s forwards;
+}
+
+.HeroSection:hover .heroImg {
+  opacity: 0.5;
+  filter: brightness(1);
+}
+
+.overLayDiv, .heroBookBtn {
+  position: absolute;
+  top: 25%;
+  /* transform: translateX(-50%); */
+  width: 100%;
+  text-align: center;
+  /* z-index: 1; */
+  /* animation: fadeIn 2s ease-in-out; */
+}
+
+.overLayDiv {
+  top: 40%;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  animation: fadeIn 2s ease-in-out;
+}
+
+.overLayDiv h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: slideIn 1s ease-out;
+}
+
+/* .heroBookBtn button {
+  background: linear-gradient(135deg, #007386, #000);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+  transition: all 0.3s ease;
+} */
+
+/* .heroBookBtn button:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.6);
+  background: linear-gradient(135deg, #007386, #004d4d);
+} */
+
+.text-info {
+  color: #17a2b8;
+  animation: colorChange 3s infinite alternate;
+}
+
+@media (max-width: 768px) {
   .overLayDiv h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    animation: slideIn 1s ease-out;
+    font-size: 1.5rem;
   }
-  
-  .heroBookBtn button {
-    background: linear-gradient(135deg, #007386, #000);
-    border: none;
-    border-radius: 999px;
-    color: white;
-    padding: 0.75rem 2rem;
+
+  .heroBookBtn h2 {
+    font-size: 1.2rem;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .overLayDiv h1 {
+    font-size: 1.2rem;
+  }
+
+  .heroBookBtn h2 {
     font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
-    transition: all 0.3s ease;
-  }
-  
-  .heroBookBtn button:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
-    background: linear-gradient(135deg,  #007386,   #000);
-  }
-  
-  .text-info {
-    color: #17a2b8;
-    animation: colorChange 3s infinite alternate;
-  }
-  
-  @media (max-width: 768px) {
-    .overLayDiv h1 {
-      font-size: 1.5rem;
-    }
-  
-    .heroBookBtn h2 {
-      font-size: 1.2rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .overLayDiv h1 {
-      font-size: 1.2rem;
-    }
-  
-    .heroBookBtn h2 {
-      font-size: 1rem;
-    }
-
-    .HeroSection {
-      height: 400px;
-    }
-
-    .heroImg{
-      height: 400px;
-    }
   }
 
-  
+  .HeroSection {
+    height: 400px;
+  }
+
+  .heroImg {
+    height: 400px;
+  }
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes colorChange {
+  from { color: #17a2b8; }
+  to { color: #fff; }
+}
+
+
+
+
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 15px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 15px;
+}

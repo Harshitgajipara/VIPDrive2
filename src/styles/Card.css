@@ -1,131 +1,120 @@
 /* Card Component Styles */
 .solution_card {
-    flex: 1; /* Make each card take equal width */
-    background: #fff; /* Fallback color for text */
-    background-size: cover; /* Ensure the background image covers the whole card */
-    background-position: center center; /* Ensure the image is centered */
-    box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
-      0 5px 15px 0 rgba(37, 44, 97, 0.15);
-    border-radius: 15px;
-    margin: 8px;
-    padding: 10px 15px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    min-height: 265px; /* Fixed height for the cards */
-    transition: 0.7s;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .solution_card:hover {
-    background: #309df0;
-    color: #fff;
-    transform: scale(1.05); /* Zoom effect on hover */
-    z-index: 9;
-  }
-  
-  /* Background zoom effect */
-  .solution_card:hover {
-    transform: scale(1.05); /* Zoom effect on hover */
-    background-size: 120%; /* Zoom background image */
-  }
-  
-  /* Hover bubble effect */
-  .hover_color_bubble {
-    position: absolute;
-    background: rgb(54 81 207 / 15%);
-    width: 100rem;
-    height: 100rem;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    top: 16rem;
-    border-radius: 50%;
-    transform: rotate(-36deg);
-    left: -18rem;
-    transition: 0.7s;
-  }
-  
-  .solution_card:hover .hover_color_bubble {
-    top: 0rem;
-  }
-  
-  .solution_card:hover .solu_title h3,
-  .solution_card:hover .solu_description p {
-    color: #fff;
-    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 10px #000;
-    transition: 0.7s;
-  }
-  
-  .solution_card:hover .solu_description button {
-    background: #fff !important;
-    color: #309df0;
-  }
-  
-  .solution_card .solu_title h3 {
-    color: white;
-    font-size: 1.3rem;
-    margin-top: 13px;
-    margin-bottom: 13px;
-  }
-  
-  .solution_card .solu_description p {
-    font-size: 15px;
+  flex: 1;
+  background: #fff;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 2px 4px rgba(136, 144, 195, 0.2),
+              0 5px 15px rgba(37, 44, 97, 0.15);
+  border-radius: 15px;
+  margin: 8px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 265px;
+  transition: transform 0.7s, box-shadow 0.7s;
+}
+
+.solution_card:hover {
+  background: #309df0;
+  color: #fff;
+  transform: scale(1.05);
+  z-index: 9;
+  background-size: 120%;
+}
+
+.hover_color_bubble {
+  position: absolute;
+  background: rgba(54, 81, 207, 0.15);
+  width: 100rem;
+  height: 100rem;
+  left: -18rem;
+  top: 16rem;
+  border-radius: 50%;
+  transform: rotate(-36deg);
+  transition: 0.7s;
+  z-index: -1;
+}
+
+.solution_card:hover .hover_color_bubble {
+  top: 0;
+}
+
+.solution_card .solu_title h3 {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 15px 0;
+  transition: color 0.7s;
+}
+
+.solution_card .solu_description p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #555;
+  transition: color 0.7s;
+}
+
+.solution_card .solu_description button {
+  border: 0;
+  border-radius: 15px;
+  /* background: linear-gradient(140deg, #42c3ca 0%, #42c3ca 50%, #42c3cac7 75%); */
+  background: linear-gradient(140deg, #00282a 0%, #39cdd5 50%, #1b888ec7 75%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 10px 20px;
+  transition: background 0.7s, transform 0.7s;
+}
+
+.solution_card:hover .solu_title h3,
+.solution_card:hover .solu_description p {
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+}
+
+.solution_card:hover .solu_description button {
+  background: #fff !important;
+  color: #309df0;
+  transform: translateY(-2px);
+}
+
+/* Card Section Styles */
+.section_our_solution {
+  margin-top: 20px;
+}
+
+.our_solution_category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.solution_cards_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Media Queries for responsive card layout */
+@media screen and (max-width: 768px) {
+  .solution_cards_box .solution_card {
+    flex: 1 1 100%;
     margin-bottom: 15px;
   }
-  
-  .solution_card .solu_description button {
-    border: 0;
-    border-radius: 15px;
-    background: linear-gradient(
-      140deg,
-      #42c3ca 0%,
-      #42c3ca 50%,
-      #42c3cac7 75%
-    ) !important;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 5px 16px;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .solution_cards_box .solution_card {
+    flex: 1 1 48%;
   }
-  
-  /* Card Section Styles */
-  .section_our_solution {
-    margin-top: 20px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .solution_cards_box .solution_card {
+    flex: 1 1 23%;
   }
-  
-  .our_solution_category {
-    display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .solution_cards_box {
-    display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-    justify-content: space-between; /* Distribute the cards evenly */
-    width: 100%;
-  }
-  
-  /* Media Queries for responsive card layout */
-  @media screen and (max-width: 768px) {
-    .solution_cards_box .solution_card {
-      flex: 1 1 100%; /* Full width on small screens */
-      margin-bottom: 15px; /* Add space between cards */
-    }
-  }
-  
-  @media only screen and (min-width: 769px) and (max-width: 1024px) {
-    .solution_cards_box .solution_card {
-      flex: 1 1 48%; /* Two cards in a row */
-    }
-  }
-  
-  @media only screen and (min-width: 1025px) {
-    .solution_cards_box .solution_card {
-      flex: 1 1 23%; /* Four cards in a row */
-    }
-  }
-  
+}

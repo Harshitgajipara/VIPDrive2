@@ -7,7 +7,7 @@ function Footer() {
         <div className="footer-top">
             <div className="logo-social">
             <div className="logo">
-                <img src="./images/Logo.png" alt="logo" className="logo-icon" />
+                <img src="./images/Logo2.svg" alt="logo" className="logo-icon" />
                 <h3>VIPDrive</h3>
             </div>
             <div className="social-icons">

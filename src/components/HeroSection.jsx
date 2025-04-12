@@ -15,7 +15,7 @@ function HeroSection() {
         <button type="button" class="btn btn-outline-primary">Book</button>
       </div> */}
       <div className="heroBookBtn">
-        <button type="button" class="btn btn-outline-primary">Book</button>
+        <button type="button" class="button-85">Book</button>
       </div>
     </section>
   );

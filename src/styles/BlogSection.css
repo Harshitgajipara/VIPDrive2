@@ -1,9 +1,10 @@
 .blog-section {
   padding: 60px 20px;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
   text-align: center;
   font-family: 'Inter', sans-serif;
+  background-color: black;
 }
 
 .blog-header h1 {
@@ -11,7 +12,7 @@
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
-  background: linear-gradient(to right, #000, #222);
+  background: linear-gradient(to right, #f5f1f1, #424242);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -19,12 +20,12 @@
 .blog-header .subtitle {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #222;
+  color: #f0e68c; /* Soft gold color */
 }
 
 .blog-header .description {
   font-size: 1rem;
-  color: #666;
+  color: #b8b8b8;
   margin-top: 15px;
   max-width: 700px;
   margin-left: auto;
@@ -37,13 +38,6 @@
   margin-top: 50px;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.blog-card:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.blog-card:nth-child(2) {
-  animation-delay: 0.4s;
 }
 
 .blog-card {
@@ -76,15 +70,14 @@
   transform: scale(1.05);
 }
 
-
 .card-content {
   padding: 20px;
   text-align: left;
 }
 
 .card-content h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.5rem; /* Larger font size */
+  font-weight: 700; /* Bolder font weight */
   margin-bottom: 10px;
   color: #111;
 }
@@ -92,6 +85,7 @@
 .card-content .date {
   color: #666;
   font-size: 0.9rem;
+  font-style: italic; /* Italic for a stylish look */
 }
 
 /* Fade in animation */

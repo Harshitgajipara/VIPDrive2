@@ -7,29 +7,28 @@ const ContactUsSection = () => {
       <div className="contact-container">
         {/* Left Side - Contact Info */}
         <div className="contact-left">
-          <img src="./images/contactUs.svg" alt="Logo" className="logo" />
           <h1 className="contact-title">Contact Us</h1>
           <p className="contact-desc">
-            Email, call, or complete the form to learn how Snappy can solve your messaging problem.
+            Reach out to us to learn more about our VIP car services and exclusive ride packages.
           </p>
           <div className="contact-details">
-            <p>info@snappy.io</p>
-            <p>321-221-231</p>
+            <p>info@vipdrive.com</p>
+            <p>123-456-7890</p>
             <a href="#">Customer Support</a>
           </div>
 
           <div className="contact-columns">
             <div>
               <h4>Customer Support</h4>
-              <p>Our support team is available around the clock to address any concerns or queries you may have.</p>
+              <p>Our dedicated team is available 24/7 to assist you with any inquiries or booking needs.</p>
             </div>
             <div>
               <h4>Feedback and Suggestions</h4>
-              <p>We value your feedback and are continuously working to improve Snappy. Your input is crucial in shaping the future of Snappy.</p>
+              <p>Your feedback helps us enhance our services. Share your thoughts to help us serve you better.</p>
             </div>
             <div>
               <h4>Media Inquiries</h4>
-              <p>For media-related questions or press inquiries, please contact us at media@snappyapp.com.</p>
+              <p>For media-related questions or press inquiries, please contact us at media@vipdrive.com.</p>
             </div>
           </div>
         </div>
@@ -38,11 +37,13 @@ const ContactUsSection = () => {
         <div className="contact-right">
           <div className="contact-card">
             <h2>Get in Touch</h2>
-            <p className="subtext">You can reach us anytime</p>
+            <p className="subtext">We're here to assist you anytime</p>
             <form className="form">
               <div className="row">
                 <input type="text" placeholder="First name" className="input" />
                 <input type="text" placeholder="Last name" className="input" />
+              </div>
+              <div className="row">
                 <input type="email" placeholder="Your email" className="input full" />
               </div>
 
@@ -54,14 +55,16 @@ const ContactUsSection = () => {
                 </select>
                 <input type="text" placeholder="Phone number" className="input phone-input" />
               </div>
-
-              <textarea placeholder="How can we help?" rows="4" className="input textarea full" />
-              <button type="submit" className="submit-btn">Submit</button>
+              <div className="row">
+                <textarea placeholder="How can we assist you?" rows="4" className="input textarea full" />
+              </div>
+              <div className="row">
+                <button type="submit" className="submit-btn">Submit</button>
+              </div>
               <p className="disclaimer">
-                By contacting us, you agree to our <a href="#">Terms of service</a> and <a href="#">Privacy Policy</a>.
+                By contacting us, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
               </p>
             </form>
-
           </div>
         </div>
       </div>

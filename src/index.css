@@ -18,6 +18,7 @@ body {
   height: 100%;
   width: 100%;
   line-height: 1.5;
+  scroll-behavior: smooth;
 }
 
 ul,
@@ -74,6 +75,7 @@ a {
 a:hover,
 a:focus {
   color: var(--link-color);
+  text-decoration: none;
 }
 
 /* --------------------------------------------------------------
@@ -284,6 +286,7 @@ button:hover {
 /* Custom Scrollbar (optional) */
 ::-webkit-scrollbar {
   width: 8px;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {

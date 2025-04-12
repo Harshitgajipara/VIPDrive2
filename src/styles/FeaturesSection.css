@@ -1,14 +1,22 @@
-/* Features Section */
 .features-section {
   text-align: center;
+  margin-top: 0;
+  background-color: black;
+  padding: 30px 0 25px 0;
+  font-family: 'Roboto', sans-serif; /* Modern font */
 }
 
-.features-section-inner {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  color: yellow;
+}
+
+.row {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-top: 70px;
 }
 
 .feature-card {
@@ -17,18 +25,13 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  flex: 0 0 100%;
-  max-width: 100%;
-  margin: 15px;
-  border: none;
-  overflow: hidden;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #1a1a1a; /* Dark background for contrast */
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
-  transition: transform 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -46,46 +49,33 @@
   object-fit: cover;
 }
 
-/* Updated to position the text below initially */
 .feature-overlay {
   position: absolute;
-  bottom: -100%; /* Initially hidden below */
+  bottom: -100%;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 20px;
-  transition: background 0.3s, bottom 0.3s ease-in-out; /* Animated transition for bottom */
+  transition: background 0.3s, bottom 0.3s ease-in-out;
 }
 
 .feature-card:hover .feature-overlay {
-  bottom: 0; /* Move text to the center on hover */
-  background: rgba(0, 0, 0, 0.7); /* Darker background on hover */
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .feature-overlay h5 {
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Larger font size */
   font-weight: bold;
   margin-bottom: 10px;
+  color: #ffcc00; /* Gold color for richness */
 }
 
 .feature-overlay p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-@media (min-width: 768px) {
-  .feature-card {
-    flex: 0 0 48%;
-    max-width: 48%;
-  }
-}
-
-@media (min-width: 992px) {
-  .feature-card {
-    flex: 0 0 23%;
-    max-width: 100%;
-  }
+  font-size: 1rem; /* Slightly larger font */
+  line-height: 1.6;
+  color: #e0e0e0; /* Softer white */
 }
 
 @media (max-width: 768px) {
@@ -96,10 +86,10 @@
 
 @media (max-width: 576px) {
   .feature-overlay h5 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .feature-overlay p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }

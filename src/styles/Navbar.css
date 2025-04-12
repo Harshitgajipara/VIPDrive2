@@ -7,8 +7,8 @@
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
-  backdrop-filter: blur(10px); /* Blur effect */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   color: white;
   height: 50px;
   font-family: 'Inter', sans-serif;
@@ -49,7 +49,14 @@
 .logo span {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #17a2b8;
+  color: white;
+  text-decoration: none;
+  padding-top: 15px;
+}
+
+.logo span:hover {
+  color: #06b6d4;
+  text-decoration: none;
 }
 
 /* Desktop Nav */
@@ -63,8 +70,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: 75px;
-  padding: 0 1rem;
+  height: 50px;
+  /* padding: 0 1rem; */
 }
 
 .icon {
@@ -73,7 +80,7 @@
   color: #17a2b8;
   display: block;
   margin: 0;
-  margin-top: 10px;
+  padding-top: 15px;
 }
 
 /* Nav List */
@@ -81,9 +88,14 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 1.25rem;
   padding: 1.5rem 0;
+  margin: 0;
+}
+
+.nav-list li {
+  width: 100%;
 }
 
 .nav-list li a {
@@ -91,12 +103,17 @@
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
 }
 
 .nav-list li a:hover {
   color: #06b6d4;
   transform: translateX(5px);
+  box-shadow: 0 0 10px 2px yellow; /* Yellow shadow effect */
 }
 
 /* Mobile Nav */
@@ -104,14 +121,18 @@
   display: none;
   transition: max-height 0.4s ease;
   overflow: hidden;
-  padding-left: 2rem;
+  width: 100vw;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 49;
 }
 
 .mobile-nav.open {
   display: block;
-  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
-  backdrop-filter: blur(10px);
-  width: 100%;
 }
 
 /* Desktop View */
@@ -133,10 +154,13 @@
     padding: 0;
   }
 
+  .nav-list li {
+    width: auto;
+  }
+
   .mobile-nav {
     display: none !important;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -149,11 +173,10 @@
 }
 
 @media (max-width: 768px) {
-
   .navbar {
     height: 35px;
   }
   .navbar-inner {
     height: 35px;
-  } 
+  }
 }
