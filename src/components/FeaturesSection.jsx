@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/FeaturesSection.css';
 
 function FeaturesSection() {
+  useEffect(() => {
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('in-view');
+            }, index * 200);
+          } else {
+            entry.target.classList.remove('in-view');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // Observe only on mobile devices
+    if (window.innerWidth <= 768) {
+      featureCards.forEach((card) => {
+        observer.observe(card);
+      });
+    }
+
+    return () => {
+      featureCards.forEach((card) => {
+        observer.unobserve(card);
+      });
+    };
+  }, []);
+
   return (
     <div className="features-section">
       <div className="container">

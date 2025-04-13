@@ -3,7 +3,7 @@
   margin-top: 0;
   background-color: black;
   padding: 30px 0 25px 0;
-  font-family: 'Roboto', sans-serif; /* Modern font */
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -24,10 +24,10 @@
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   margin-bottom: 20px;
-  background-color: #1a1a1a; /* Dark background for contrast */
+  background-color: #1a1a1a;
 }
 
 .feature-card:hover {
@@ -57,7 +57,7 @@
   background: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 20px;
-  transition: background 0.3s, bottom 0.3s ease-in-out;
+  transition: background 0.3s ease, bottom 0.3s ease;
 }
 
 .feature-card:hover .feature-overlay {
@@ -65,20 +65,33 @@
   background: rgba(0, 0, 0, 0.7);
 }
 
+.feature-card.in-view .feature-overlay {
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
 .feature-overlay h5 {
-  font-size: 1.5rem; /* Larger font size */
+  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #ffcc00; /* Gold color for richness */
+  color: #ffcc00;
 }
 
 .feature-overlay p {
-  font-size: 1rem; /* Slightly larger font */
+  font-size: 1rem;
   line-height: 1.6;
-  color: #e0e0e0; /* Softer white */
+  color: #e0e0e0;
 }
 
 @media (max-width: 768px) {
+  .feature-card {
+    transition: none;
+  }
+
+  .feature-card.in-view .feature-overlay {
+    transition: bottom 0.5s ease, background 0.5s ease;
+  }
+
   .feature-img {
     height: 200px;
   }

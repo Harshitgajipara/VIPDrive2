@@ -18,10 +18,11 @@ function Footer() {
             </div>
             </div>
             <ul className="footer-links">
-            <li>Product</li>
+            <li>Packages</li>
             <li>Features</li>
-            <li>Pricing</li>
-            <li>Resources</li>
+            <li>Testimonial</li>
+            <li>Contact Us</li>
+            <li>Blogs</li>
             </ul>
         </div>
         <hr />

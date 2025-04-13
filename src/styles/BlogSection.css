@@ -55,7 +55,7 @@
 
 .blog-card img {
   width: 100%;
-  height: auto;
+  height: 60%;
   display: block;
   transition: transform 0.6s ease-in-out;
 }
@@ -73,6 +73,8 @@
 .card-content {
   padding: 20px;
   text-align: left;
+  background-color: yellow;
+  height: 100%;
 }
 
 .card-content h3 {
@@ -121,5 +123,31 @@
 
   .card-content {
     text-align: center;
+  }
+}
+
+.feature-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px;
+  transition: bottom 0.3s ease, background 0.3s ease;
+}
+
+.feature-card.in-view .feature-overlay {
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+  .feature-card {
+    transition: none;
+  }
+
+  .feature-card.in-view .feature-overlay {
+    transition: bottom 0.5s ease, background 0.5s ease;
   }
 }

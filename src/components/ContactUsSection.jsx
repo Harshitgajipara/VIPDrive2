@@ -13,7 +13,7 @@ const ContactUsSection = () => {
           </p>
           <div className="contact-details">
             <p>info@vipdrive.com</p>
-            <p>123-456-7890</p>
+            <p>989898 3573</p>
             <a href="#">Customer Support</a>
           </div>
 
