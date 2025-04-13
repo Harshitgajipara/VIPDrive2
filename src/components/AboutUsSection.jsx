@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../styles/AboutUsSection.css";
+import "../styles/AboutusSection.css";
 
 const AboutUsSection = () => {
   return (
