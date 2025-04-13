@@ -184,6 +184,7 @@
 
   .row {
     flex-direction: row;
+    justify-content: flex-start;
   }
 
   .contact-columns {
