@@ -96,6 +96,10 @@
     font-size: 1rem;
   }
 
+  .heroBookBtn {
+    visibility: hidden;
+  }
+
   .HeroSection {
     height: 280px;
   }
@@ -106,6 +110,11 @@
 
   .button-85 {
     padding: 0.1em 1em;
+  }
+
+  .HeroSection svg {
+    height: 40%;
+    top: 27%;
   }
 }
 
