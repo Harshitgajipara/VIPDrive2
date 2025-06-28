@@ -1,0 +1,235 @@
+.carlist-wrapper .phone-frame {
+  max-width: 420px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  border: 16px solid black;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  overflow: hidden;
+}
+.carlist-wrapper .phone-frame::before {
+  content: "";
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 30px;
+  background: black;
+  border-radius: 40px 40px 0 0;
+  z-index: 10;
+}
+.carlist-wrapper .phone-frame::after {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 12px;
+  background: #111;
+  border-radius: 30px;
+  z-index: 11;
+  clip-path: ellipse(15px 12px at center);
+}
+
+.carlist-wrapper .phone-content {
+  height: 90vh;
+  overflow-y: auto;
+  padding: 1rem 1rem 2rem;
+}
+.carlist-wrapper .location-header {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.15rem;
+}
+.carlist-wrapper .availability-text {
+  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.carlist-wrapper .top-icons {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  display: flex;
+  gap: 14px;
+  font-size: 1.15rem;
+  color: #222;
+  z-index: 20;
+}
+.carlist-wrapper .car-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  font-size: 0.9rem;
+  color: #222;
+}
+.carlist-wrapper .car-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.carlist-wrapper .car-info {
+  padding: 12px 16px 20px 16px;
+}
+.carlist-wrapper .car-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+.carlist-wrapper .distance {
+  float: right;
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: -1.5rem;
+  font-weight: 600;
+}
+.carlist-wrapper .rating {
+  color: #0033cc;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  user-select: none;
+}
+.carlist-wrapper .rating .star {
+  color: #ffc107;
+  margin-left: 6px;
+  font-size: 1rem;
+}
+.carlist-wrapper .reviews {
+  margin-left: 6px;
+  font-weight: 500;
+  color: #444;
+  font-size: 0.85rem;
+}
+.carlist-wrapper .price-day {
+  float: right;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: -2.4rem;
+}
+.carlist-wrapper .price-estimate {
+  display: block;
+  margin-top: 8px;
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.carlist-wrapper .top-rated-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #1565c0;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  user-select: none;
+  z-index: 10;
+}
+.carlist-wrapper .image-wrapper {
+  position: relative;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .carlist-wrapper .phone-frame {
+    border: none;
+    box-shadow: none;
+    max-width: 900px;
+    margin: 50px auto;
+    border-radius: 0;
+    height: auto;
+  }
+  .carlist-wrapper .phone-content {
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+  .carlist-wrapper .top-icons {
+    position: static;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #444;
+  }
+  .carlist-wrapper .location-header {
+    font-size: 2.5rem;
+  }
+  .carlist-wrapper .availability-text {
+    font-size: 1.2rem;
+  }
+  .carlist-wrapper .car-card {
+    display: flex;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  .carlist-wrapper .image-wrapper {
+    flex: 1 0 45%;
+    height: 280px;
+    border-radius: 16px 0 0 16px;
+    overflow: hidden;
+  }
+  .carlist-wrapper .car-image {
+    height: 100%;
+    object-fit: cover;
+  }
+  .carlist-wrapper .car-info {
+    flex: 1 0 55%;
+    padding: 30px 40px;
+    position: relative;
+  }
+  .carlist-wrapper .distance {
+    float: none;
+    position: absolute;
+    top: 28px;
+    right: 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  .carlist-wrapper .price-day {
+    float: none;
+    font-size: 1.3rem;
+    position: absolute;
+    right: 40px;
+    bottom: 56px;
+    color: #111;
+    margin-top: 0;
+  }
+  .carlist-wrapper .price-estimate {
+    position: absolute;
+    right: 40px;
+    bottom: 26px;
+    font-size: 1rem;
+  }
+  .carlist-wrapper .rating {
+    font-size: 1.1rem;
+  }
+  .carlist-wrapper .reviews {
+    font-size: 0.95rem;
+  }
+  .carlist-wrapper .top-rated-badge {
+    top: 20px;
+    left: 20px;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
+}

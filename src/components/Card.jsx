@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Card.css";
 
 function Card({ title, description, imageUrl, link }) {
@@ -14,9 +15,9 @@ function Card({ title, description, imageUrl, link }) {
       </div>
       <div className="solu_description">
         <p>{description}</p>
-        <button type="button" className="read_more_btn">
+        <Link to={link} className="read_more_btn">
           BOOK NOW
-        </button>
+        </Link>
       </div>
     </div>
   );

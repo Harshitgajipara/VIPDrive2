@@ -1,9 +1,10 @@
 .footer {
+  height: 360px;
   background-color: yellow;
   color: black;
-  padding: 40px 20px;
+  /*padding: 40px 20px;*/
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .footer-top {
