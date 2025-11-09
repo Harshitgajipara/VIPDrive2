@@ -27,6 +27,15 @@ function CardSection() {
             {/* Card 3 */}
 
             <Card
+              title="Special Organized Trips"
+              description="Custom-designed travel plans crafted for your comfort, style, and unforgettable moments."
+              imageUrl="images/special-organized-trips.jpg"
+              link="/special-trips"
+            />
+
+            {/* Card 4 */}
+
+            <Card
               title="Custom Package"
               description="Tailor your experience with our customizable packages to suit your needs."
               imageUrl="images/custom-package.jpg"
