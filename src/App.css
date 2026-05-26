@@ -1,9 +1,4 @@
-/* --------------------------------------------------------------
-   1. GLOBAL STYLES IMPORT
--------------------------------------------------------------- */
-
-@import './index.css';
-
-/* --------------------------------------------------------------
-   2. APP SPECIFIC STYLES
--------------------------------------------------------------- */
+/* App.css — intentionally minimal.
+   All global styles live in src/index.css (which imports variables.css and animations.css).
+   Component-specific styles live in src/styles/<ComponentName>.css
+*/

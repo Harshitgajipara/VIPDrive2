@@ -3,7 +3,7 @@
   padding: 60px 20px;
   position: relative;
   overflow: hidden;
-  background-color: #ffff00d7;
+  background: #ffff00d7 !important;
 }
 
 .testimonial-section h2 {
@@ -18,10 +18,10 @@
   display: flex;
   gap: 20px;
   padding-bottom: 20px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none; /* Set to none to allow smooth programmatic scroll */
   overflow-x: hidden;
   transition: transform 0.5s ease-in-out; /* Smooth transition */
-  justify-content: center;
+  justify-content: flex-start; /* flex-start enables correct scrolling calculations */
 }
 
 .testimonial-slider::-webkit-scrollbar {
@@ -54,10 +54,10 @@
   display: flex;
   gap: 20px;
   padding-bottom: 20px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none; /* Disable native snap to prevent locking JS scrollTo */
   overflow-x: hidden;
   transition: transform 0.5s ease-in-out;
-  justify-content: center;
+  justify-content: flex-start; /* flex-start permits the container to scroll fully */
 }
 
 /* Styling for the arrows */

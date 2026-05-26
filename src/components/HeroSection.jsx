@@ -1,21 +1,24 @@
-import React from 'react';
+﻿import React from 'react';
 import '../styles/HeroSection.css';
 import Title from './Title';
 
 function HeroSection() {
   return (
-    <section className="HeroSection">
-      <img className="heroImg" src="images/Hero.jpg" alt="Hero" />
+    <section className="HeroSection" aria-label="Hero banner">
+      <img
+        className="heroImg"
+        src="images/Hero.webp"
+        alt="Luxury VIPDrive car on a scenic road"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+      />
       <Title />
-      {/* <div className="overLayDiv">
-        <h1>Arrive in Style, Leave in <span class="text-info">Luxury!</span></h1>
-      </div>
       <div className="heroBookBtn">
-        <h2>Book Your Dream Car Now</h2>
-        <button type="button" class="btn btn-outline-primary">Book</button>
-      </div> */}
-      <div className="heroBookBtn">
-        <button type="button" class="button-85">Book</button>
+        <a href="/custom-booking" className="button-85" role="button">
+          Book Now
+        </a>
       </div>
     </section>
   );

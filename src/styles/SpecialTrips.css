@@ -207,3 +207,38 @@
     font-size: 36vw;
   }
 }
+
+/* ── Floating home button (immersive nav) ── */
+.st-home-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.st-home-btn:hover {
+  background: rgba(201, 168, 76, 0.25);
+  border-color: rgba(201, 168, 76, 0.5);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.st-home-btn svg {
+  flex-shrink: 0;
+}
+

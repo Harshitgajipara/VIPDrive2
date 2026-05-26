@@ -35,7 +35,7 @@ function FeaturesSection() {
   }, []);
 
   return (
-    <div className="features-section">
+    <div className="features-section" id="features-section">
       <div className="container">
         <h2 className="text-center mb-4">Discover Our Commitment to Excellence</h2>
         <p className="text-center mb-5">A Commitment to Luxury and Customer Satisfaction</p>

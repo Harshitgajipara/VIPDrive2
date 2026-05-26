@@ -1,120 +1,324 @@
-/* Card Component Styles */
+/* Custom Glassmorphism Wave Morphing Card Styles */
 .solution_card {
-  flex: 1;
-  background: #fff;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 2px 4px rgba(136, 144, 195, 0.2),
-    0 5px 15px rgba(37, 44, 97, 0.15);
-  border-radius: 15px;
-  margin: 8px;
+  position: relative;
+  background: #12151f;
+  /* Elegant solid dark luxury card background matching the wave divider */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  min-height: 355px;
+  /* Reduced to 355px to decrease card height from the bottom */
+  /* Enhanced height to support new image-svg-text structure */
+  border-radius: 16px;
   padding: 20px;
+  color: #c4c8d4;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.5s ease;
+  z-index: 1;
+
+  /* Flexbox to keep everything perfectly aligned */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassy Hover Effect */
+.solution_card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(201, 168, 76, 0.5);
+  /* Luxury glowing gold border */
+  box-shadow: 0 16px 36px rgba(201, 168, 76, 0.2);
+  z-index: 9;
+}
+
+/* Morphing separator SVG style */
+.card__svg {
+  position: absolute;
+  left: 0;
+  top: 160px;
+  /* Aligns perfectly with the image frame bottom */
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card__svg-path {
+  fill: #12151f;
+  /* Matches the content block background */
+  transition: fill 0.3s ease;
+}
+
+/* Exact morph separator line style from user snippet */
+.card__line {
+  opacity: 0;
+  animation: LineFadeIn .8s .8s forwards ease-in;
+}
+
+/* Image Container */
+.card__image-container {
+  margin: -20px -20px 0 -20px;
+  height: 222px;
+  overflow: hidden;
   position: relative;
   z-index: 1;
-  overflow: hidden;
-  min-height: 265px;
-  transition: transform 0.7s, box-shadow 0.7s;
+  border-radius: 16px 16px 0 0;
 }
 
-.solution_card:hover {
-  background: #309df0;
-  color: #fff;
-  transform: scale(1.05);
-  z-index: 9;
-  background-size: 120%;
+/* Image Fade-in and zoom animation from user snippet */
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: ImageFadeIn .8s 1.4s forwards;
+  transition: transform 0.6s ease;
 }
 
+.solution_card:hover .card__image {
+  transform: scale(1.08);
+  /* Sophisticated hover zoom */
+}
+
+/* Content block with smooth cascade slide-in */
+.card__content {
+  background: transparent;
+  /* Made transparent to let the card background blend gap-free! */
+  margin-top: 20px;
+  /* Reduced margin-top to decrease spacing and compress card height */
+  padding-bottom: 10px;
+  /* Compact bottom padding to draw elements closer */
+  /* Offset to sit beautifully below the wave divider line */
+  opacity: 0;
+  animation: ContentFadeIn .8s 1.6s forwards;
+  position: relative;
+  z-index: 4;
+  /* Layered above the hover color bubble */
+
+  /* Flex vertical spacing to push button to the absolute bottom */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.solution_card:hover .card__title {
+  color: #c9a84c;
+  /* Gold text transition on hover */
+}
+
+.card__desc {
+  font-size: 0.92rem;
+  color: #abb2bf;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  flex: 1;
+  /* Automatically consumes middle vertical space */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Book Now premium gold gradient button with sliding border effect */
+.read_more_btn {
+  display: inline-block;
+  margin-top: auto;
+  align-self: flex-start;
+  width: 140px;
+  /* Slightly wider to beautifully accommodate "BOOK NOW" spacing */
+  height: 42px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(0deg, #a07c30 0%, #c9a84c 100%);
+  color: #0a0c14;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  outline: none;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.2),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.2),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.read_more_btn span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.read_more_btn:hover {
+  color: #c9a84c;
+  background: transparent;
+  box-shadow: none;
+}
+
+.read_more_btn:before,
+.read_more_btn:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #c9a84c;
+  box-shadow:
+    -1px -1px 5px 0px rgba(255, 255, 255, 0.2),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.3),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+  transition: 400ms ease all;
+}
+
+.read_more_btn:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+.read_more_btn:hover:before,
+.read_more_btn:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
+}
+
+/* Shimmer Glass bubble helper */
 .hover_color_bubble {
   position: absolute;
-  background: rgba(54, 81, 207, 0.15);
+  background: rgba(201, 168, 76, 0.06);
   width: 100rem;
   height: 100rem;
   left: -18rem;
   top: 16rem;
   border-radius: 50%;
   transform: rotate(-36deg);
-  transition: 0.7s;
-  z-index: -1;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 3;
+  /* Rendered over image and SVG wave divider */
+  pointer-events: none;
 }
 
 .solution_card:hover .hover_color_bubble {
-  top: 0;
+  top: -10rem;
+  background: rgba(201, 168, 76, 0.12);
 }
 
-.solution_card .solu_title h3 {
-  color: #333;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 15px 0;
-  transition: color 0.7s;
+/* ── Path-Morphing Keyframe Animations from User Snippet ── */
+@keyframes LineFadeIn {
+  0% {
+    opacity: 0;
+    d: path("M 0 300 Q 0 300 0 300 Q 0 300 0 300 C 0 300 0 300 0 300 Q 0 300 0 300 ");
+    stroke: #ffffff;
+  }
+
+  50% {
+    opacity: 1;
+    d: path("M 0 300 Q 50 300 100 300 Q 250 300 350 300 C 350 300 500 300 650 300 Q 750 300 800 300");
+    stroke: #c9a84c;
+    /* Customized to gold theme */
+  }
+
+  100% {
+    opacity: 1;
+    d: path("M -2 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 802 400");
+    stroke: #a07c30;
+    /* Customized to dark gold theme */
+  }
 }
 
-.solution_card .solu_description p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-  color: #555;
-  transition: color 0.7s;
+@keyframes ContentFadeIn {
+  0% {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.solution_card .solu_description button {
-  border: 0;
-  border-radius: 15px;
-  /* background: linear-gradient(140deg, #42c3ca 0%, #42c3ca 50%, #42c3cac7 75%); */
-  background: linear-gradient(140deg, #00282a 0%, #39cdd5 50%, #1b888ec7 75%);
-  color: #fff;
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 10px 20px;
-  transition: background 0.7s, transform 0.7s;
+@keyframes ImageFadeIn {
+  0% {
+    transform: translate(-.5rem, -.5rem) scale(1.05);
+    opacity: 0;
+    filter: blur(2px);
+  }
+
+  50% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: translateY(0) scale(1.0);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
-.solution_card:hover .solu_title h3,
-.solution_card:hover .solu_description p {
-  color: #fff;
-  text-shadow: 0 0 5px #000;
-}
-
-.solution_card:hover .solu_description button {
-  background: #fff !important;
-  color: #309df0;
-  transform: translateY(-2px);
-}
-
-/* Card Section Styles */
+/* Card Section Layout wrapper */
 .section_our_solution {
-  margin-top: 20px;
+  margin-top: 40px;
+  padding: 0 15px;
+  background-color: #050709;
 }
 
 .our_solution_category {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  width: 100% !important;
 }
 
+/* Modern flex grid system with robust spacing */
 .solution_cards_box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 32px !important;
+  /* Perfectly visible spacing gap between all cards */
+  width: 100% !important;
+  align-items: stretch !important;
+  /* Forces equal height layout in rows */
 }
 
-/* Media Queries for responsive card layout */
+/* Desktop sizing: 4 columns */
+.solution_cards_box .solution_card {
+  flex: 1 1 calc(25% - 24px) !important;
+  /* Account for the gap padding */
+  margin: 0 !important;
+  /* Clear static margins to avoid double-overlap */
+}
+
+/* Tablet sizing: 2 columns */
+@media screen and (max-width: 1024px) {
+  .solution_cards_box .solution_card {
+    flex: 1 1 calc(50% - 16px) !important;
+  }
+}
+
+/* Mobile sizing: 1 column */
 @media screen and (max-width: 768px) {
   .solution_cards_box .solution_card {
-    flex: 1 1 100%;
-    margin-bottom: 15px;
-  }
-}
-
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  .solution_cards_box .solution_card {
-    flex: 1 1 48%;
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  .solution_cards_box .solution_card {
-    flex: 1 1 23%;
+    flex: 1 1 100% !important;
+    margin-bottom: 24px !important;
   }
 }

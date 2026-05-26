@@ -1,0 +1,78 @@
+/* ============================================================
+   DESIGN TOKENS — VIPDrive
+   Import this file first in index.css or any component CSS
+   ============================================================ */
+
+:root {
+  /* --- Color Palette --- */
+  --color-bg-primary: #0a0c14;        /* Deep dark background */
+  --color-bg-surface: #12151f;        /* Card / section backgrounds */
+  --color-bg-elevated: #1a1e2e;       /* Elevated card / modal */
+  --color-bg-glass: rgba(255, 255, 255, 0.05);
+
+  --color-accent-gold: #c9a84c;       /* Luxury gold */
+  --color-accent-gold-light: #e8c97a;
+  --color-accent-cyan: #06b6d4;       /* Brand cyan */
+  --color-accent-cyan-dark: #0891b2;
+
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #a0a8b8;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #0a0c14;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-accent: rgba(201, 168, 76, 0.3);
+
+  /* --- Typography --- */
+  --font-heading: 'Inter', 'Roboto', sans-serif;
+  --font-body: 'Inter', 'Roboto', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* --- Spacing --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* --- Border Radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 24px rgba(201, 168, 76, 0.2);
+  --shadow-cyan: 0 0 24px rgba(6, 182, 212, 0.2);
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 600ms ease;
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Layout --- */
+  --navbar-height: 60px;
+  --container-max: 1280px;
+  --section-padding-y: var(--space-20);
+}

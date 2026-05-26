@@ -9,7 +9,7 @@ const GoaTrip = () => {
   const sectionsRef = useRef([]);
 
   useEffect(() => {
-    sectionsRef.current.forEach((section, i) => {
+    sectionsRef.current.forEach((section, _i) => {
       gsap.fromTo(
         section,
         { opacity: 0, y: 100 },

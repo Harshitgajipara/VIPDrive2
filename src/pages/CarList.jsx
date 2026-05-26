@@ -1,8 +1,10 @@
-import React from "react";
-import "../styles/CarList.css";
+import React from 'react';
+import PageLayout from '../layouts/PageLayout';
+import '../styles/CarList.css';
 
 function CarList() {
   return (
+    <PageLayout title="Available Cars">
     <div className="carlist-wrapper">
       {/* Mobile phone frame container */}
       <div
@@ -55,6 +57,7 @@ function CarList() {
                 className="car-image"
                 src="https://tesla-cdn.thron.com/delivery/public/image/tesla/1db393ed-8cb3-4ed6-927f-2073e89aac54/bvlatuR/std/2880x1800/_25-Hero-D"
                 alt="Tesla Model S 2022"
+                loading="lazy"
               />
             </div>
             <section className="car-info">
@@ -97,6 +100,7 @@ function CarList() {
                 className="car-image"
                 src="https://cdn.motor1.com/images/mgl/o1kzO/s1/nissan-gt-r-nismo-2020.webp"
                 alt="Nissan GT-R 2020"
+                loading="lazy"
               />
             </div>
             <section className="car-info">
@@ -292,6 +296,7 @@ function CarList() {
         </article>
       </div>
     </div>
+    </PageLayout>
   );
 }
 

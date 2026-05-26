@@ -30,11 +30,15 @@
 
 .testimonial-text p {
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #1a1a1a; /* Dark charcoal color for high visibility on yellow background */
   font-family: 'Playfair Display', serif; /* Use Playfair Display for the italic text */
 }
 
 .testimonial-text h4 {
-  font-weight: 600;
+  font-weight: 700;
+  color: #000000; /* Rich solid black for the author name */
   font-family: 'Montserrat', sans-serif; /* Use Montserrat for the names */
 }

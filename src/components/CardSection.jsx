@@ -4,7 +4,7 @@ import "../styles/CardSection.css";
 
 function CardSection() {
   return (
-    <div className="section_our_solution">
+    <div className="section_our_solution" id="section_our_solution">
       <div className="col-lg-12 col-md-12 col-sm-12">
         <div className="our_solution_category">
           <div className="solution_cards_box">
@@ -30,7 +30,7 @@ function CardSection() {
               title="Special Organized Trips"
               description="Custom-designed travel plans crafted for your comfort, style, and unforgettable moments."
               imageUrl="images/special-organized-trips.jpg"
-              link="/special-trips"
+              link="/packages/sot"
             />
 
             {/* Card 4 */}

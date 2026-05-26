@@ -1,0 +1,342 @@
+/* ============================================================
+   Car Journey Meter — Scroll-driven animation
+   ============================================================ */
+
+.car-journey-section {
+  background: #080a0f;
+  padding: 1rem 0 1rem;
+  position: sticky;
+  top: -1px;
+  /* sticky to top */
+  z-index: 50;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.car-journey-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.car-journey-label {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 1.2rem;
+}
+
+/* Track */
+.car-journey-track {
+  position: relative;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* Background line */
+.car-journey-line-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+/* Progress fill line */
+.car-journey-line-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #c9a84c, #f0d060);
+  border-radius: 4px;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+  transition: width 0.05s linear;
+}
+
+/* Day markers */
+.car-journey-days {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.car-day-marker {
+  position: absolute;
+  left: calc(var(--marker-pct, 0) * 100%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.car-day-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.car-day-marker.active .car-day-dot {
+  background: #c9a84c;
+  border-color: #f0d060;
+  transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+}
+
+.car-day-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  position: absolute;
+  top: 16px;
+  transition: color 0.3s;
+}
+
+.car-day-marker.active .car-day-label {
+  color: #c9a84c;
+}
+
+/* Start / End flags */
+.car-journey-endpoint {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 4;
+  line-height: 1;
+}
+
+.car-journey-endpoint.start {
+  left: -12px;
+}
+
+.car-journey-endpoint.end {
+  right: -12px;
+}
+
+/* Car icon */
+.car-journey-car {
+  position: absolute;
+  z-index: 5;
+  font-size: 1.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(201, 168, 76, 0.5));
+  will-change: left, transform;
+  pointer-events: none;
+  transition: left 0.05s linear, top 0.05s linear, transform 0.2s ease;
+}
+
+.car-journey-track[data-dir="fwd"] .car-journey-car {
+  transform: translate(-50%, -50%) scaleX(1);
+}
+
+.car-journey-track[data-dir="rev"] .car-journey-car {
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+
+/* Spark trail */
+.car-journey-sparks {
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  gap: 3px;
+  opacity: var(--spark-opacity, 0);
+  transition: opacity 0.2s;
+}
+
+.spark {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f0d060;
+  opacity: 0;
+  animation: sparkPop 0.6s ease-out infinite;
+}
+
+.spark:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.spark:nth-child(2) {
+  animation-delay: 0.15s;
+  width: 3px;
+  height: 3px;
+}
+
+.spark:nth-child(3) {
+  animation-delay: 0.3s;
+  width: 2px;
+  height: 2px;
+}
+
+@keyframes sparkPop {
+  0% {
+    opacity: 0.9;
+    transform: scale(1) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.2) translateY(-8px);
+  }
+}
+
+/* Day counter badge */
+.car-journey-badge {
+  text-align: center;
+  margin-top: 1.4rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  min-height: 1.2em;
+  /* prevent layout jump when empty */
+}
+
+.car-journey-badge strong {
+  color: #c9a84c;
+  font-weight: 700;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE — VERTICAL CONVERSION
+   ============================================================ */
+@media (max-width: 768px) {
+  .car-journey-section {
+    position: fixed;
+    /* anchor to side of screen */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 60px;
+    height: 60vh;
+    /* take up middle of screen height */
+    background: transparent;
+    border: none;
+    padding: 0;
+    pointer-events: none;
+    /* allow clicks through the invisible container */
+  }
+
+  .car-journey-inner {
+    height: 100%;
+    padding: 0;
+    align-items: center;
+  }
+
+  .car-journey-label,
+  .car-journey-badge {
+    display: none;
+    /* hide text on mobile to save space */
+  }
+
+  .car-journey-track {
+    height: 100%;
+    width: 20px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .car-journey-line-bg {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+
+  .car-journey-line-fill {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #c9a84c, #f0d060);
+    transition: height 0.05s linear;
+  }
+
+  .car-day-marker {
+    left: 50% !important;
+    top: calc(var(--marker-pct, 0) * 100%) !important;
+  }
+
+  .car-day-label {
+    display: none;
+    /* Hide day numbers on tight mobile vertical view */
+  }
+
+  .car-day-dot {
+    width: 8px;
+    height: 8px;
+    background: #080a0f;
+    /* contrast against passing content */
+  }
+
+  .car-journey-endpoint {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .car-journey-endpoint.start {
+    top: -16px;
+  }
+
+  .car-journey-endpoint.end {
+    bottom: -16px;
+    top: auto;
+  }
+
+  /* Rotate car to point down/up for vertical layout */
+  .car-journey-car {
+    left: 50% !important; /* Center horizontally in the vertical track */
+    font-size: 1.4rem;
+  }
+
+  /* SVG car naturally faces right. 
+     To point DOWN (fwd), we rotate 90deg.
+     To point UP (rev), we rotate -90deg. */
+  .car-journey-track[data-dir="fwd"] .car-journey-car {
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+  }
+
+  .car-journey-track[data-dir="rev"] .car-journey-car {
+    transform: translate(-50%, -50%) rotate(-90deg) !important;
+  }
+
+  .car-journey-sparks {
+    flex-direction: column;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+
+  @keyframes sparkPop {
+    0% {
+      opacity: 0.9;
+      transform: scale(1) translateX(0);
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(0.2) translateX(-8px);
+    }
+  }
+}

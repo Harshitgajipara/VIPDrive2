@@ -1,20 +1,37 @@
-import React from "react";
-import "../styles/ContactUsSection.css";
+import React, { useState } from 'react';
+import '../styles/ContactUsSection.css';
 
 const ContactUsSection = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    e.target.reset();
+    setTimeout(() => setSubmitted(false), 5000);
+  };
+
   return (
-    <section className="contact-section">
+    <section id="contact-section" className="contact-section" aria-labelledby="contact-heading">
       <div className="contact-container">
         {/* Left Side - Contact Info */}
         <div className="contact-left">
-          <h1 className="contact-title">Contact Us</h1>
+          <h2 id="contact-heading" className="contact-title">Contact Us</h2>
           <p className="contact-desc">
             Reach out to us to learn more about our VIP car services and exclusive ride packages.
           </p>
           <div className="contact-details">
-            <p>info@vipdrive.com</p>
-            <p>989898 3573</p>
-            <a href="#">Customer Support</a>
+            <p>
+              <a href="mailto:info@vipdrive.com" aria-label="Email us at info@vipdrive.com">
+                info@vipdrive.com
+              </a>
+            </p>
+            <p>
+              <a href="tel:+919898983573" aria-label="Call us at +91 98989 83573">
+                +91 98989 83573
+              </a>
+            </p>
+            <a href="mailto:info@vipdrive.com">Customer Support</a>
           </div>
 
           <div className="contact-columns">
@@ -36,33 +53,79 @@ const ContactUsSection = () => {
         {/* Right Side - Contact Form */}
         <div className="contact-right">
           <div className="contact-card">
-            <h2>Get in Touch</h2>
-            <p className="subtext">We're here to assist you anytime</p>
-            <form className="form">
+            <h3>Get in Touch</h3>
+            <p className="subtext">We&apos;re here to assist you anytime</p>
+            <form className="form" onSubmit={handleSubmit} noValidate>
               <div className="row">
-                <input type="text" placeholder="First name" className="input" />
-                <input type="text" placeholder="Last name" className="input" />
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First name"
+                  className="input"
+                  required
+                  aria-label="First name"
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last name"
+                  className="input"
+                  required
+                  aria-label="Last name"
+                />
               </div>
               <div className="row">
-                <input type="email" placeholder="Your email" className="input full" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                  className="input full"
+                  required
+                  aria-label="Email address"
+                />
               </div>
-
               <div className="row">
-                <select className="input select country-code">
-                  <option>+62</option>
-                  <option>+91</option>
-                  <option>+1</option>
+                <select
+                  className="input select country-code"
+                  name="countryCode"
+                  aria-label="Country code"
+                >
+                  <option value="+91">+91 (India)</option>
+                  <option value="+1">+1 (USA)</option>
+                  <option value="+62">+62 (Indonesia)</option>
+                  <option value="+44">+44 (UK)</option>
+                  <option value="+971">+971 (UAE)</option>
                 </select>
-                <input type="text" placeholder="Phone number" className="input phone-input" />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone number"
+                  className="input phone-input"
+                  aria-label="Phone number"
+                />
               </div>
               <div className="row">
-                <textarea placeholder="How can we assist you?" rows="4" className="input textarea full" />
+                <textarea
+                  name="message"
+                  placeholder="How can we assist you?"
+                  rows="4"
+                  className="input textarea full"
+                  aria-label="Your message"
+                />
               </div>
+              {submitted && (
+                <p className="form-success-msg" role="alert">
+                  ✅ Thank you! We&apos;ll get back to you shortly.
+                </p>
+              )}
               <div className="row">
-                <button type="submit" className="submit-btn">Submit</button>
+                <button type="submit" className="submit-btn">
+                  Submit
+                </button>
               </div>
               <p className="disclaimer">
-                By contacting us, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                By contacting us, you agree to our{' '}
+                <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
               </p>
             </form>
           </div>

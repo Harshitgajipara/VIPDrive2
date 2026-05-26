@@ -1,10 +1,36 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { fileURLToPath, URL } from 'url'
+
 export default defineConfig({
   base: '/',
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
+      '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
+      '@layouts': fileURLToPath(new URL('./src/layouts', import.meta.url)),
+      '@hooks': fileURLToPath(new URL('./src/hooks', import.meta.url)),
+      '@constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
+    },
+  },
+  build: {
+    cssMinify: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'gsap-vendor': ['gsap'],
+          'swiper-vendor': ['swiper'],
+        },
+      },
+    },
+  },
   // server: {
   //   host: '10.37.57.108',  // Allows access from local network
-  //   port: 5173,       // Or any port you prefer
+  //   port: 5173,            // Or any port you prefer
   // },
 })

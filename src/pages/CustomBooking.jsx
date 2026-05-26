@@ -1,15 +1,12 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import TripBookingForm from "../components/TripBookingForm";
+import React from 'react';
+import PageLayout from '../layouts/PageLayout';
+import TripBookingForm from '../components/TripBookingForm';
 
 function CustomBooking() {
   return (
-    <div>
-      <Navbar />
+    <PageLayout title="Custom Package Booking">
       <TripBookingForm />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }
 
