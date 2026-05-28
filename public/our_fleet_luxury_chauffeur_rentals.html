@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fleet &amp; Services | VIVAH CINEMA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e3e3de",
+                    "on-background": "#e5e2e1",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed-variant": "#004d64",
+                    "surface-dim": "#131313",
+                    "on-primary-container": "#6b5500",
+                    "surface": "#131313",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "primary-fixed": "#ffe08a",
+                    "on-secondary-fixed-variant": "#454744",
+                    "surface-variant": "#353534",
+                    "on-secondary-container": "#b8b9b4",
+                    "inverse-primary": "#745b00",
+                    "on-primary-fixed": "#241a00",
+                    "on-primary": "#3d2f00",
+                    "surface-container": "#201f1f",
+                    "tertiary-container": "#82d9ff",
+                    "tertiary-fixed-dim": "#7ad1f7",
+                    "on-tertiary-container": "#005f7a",
+                    "secondary-fixed-dim": "#c6c7c2",
+                    "on-tertiary": "#003546",
+                    "secondary-container": "#484a46",
+                    "on-surface-variant": "#d0c5af",
+                    "primary": "#ffe9b0",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#574400",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed": "#1a1c19",
+                    "surface-bright": "#393939",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error-container": "#93000a",
+                    "outline-variant": "#4d4635",
+                    "inverse-on-surface": "#313030",
+                    "tertiary": "#d1efff",
+                    "surface-container-low": "#1c1b1b",
+                    "on-surface": "#e5e2e1",
+                    "secondary": "#c6c7c2",
+                    "surface-tint": "#eac249",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e5e2e1",
+                    "primary-fixed-dim": "#eac249",
+                    "tertiary-fixed": "#bde9ff",
+                    "on-tertiary-fixed": "#001f2a",
+                    "primary-container": "#f2ca50",
+                    "outline": "#99907c",
+                    "on-secondary": "#2f312e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "unit": "8px",
+                    "margin-mobile": "24px",
+                    "container-max": "1280px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Montserrat"],
+                    "label-caps": ["Montserrat"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Montserrat"],
+                    "headline-md": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(242, 202, 80, 0.4);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .golden-thread {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(242, 202, 80, 0.3), transparent);
+        }
+        .dark-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(19, 19, 19, 0) 0%, rgba(19, 19, 19, 1) 100%);
+        }
+        .active-filter {
+            background: #f2ca50 !important;
+            color: #241a00 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary cursor-pointer active:scale-95 transition-all">
+                VIVAH CINEMA
+            </div>
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 transition-colors duration-300" href="#">Fleet</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Honeymoon</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Bespoke</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Inquire</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 font-label-caps text-label-caps rounded-full cursor-pointer transition-all active:scale-95 hover:bg-primary transition-colors">
+                Book Now
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-[90vh] flex items-end justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury vehicle fleet in front of a grand palace" class="w-full h-full object-cover scale-105 animate-[kenburns_20s_infinite_alternate]" src="https://lh3.googleusercontent.com/aida/ADBb0uiQP7t8OApzzYIJtzmaqSc-yqLJjkB2_put1aVX3v30efg2UydYVPx_R9NMIIAOIsxXREP22gNo_ahNzz-6m9Ni97uzAg4j7ZSvp9PsMUqW5Jh43bDG2nmx-Oyc3SX3kW2N6HMUKyCfwdB3J3XYHJjakOjO8S5DAMSW-uBo2lkpIz235mUe6dW7JmchyuSFj-uC-0xR2miruuvHYlkTFRo4WP2pYzMia0O4CuJGYVOSvHbSqUqcHL5iEos"/>
+<div class="absolute inset-0 dark-gradient-overlay"></div>
+</div>
+<div class="relative z-10 text-center mb-24 max-w-4xl px-margin-mobile">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] mb-6 block">EXPERIENCE EXCLUSIVITY</span>
+<h1 class="font-display-lg text-display-lg md:text-display-lg mb-8">Select Your Royal Chariot</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80">
+                A curated selection of the world's most prestigious automobiles, chaffeured by elite professionals for your most significant moments.
+            </p>
+</div>
+</header>
+<!-- Category Filters -->
+<section class="py-12 border-b border-white/5 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-wrap justify-center gap-4">
+<button class="glass-card active-filter px-8 py-3 rounded-full font-label-caps text-label-caps transition-all">ALL FLEET</button>
+<button class="glass-card px-8 py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all">SUV</button>
+<button class="glass-card px-8 py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all">SEDAN</button>
+<button class="glass-card px-8 py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all">LUXURY</button>
+<button class="glass-card px-8 py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all">VINTAGE</button>
+<button class="glass-card px-8 py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all">WEDDING SUPPORT</button>
+</div>
+</div>
+</section>
+<!-- Fleet Grid -->
+<section class="py-section-gap max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A side view of a white luxury sedan parked in a sunlit urban setting, showcasing its elegant lines and modern design. The background is a sophisticated architectural structure with clean glass surfaces, emphasizing a sense of high-end urban lifestyle and precision engineering in a dark luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz3D-_7jfgVsTq9L5HMm2tquPZq1SnfHBnjR2ySm-5GMHkr99QHushimOHZT6XdL1hevwwxWu1Di-zogz2KH7yfRHtx9JVpYLZr_TQcfGUImWRJNis3x9ytfmALh1sBBKTtarl8M_dBakXD8OPTrqy6a1QppUrkiWWKB8EWutmgQ_OTHbqPqwm4fPIQlRu0KrAGrJtkhJ2k_XLM9SYI8jWF17IcQO7IccQnAP7LN4n11SyrJ6vRng-HPFMdCvS91Rdt3yQ3OcKXtc"/>
+<div class="absolute top-4 left-4 bg-primary-container/90 text-on-primary-container px-3 py-1 rounded-sm font-label-caps text-[10px]">ULTRA LUXURY</div>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-md text-headline-md mb-2 text-primary">Mercedes-Benz S-Class</h3>
+<p class="text-on-surface-variant text-body-md mb-6 opacity-70">The pinnacle of automotive engineering and executive comfort.</p>
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">airline_seat_recline_extra</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">4 SEATS</p>
+</div>
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">local_gas_station</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">PETROL</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary mb-1">settings_input_component</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">AUTO</p>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-6">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">STARTING FROM</p>
+<p class="font-display-lg text-headline-lg text-primary">₹180<span class="text-body-md font-body-md text-on-surface-variant">/KM</span></p>
+</div>
+<button class="bg-white/5 border border-white/20 hover:border-primary hover:text-primary px-4 py-2 rounded-lg font-label-caps text-label-caps transition-all">SELECT</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A sleek black Range Rover Obsidian parked on a wet city street at dusk. Neon lights from nearby storefronts reflect off the polished surface of the car. The atmosphere is cinematic and high-contrast, blending deep charcoal tones with vibrant gold highlights, creating a sense of powerful quiet wealth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqI5h9nT-mU77xUO-qlDkxHLAw5MyUQvNIleSYWxcCjXdtI6oiXV1TH25iWcDQ_xgN0WZkznAavreV6bhkRkOCkYKZjwYq_S5_enNv2kJhuXpusy8SgYqoHreEch3zr4Xp2yw1kFaCK3oHZ5oVSDwVrrBrh3JEWbfgEAloIggWfICf8XynVTAbABcYEMZIRSrUSbGJW18wocLS3C5vNNJOUXtoFBgHx_8zPAA-zE0BkoE8Ef0wh4sv5c_jpI-LnU46PgL_EOPxiWg"/>
+<div class="absolute top-4 left-4 bg-primary-container/90 text-on-primary-container px-3 py-1 rounded-sm font-label-caps text-[10px]">ALL-TERRAIN</div>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-md text-headline-md mb-2 text-primary">Range Rover Obsidian</h3>
+<p class="text-on-surface-variant text-body-md mb-6 opacity-70">Commanding presence meet effortless refinement for any journey.</p>
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">group</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">5 SEATS</p>
+</div>
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">speed</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">DIESEL</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary mb-1">terrain</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">4WD</p>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-6">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">STARTING FROM</p>
+<p class="font-display-lg text-headline-lg text-primary">₹220<span class="text-body-md font-body-md text-on-surface-variant">/KM</span></p>
+</div>
+<button class="bg-white/5 border border-white/20 hover:border-primary hover:text-primary px-4 py-2 rounded-lg font-label-caps text-label-caps transition-all">SELECT</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden flex flex-col group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A vintage Rolls Royce in cream and gold parked in the courtyard of a majestic stone palace during the golden hour. The setting sun casts a warm, ethereal glow over the vehicle and the ornate architectural details of the palace. The scene evokes a feeling of timeless luxury and royal heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu2vWNrQwZlDmibR-wlMUv_aal3cvLnLtNVjh23ojQkbdjaVEj-U_aao4U2juqDIz14a1dLdzTlgFtI_EByXJqGY4gZTUOZNqUc-PyBsIiNIoK1IqM_E8oFlILNdlgS5eeyWlQ35ieIDSRkI7vLg6adBAWwSElNMJC9lgfq5oF72KNeZqxNkDfAfT__Trm-HDen1SDTIM7IhGRLacwnxTvW1m0NgvsEqWG7_O3f090h6L48kcctLu2mx-LKT_iSHB6YkVG4MOrL7s"/>
+<div class="absolute top-4 left-4 bg-primary-container/90 text-on-primary-container px-3 py-1 rounded-sm font-label-caps text-[10px]">HERITAGE</div>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-md text-headline-md mb-2 text-primary">Vintage Masterpieces</h3>
+<p class="text-on-surface-variant text-body-md mb-6 opacity-70">Timeless elegance for weddings and heritage celebrations.</p>
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">history_edu</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">CLASSIC</p>
+</div>
+<div class="text-center border-r border-white/10">
+<span class="material-symbols-outlined text-primary mb-1">camera</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">CINEMATIC</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary mb-1">star</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">CURATED</p>
+</div>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-6">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">CUSTOM QUOTE</p>
+<p class="font-display-lg text-headline-lg text-primary">POA</p>
+</div>
+<button class="bg-white/5 border border-white/20 hover:border-primary hover:text-primary px-4 py-2 rounded-lg font-label-caps text-label-caps transition-all">INQUIRE</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Chauffeur Experience -->
+<section class="py-section-gap bg-surface-container-low relative">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-5">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-4 block">BEYOND TRANSPORTATION</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg mb-8">The Chauffeur Experience</h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Professionalism</h4>
+<p class="text-on-surface-variant opacity-70">Our chauffeurs are trained in elite hospitality protocols, ensuring a discreet and sophisticated environment for every guest.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">sanitizer</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">Sanitization</h4>
+<p class="text-on-surface-variant opacity-70">Every vehicle undergoes a rigorous 20-point sterilization process between each journey to ensure your safety and comfort.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2">24/7 Concierge</h4>
+<p class="text-on-surface-variant opacity-70">Dedicated support team available around the clock to handle route adjustments, last-minute changes, or special requests.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 mt-12 lg:mt-0 relative">
+<div class="aspect-square rounded-2xl overflow-hidden glass-card p-4">
+<img class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-1000" data-alt="A macro shot of a chauffeur's gloved hand holding open the door of a polished black luxury car at night. The soft interior lighting of the vehicle illuminates the fine leather and wood accents. Raindrops on the exterior catch the ambient city glow, creating a cinematic, high-fidelity scene of elite service and attention to detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_iOmg-2SeZXk-npmq1NHT5FE-yRVdCw788ONNOEqUStt7myeqtrQR0_-Gp1XbabqBgO-8UJxXMeRoC6V98M9hu1D27RrEby45ZztxqnpRqahBRUaer4WBtfy2tu0Egk-RTEMmBoBneMhxA_xAj8DBkIh3gcSkY9A8nk4qj-9RdN7G3mq3l_s990F567rYtDy-gEa7gwH46rn5Bozsr3Jb0UwjEJugDNzj5EFupgNDzlCGrqkFG8vfd3VE4GzM8wq47rE7xOUCSNw"/>
+</div>
+<div class="absolute -bottom-10 -left-10 glass-card p-8 rounded-xl hidden md:block max-w-xs">
+<p class="font-headline-md text-primary mb-2">"A flawless journey from start to finish."</p>
+<p class="font-label-caps text-label-caps opacity-60">— HRH ADITYA V.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Quote Form -->
+<section class="py-section-gap bg-surface relative overflow-hidden">
+<div class="golden-thread absolute top-0 w-full"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="max-w-4xl mx-auto glass-card p-12 rounded-2xl">
+<div class="text-center mb-12">
+<h2 class="font-display-lg text-headline-lg md:text-display-lg mb-4">Request a Quick Quote</h2>
+<p class="text-on-surface-variant">Tell us your requirements and our curators will tailor the perfect arrangement.</p>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div>
+<label class="font-label-caps text-label-caps mb-2 block text-on-surface-variant">FULL NAME</label>
+<input class="w-full bg-transparent border-b border-white/20 focus:border-primary focus:ring-0 transition-colors py-2 text-on-surface" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps mb-2 block text-on-surface-variant">MOBILE NUMBER</label>
+<input class="w-full bg-transparent border-b border-white/20 focus:border-primary focus:ring-0 transition-colors py-2 text-on-surface" placeholder="+91 00000 00000" type="tel"/>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<label class="font-label-caps text-label-caps mb-2 block text-on-surface-variant">JOURNEY DATE</label>
+<input class="w-full bg-transparent border-b border-white/20 focus:border-primary focus:ring-0 transition-colors py-2 text-on-surface" type="date"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps mb-2 block text-on-surface-variant">VEHICLE SELECTION</label>
+<select class="w-full bg-transparent border-b border-white/20 focus:border-primary focus:ring-0 transition-colors py-2 text-on-surface appearance-none">
+<option class="bg-surface-container">Mercedes-Benz S-Class</option>
+<option class="bg-surface-container">Range Rover Obsidian</option>
+<option class="bg-surface-container">Vintage Rolls Royce</option>
+<option class="bg-surface-container">Bespoke Wedding Fleet</option>
+</select>
+</div>
+</div>
+<div class="md:col-span-2 pt-8">
+<button class="w-full bg-primary-container text-on-primary-container py-4 font-label-caps text-label-caps rounded-sm hover:bg-primary transition-all active:scale-[0.98] shadow-lg shadow-primary-container/10">
+                            SECURE YOUR QUOTATION
+                        </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-section-gap border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="md:col-span-4 mb-12 md:mb-0">
+<div class="font-display-lg text-headline-lg text-primary mb-6">VIVAH CINEMA</div>
+<p class="font-body-md text-on-surface-variant opacity-70 mb-8 max-w-sm">
+                    The world's premier provider of luxury automotive experiences and cinematic wedding logistics. Crafting memories through motion.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary mb-6">EXPLORE</h5>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Fleet Gallery</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Testimonials</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary mb-6">LEGAL</h5>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Press Kit</a>
+<a class="block text-on-surface-variant hover:text-primary transition-colors" href="#">Refund Policy</a>
+</div>
+<div class="md:col-span-4 space-y-6">
+<h5 class="font-label-caps text-label-caps text-primary mb-6">OFFICES</h5>
+<p class="text-on-surface-variant opacity-70">Mumbai | London | Dubai | Udaipur</p>
+<div class="glass-card p-4 rounded-lg">
+<p class="font-label-caps text-[10px] text-primary mb-2">NEWSLETTER</p>
+<div class="flex gap-2">
+<input class="bg-transparent border-b border-white/10 w-full py-1 text-sm focus:border-primary transition-colors outline-none" placeholder="Email Address" type="email"/>
+<button class="material-symbols-outlined text-primary">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-12 mt-20 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-on-surface-variant text-[12px] uppercase tracking-wider">© 2024 VIVAH CINEMA. EXCLUSIVE LUXURY TRAVEL &amp; WEDDING SERVICES.</p>
+<div class="flex gap-8">
+<span class="text-[10px] font-label-caps text-on-surface-variant/40">MASTERED BY VIVAH DIGITAL</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll animation for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('h-20');
+                nav.classList.add('h-16');
+            } else {
+                nav.classList.remove('py-2');
+                nav.classList.add('h-20');
+                nav.classList.remove('h-16');
+            }
+        });
+
+        // Filter button interaction
+        const filterBtns = document.querySelectorAll('button.px-8.py-3');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active-filter', 'text-on-primary-container'));
+                btn.classList.add('active-filter');
+            });
+        });
+    </script>
+</body></html>

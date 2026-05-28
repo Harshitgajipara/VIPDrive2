@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cinematic Storytelling &amp; Visual Memories | Vivah Cinema</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed-variant": "#524530",
+                        "inverse-primary": "#735c00",
+                        "on-tertiary": "#003735",
+                        "tertiary-container": "#82bebb",
+                        "surface-elevated": "#1E1E1E",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#131313",
+                        "primary": "#f2ca50",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-container": "#054e4c",
+                        "tertiary-fixed": "#b1eeea",
+                        "ocean-teal": "#004B49",
+                        "primary-fixed": "#ffe088",
+                        "outline": "#99907c",
+                        "on-secondary-container": "#c8b69a",
+                        "tertiary": "#9ddad6",
+                        "on-secondary": "#3a2f1b",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-variant": "#353534",
+                        "on-error": "#690005",
+                        "heritage-gold": "#D4AF37",
+                        "surface-container-highest": "#353534",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#00201f",
+                        "sunset-champagne": "#F1DDC0",
+                        "surface-dim": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#e9c349",
+                        "text-muted": "#A1A1A1",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-fixed-variant": "#084f4d",
+                        "error-container": "#93000a",
+                        "secondary-container": "#544732",
+                        "tropical-emerald": "#115D33",
+                        "surface-tint": "#e9c349",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#95d1ce",
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-fixed-dim": "#d7c4a8",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#4d4635",
+                        "on-background": "#e5e2e1",
+                        "background": "#131313",
+                        "on-primary-container": "#554300",
+                        "secondary": "#d7c4a8",
+                        "on-primary": "#3c2f00",
+                        "on-primary-fixed": "#241a00",
+                        "surface-bright": "#393939",
+                        "on-secondary-fixed": "#241a08",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed": "#f4e0c3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-padding-mobile": "64px",
+                        "section-padding-desktop": "120px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "label-caps": ["Montserrat"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Montserrat"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            background: rgba(19, 19, 19, 0.8);
+        }
+        .scrim-hero {
+            background: linear-gradient(0deg, rgba(19,19,19,1) 0%, rgba(19,19,19,0.4) 50%, rgba(19,19,19,0.2) 100%);
+        }
+        .hairline-border {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .magazine-layout {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+    </style>
+</head>
+<body class="selection:bg-heritage-gold selection:text-background font-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 border-b border-sunset-champagne/10 glass-nav">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-heritage-gold tracking-tighter">Vivah Cinema</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-label-caps text-label-caps text-primary relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-heritage-gold after:rounded-full" href="#">Stories</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-heritage-gold transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-heritage-gold transition-colors duration-300" href="#">Destinations</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-heritage-gold transition-colors duration-300" href="#">Exclusives</a>
+</div>
+<button class="bg-heritage-gold text-background px-6 py-2 rounded-full font-label-caps text-label-caps font-bold transition-all hover:scale-105 active:scale-95">Inquire</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic luxury wedding cinematography" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB137C67tL8_VDrJh5MLyRCdC3FE4QrS41RSMWW07YypfiOjaKkPDYCxjL9-Hz1wY9kAzq7yf-YqWScmzKEAPgcX6a8dc9nu1fNkevzYPggRfvIpsySGHhWE8xU4jgrni6Ezz2GayJsvVnrWrnE14_PSGTUpC2Nn6-3SWQ5ZC_HHjtMI9zXgHk2b7v-YOEBGvSKXp1if1PLv4brtS1wpwDG9rrrAQj_kN45Ju9w9RyuH3k7bkMMneLxZ2my1uSRCWuVdpjOm-KcZXk"/>
+<div class="absolute inset-0 scrim-hero z-10"></div>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-gutter w-full">
+<div class="max-w-4xl">
+<span class="inline-block font-label-caps text-label-caps text-heritage-gold mb-6 tracking-[0.4em] uppercase">The Art of Memory</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-8 leading-[1.05]">Cinematic Storytelling &amp; Visual Memories</h1>
+<p class="font-body-lg text-body-lg text-text-muted mb-12 max-w-2xl">Every journey becomes a beautifully captured story, blending emotions, scenery, and real moments into cinematic visuals.</p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="bg-heritage-gold text-background px-10 py-4 rounded-lg font-label-caps text-label-caps font-bold hover:bg-primary transition-all shadow-lg shadow-heritage-gold/20">Explore the Narrative</button>
+<button class="hairline-border text-on-surface px-10 py-4 rounded-lg font-label-caps text-label-caps font-bold hover:bg-surface-elevated transition-all flex items-center gap-3">
+<span class="material-symbols-outlined">play_circle</span> Watch Showreel
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Concept Overview -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="magazine-layout items-center">
+<div class="col-span-12 md:col-span-6 lg:col-span-5 mb-12 md:mb-0">
+<span class="font-label-caps text-label-caps text-heritage-gold block mb-4 uppercase">Our Philosophy</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">We don’t just take photos — we craft memories.</h2>
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-text-muted leading-relaxed">At Vivah Cinema, we believe that the most profound stories are told when you are fully immersed in the moment. Our photography and videography are not standalone services; they are a seamless, organic add-on to our curated luxury travel experiences.</p>
+<p class="font-body-md text-body-md text-text-muted italic border-l-2 border-heritage-gold/30 pl-6">"Our lens follows your heartbeat, capturing the unspoken connection between you and the breathtaking landscapes we discover together."</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 lg:col-span-6 lg:offset-1 relative">
+<div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Natural candid capture in landscape" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIlyosGS4MgHghk3q1egXSdZpciSPS8StgyTb6X4Mfv_kXrj3d3hUcmHnXw03O-uxAFa2Om4pp4m_U-CQ15arCh4ypndYLGXXaMH2EJCtbRMfaMUdXhSllF_zjqxA0KwKPRl3e_WNxCtMbCkt20l9iMNJ29-maacksXqz928FWd7kbDFqosh62Z7O7QDXHkyNNwdTPrVpYJ7kz6U3PTqqwKzvdPGu7iU8zxIdrR47zDsb-YftoNMn6bUt5qRuecxybACCo3DrbP08"/>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-surface-elevated p-8 rounded-xl hairline-border max-w-xs hidden lg:block">
+<p class="font-label-caps text-label-caps text-heritage-gold mb-2 uppercase">The Experience</p>
+<p class="font-body-md text-body-md text-on-surface">Integrated storytelling where the camera becomes an extension of your journey, not an interruption.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Signature Films -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Signature Film Experiences</h2>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl mx-auto">Masterfully edited narratives that preserve the soul of your legacy in two distinct cinematic formats.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Song Film -->
+<div class="group bg-surface-container p-10 rounded-2xl hairline-border transition-all hover:bg-surface-container-high">
+<div class="flex justify-between items-start mb-8">
+<div class="w-16 h-16 rounded-full bg-heritage-gold/10 flex items-center justify-center text-heritage-gold">
+<span class="material-symbols-outlined text-3xl">music_note</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-heritage-gold/50">FORMAT 01</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Cinematic Song Film (3–4 minutes)</h3>
+<p class="font-body-md text-body-md text-text-muted mb-8 leading-relaxed">A high-impact, rhythmically driven masterpiece that distills the essence of your journey into a signature anthem. Perfect for sharing the highlights of your story through expert pacing and emotive soundscapes.</p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> Custom Score Curation</li>
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> High-Energy Visual Pacing</li>
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> Social-Ready Delivery</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-heritage-gold font-label-caps text-label-caps border-b border-heritage-gold/30 pb-1 hover:border-heritage-gold transition-all" href="#">VIEW ANTHEMS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<!-- Movie Experience -->
+<div class="group bg-surface-elevated p-10 rounded-2xl border-2 border-heritage-gold/30 transition-all hover:border-heritage-gold">
+<div class="flex justify-between items-start mb-8">
+<div class="w-16 h-16 rounded-full bg-heritage-gold/10 flex items-center justify-center text-heritage-gold">
+<span class="material-symbols-outlined text-3xl">movie_filter</span>
+</div>
+<span class="font-label-caps text-[10px] tracking-widest text-heritage-gold/50">FORMAT 02</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Short Movie Experience (30–45 minutes)</h3>
+<p class="font-body-md text-body-md text-text-muted mb-8 leading-relaxed">A deep-dive documentary-style feature that captures the whispers, the laughter, and the unfolding narrative of your entire trip. A legacy piece designed to be cherished for generations as a true cinematic record.</p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> Narrative Story Arc</li>
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> Candid Dialog &amp; Reflections</li>
+<li class="flex items-center gap-3 text-on-surface/80 font-label-caps text-label-caps"><span class="w-1.5 h-1.5 bg-heritage-gold rounded-full"></span> Cinema-Grade Color Grading</li>
+</ul>
+<a class="inline-flex items-center gap-2 text-heritage-gold font-label-caps text-label-caps border-b border-heritage-gold/30 pb-1 hover:border-heritage-gold transition-all" href="#">PREVIEW FILMS <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Edge -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="magazine-layout mb-20 items-end">
+<div class="col-span-12 md:col-span-7">
+<span class="font-label-caps text-label-caps text-heritage-gold block mb-4 uppercase">The Technical Mastery</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The Professional Edge</h2>
+</div>
+<div class="col-span-12 md:col-span-5">
+<p class="font-body-md text-body-md text-text-muted">Combining elite-tier technology with a deep artistic sensibility to ensure your memories are immortalized with peerless quality.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Artistic Framing -->
+<div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+<img alt="Professional camera lens detail" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8l6g-WBt1D55Ry2qKGLyiUquGlPbuU50hCQCZaqqKou6ct_JxQnf7p6b_nu1n8cDEo5_PIdlIcTbKYDc34DEfJBdjxJuzsAfEE60tp1BWFOs9ULOUKJYUB8fUfuaympgPXz4xrSNzvFo-DJacs8MdlPlgzpvJYcVEb1lIY-AMGY5rlF_MjY95SNQNnc26ipgKEUww4uxNnruVOdG-hqp-jt7gOfwuak5-QIrwydSx0W1tjONAxdcaemdk1kh-LKxT-vVuarF5IS0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Artistic Framing</h4>
+<p class="font-body-md text-body-md text-text-muted text-sm">Expert composition that treats every scene as a fine-art masterpiece.</p>
+</div>
+</div>
+<!-- Story-driven Editing -->
+<div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+<img alt="Professional editing suite" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNPA7OSHyWiXjceR8piqSnHyJHXdqHkiWMIgnW5EztWnomdZXvTWsJT-ASiRnKRAgWJuApNO1iAtOEp8ifNhE0RDw7sYX9jr01qPid9NjPT7rXEyaSLGh2Ts-3sBaIjYNFIeRzRmg51auTG-ejuST1jnFIQoaC_k60nw2q6rC49O-4nYQqy1sgygFtQTKSAmvauaiR37chsOR4No3ifqwTAo8IHHJ2_4fUC8L78YOLnj_mzjzFlPYZvLUPX5uIHITKJ_qru4WKflc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Story-driven Editing</h4>
+<p class="font-body-md text-body-md text-text-muted text-sm">A rhythmic assembly of moments that heightens emotional resonance.</p>
+</div>
+</div>
+<!-- Natural & Candid Capture -->
+<div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+<img alt="Emotional candid couple moment" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIlyosGS4MgHghk3q1egXSdZpciSPS8StgyTb6X4Mfv_kXrj3d3hUcmHnXw03O-uxAFa2Om4pp4m_U-CQ15arCh4ypndYLGXXaMH2EJCtbRMfaMUdXhSllF_zjqxA0KwKPRl3e_WNxCtMbCkt20l9iMNJ29-maacksXqz928FWd7kbDFqosh62Z7O7QDXHkyNNwdTPrVpYJ7kz6U3PTqqwKzvdPGu7iU8zxIdrR47zDsb-YftoNMn6bUt5qRuecxybACCo3DrbP08"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Natural &amp; Candid Capture</h4>
+<p class="font-body-md text-body-md text-text-muted text-sm">Capturing the unposed, raw energy of your most genuine connections.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Exclusive Access Note -->
+<section class="py-20 bg-surface-container-low border-y border-heritage-gold/10">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="max-w-3xl mx-auto text-center">
+<div class="inline-flex items-center gap-3 bg-heritage-gold/10 px-6 py-2 rounded-full mb-8">
+<span class="material-symbols-outlined text-heritage-gold text-lg">stars</span>
+<span class="font-label-caps text-label-caps text-heritage-gold tracking-widest">EXCLUSIVE ACCESS</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface mb-6 italic">"A privilege for the few."</p>
+<p class="font-body-lg text-body-lg text-text-muted leading-relaxed">Please note: Our cinematic storytelling and visual memory services are exclusively available as a bespoke add-on to our specially organized luxury heritage trips and coastal escapes. We curate the journey; we capture the legacy.</p>
+</div>
+</div>
+</section>
+<!-- Closing CTA -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-heritage-gold to-transparent"></div>
+<div class="max-w-container-max mx-auto px-gutter relative z-10 text-center">
+<h2 class="font-display-lg text-display-lg-mobile md:text-[56px] text-on-surface mb-10 leading-tight">Turn your journey into a film. <br class="hidden md:block"/> Relive it forever.</h2>
+<div class="flex flex-col items-center gap-8">
+<p class="font-body-lg text-body-lg text-text-muted max-w-xl">Inquire about our upcoming 2024-2025 heritage expeditions and reserve your cinematic crew.</p>
+<form class="w-full max-w-lg flex flex-col md:flex-row gap-4">
+<input class="flex-grow bg-surface-elevated border-none border-b-2 border-heritage-gold/20 focus:border-heritage-gold focus:ring-0 text-on-surface py-4 px-6 rounded-lg transition-all" placeholder="Enter your email" type="email"/>
+<button class="bg-heritage-gold text-background px-8 py-4 rounded-lg font-label-caps text-label-caps font-bold whitespace-nowrap hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all">Request Itinerary</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface border-t border-heritage-gold/10">
+<div class="px-gutter py-20 max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="md:col-span-2">
+<div class="font-headline-md text-headline-md text-heritage-gold mb-6">Vivah Cinema</div>
+<p class="font-body-md text-body-md text-text-muted max-w-sm mb-8">Preserving the legacy of global wanderlust through the lens of cinematic excellence. Part of the Vivah Heritage Group.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full hairline-border flex items-center justify-center text-on-surface hover:text-heritage-gold transition-colors" href="#"><span class="material-symbols-outlined text-xl">camera_outdoor</span></a>
+<a class="w-10 h-10 rounded-full hairline-border flex items-center justify-center text-on-surface hover:text-heritage-gold transition-colors" href="#"><span class="material-symbols-outlined text-xl">movie</span></a>
+</div>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-on-surface mb-6 uppercase">Experiences</h5>
+<ul class="space-y-4 font-body-md text-body-md text-text-muted">
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Rajasthan Heritage</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Amalfi Coast Scapes</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Kyoto Zen Retreats</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Scottish Highlands</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-on-surface mb-6 uppercase">Information</h5>
+<ul class="space-y-4 font-body-md text-body-md text-text-muted">
+<li><a class="hover:text-heritage-gold transition-colors" href="#">The Process</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Signature Gear</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Privacy</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-heritage-gold/5 font-label-caps text-[10px] tracking-[0.2em] text-on-surface/40 uppercase">
+<div>© 2024 VIVAH CINEMA. CINEMATIC STORYTELLING &amp; VISUAL MEMORIES.</div>
+<div class="mt-4 md:mt-0">Crafted for the Legacy.</div>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth scroll and subtle entrance animations
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+    </script>
+</body></html>

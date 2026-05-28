@@ -21,7 +21,8 @@ function CardSection() {
               title="Wedding Ceremony"
               description="Arrive in style on your big day with our chauffeur-driven luxury cars."
               imageUrl="images/wedding-ceremony.jpg"
-              link="#"
+              link="/wedding_ceremony.html"
+              external
             />
 
             {/* Card 3 */}
@@ -40,6 +41,46 @@ function CardSection() {
               description="Tailor your experience with our customizable packages to suit your needs."
               imageUrl="images/custom-package.jpg"
               link="/custom-booking"
+            />
+
+            {/* Card 5 */}
+
+            <Card
+              title="Book a Car"
+              description="Choose from our premium fleet of luxury chauffeur-driven cars for any occasion."
+              imageUrl="images/car.webp"
+              link="/our_fleet_luxury_chauffeur_rentals.html"
+              external
+            />
+
+            {/* Card 6 */}
+
+            <Card
+              title="Customize Journey"
+              description="Design your own bespoke travel experience — every detail tailored to your desires."
+              imageUrl="images/car2.webp"
+              link="/bespoke_journeys.html"
+              external
+            />
+
+            {/* Card 7 */}
+
+            <Card
+              title="Photography & Videography"
+              description="Capture every precious moment with our cinematic storytelling and visual memory services."
+              imageUrl="images/pre-wedding.jpg"
+              link="/photography_videography.html"
+              external
+            />
+
+            {/* Card 8 */}
+
+            <Card
+              title="Honeymoon"
+              description="Begin your forever with a personalized honeymoon journey crafted for romance and luxury."
+              imageUrl="images/car3.webp"
+              link="/honeymoon.html"
+              external
             />
           </div>
         </div>

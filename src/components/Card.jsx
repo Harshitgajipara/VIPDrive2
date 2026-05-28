@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Card.css";
 
-function Card({ title, description, imageUrl, link }) {
+function Card({ title, description, imageUrl, link, external }) {
   return (
     <div className="solution_card">
       <div className="hover_color_bubble"></div>
@@ -30,9 +30,15 @@ function Card({ title, description, imageUrl, link }) {
       <div className="card__content">
         <h3 className="card__title">{title}</h3>
         <p className="card__desc">{description}</p>
-        <Link to={link} className="read_more_btn">
-          <span>BOOK NOW</span>
-        </Link>
+        {external ? (
+          <a href={link} className="read_more_btn">
+            <span>BOOK NOW</span>
+          </a>
+        ) : (
+          <Link to={link} className="read_more_btn">
+            <span>BOOK NOW</span>
+          </Link>
+        )}
       </div>
     </div>
   );

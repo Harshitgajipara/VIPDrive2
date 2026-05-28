@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LUXE JOURNEYS | Bespoke Journeys</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#f2ca50",
+                        "primary-variant": "#D4AF37",
+                        "on-primary": "#000000",
+                        "background": "#000000",
+                        "surface": "#0a0a0a",
+                        "surface-variant": "#1a1a1a",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#a1a1aa",
+                        "outline": "#D4AF37",
+                        "secondary": "#f2ca50"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Playfair Display", "serif"],
+                        "body": ["Montserrat", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+        }
+        .font-headline {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass-card {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(242, 202, 80, 0.15);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(242, 202, 80, 0.4);
+            box-shadow: 0 10px 40px -10px rgba(242, 202, 80, 0.1);
+        }
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .text-glow-gold {
+            text-shadow: 0 0 15px rgba(242, 202, 80, 0.4);
+        }
+        .btn-liquid {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #f2ca50;
+            color: #000;
+            z-index: 1;
+        }
+        .btn-liquid::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: white;
+            transition: all 0.75s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        .btn-liquid:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .btn-liquid:hover {
+            box-shadow: 0 0 25px rgba(242, 202, 80, 0.6);
+            transform: translateY(-2px);
+        }
+        .gold-focus:focus {
+            border-color: #f2ca50 !important;
+            box-shadow: 0 0 0 2px rgba(242, 202, 80, 0.2);
+            outline: none;
+        }
+        .scrim-premium {
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.95) 100%);
+        }
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0.6;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Mobile Thumb-Friendly adjustments */
+        @media (max-width: 768px) {
+            input, select, textarea, button {
+                min-height: 54px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sticky Glass Header -->
+<nav class="fixed top-0 w-full z-[100] glass-nav transition-all duration-300">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto h-20">
+<div class="font-headline text-2xl md:text-3xl text-primary tracking-tighter font-bold uppercase">
+                LUXE JOURNEYS
+            </div>
+<div class="hidden lg:flex items-center gap-12">
+<a class="text-xs uppercase tracking-[0.2em] font-medium text-on-surface/70 hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-xs uppercase tracking-[0.2em] font-medium text-primary border-b border-primary pb-1" href="#">Journey</a>
+<a class="text-xs uppercase tracking-[0.2em] font-medium text-on-surface/70 hover:text-primary transition-colors" href="#">Inquiry</a>
+<a class="text-xs uppercase tracking-[0.2em] font-medium text-on-surface/70 hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+<button class="btn-liquid px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] rounded-sm">
+                Book Now
+            </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<canvas id="particle-canvas"></canvas>
+<div class="absolute inset-0 z-0">
+<img alt="Hero background" class="w-full h-full object-cover brightness-[0.35] scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgePkcAnG2GZdxbgeTU-9L3hGvjYGEvaMWrq3u4nBeLWfcOVU4xoumslEDn9M9C9Q9SX_NZ2XWc6vAutY7-oYZxnmnJGkT39ES9E8ILH9_AkwF7JO_LYVpQyjt-A3zrk7hF75sqQJOrh_IfcndxbSeN-gdyr3Y2VTq0ZUn-zJGdWw4nAtHRZ68E7yPw3CfxSVOK50FNPiniWZ1LjJqhLg08L-yyTc0miiWnb4lDpV_VLogZx3yMhyDSYoLfbqtxxkucxx0jJhLBFY"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+</div>
+<div class="relative z-20 text-center px-margin-mobile md:px-margin-desktop max-w-5xl">
+<h1 class="font-headline text-[56px] md:text-[88px] text-primary text-glow-gold mb-6 leading-[1.1] italic font-bold reveal">
+                Every Journey Should Feel Personal
+            </h1>
+<p class="text-sm md:text-base text-on-surface/60 max-w-2xl mx-auto uppercase tracking-[0.4em] font-medium reveal" style="transition-delay: 200ms;">
+                Tailored movement for the modern connoisseur
+            </p>
+<div class="mt-12 flex justify-center reveal" style="transition-delay: 400ms;">
+<span class="material-symbols-outlined text-primary animate-bounce text-4xl" style="font-variation-settings: 'wght' 200;">expand_more</span>
+</div>
+</div>
+</header>
+<main class="relative z-30 -mt-24 pb-24">
+<!-- Inquiry & Feature Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Inquiry Form -->
+<div class="lg:col-span-8 reveal">
+<div class="glass-card p-margin-mobile md:p-12 rounded-xl">
+<h2 class="font-headline text-3xl md:text-4xl text-primary mb-8 italic">Bespoke Inquiry</h2>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Full Name</label>
+<input class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg placeholder:text-white/20" placeholder="e.g. Julian Vane" type="text"/>
+</div>
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Contact Info</label>
+<input class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg placeholder:text-white/20" placeholder="Email or Phone" type="text"/>
+</div>
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Destination</label>
+<input class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg placeholder:text-white/20" placeholder="Where to?" type="text"/>
+</div>
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Dates</label>
+<input class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg placeholder:text-white/20" placeholder="Select timeframe" type="text"/>
+</div>
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Passenger Count</label>
+<select class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg appearance-none">
+<option class="bg-surface">1-2 Guests</option>
+<option class="bg-surface">3-5 Guests</option>
+<option class="bg-surface">Private Group (6+)</option>
+</select>
+</div>
+<div class="space-y-3">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/70">Vehicle Type</label>
+<select class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg appearance-none">
+<option class="bg-surface">Luxury Sedan</option>
+<option class="bg-surface">Premium SUV</option>
+<option class="bg-surface">Private Jet Shuttle</option>
+<option class="bg-surface">Bespoke Request</option>
+</select>
+</div>
+<div class="md:col-span-2 space-y-3 mt-4">
+<label class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">How Do You Want Your Journey To Feel?</label>
+<textarea class="w-full bg-white/5 border border-white/10 p-4 text-on-surface gold-focus transition-all rounded-lg placeholder:text-white/20 min-h-[120px]" placeholder="Describe the atmosphere, specific needs, or desired aesthetic..." rows="4"></textarea>
+</div>
+<div class="md:col-span-2 pt-6">
+<button class="btn-liquid w-full py-5 font-headline text-2xl uppercase tracking-[0.1em] italic font-bold">
+                                Submit Inquiry
+                            </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Sidebar Info -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="glass-card p-10 rounded-xl flex flex-col items-center text-center reveal" style="transition-delay: 200ms;">
+<div class="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+</div>
+<h3 class="font-headline text-2xl mb-3 text-on-surface">Private Access</h3>
+<p class="text-on-surface/50 text-sm leading-relaxed">Unlock hidden destinations and priority booking for our most exclusive fleets.</p>
+</div>
+<div class="relative overflow-hidden rounded-xl h-full min-h-[400px] group reveal" style="transition-delay: 400ms;">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Wn5n94Nn_PEM0JccmP8g5XwpxW_bIODjMDFmT5f2Brk171wyK0mn1dU64-t86Wj2bIGygt_tq4XoziGG8eYi-IOo6Tiz6o7tKlR-CKlMF_i18oeAtcvGh5zyV2Td-nGsf4kAc1hkM2glC4UzqWxSbZPNBaGUxSUvnVZ5HMpiCwjB1q43a5jRzi6sUTw8J69KQ1LRp__IPr2N8QGEQDlkOC9B7zbA2aRy_bcwttZ8H-QeXTB2AWSqv-ngz2z5QhxAN4v53Av-ZCI"/>
+<div class="absolute inset-0 scrim-premium p-10 flex flex-col justify-end">
+<span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-3">Fleet Highlight</span>
+<h4 class="font-headline text-3xl text-on-surface italic">Obsidian Edition SUV</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-32 bg-black mt-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-24 reveal">
+<h2 class="font-headline text-4xl md:text-6xl text-on-surface mb-6 italic">What Happens Next?</h2>
+<div class="w-32 h-[1px] bg-primary/40 mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Step 1 -->
+<div class="group p-8 border border-white/5 bg-white/[0.02] rounded-xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 100ms;">
+<div class="mb-10 text-primary">
+<span class="material-symbols-outlined text-5xl font-light" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<h3 class="font-headline text-xl mb-4 text-primary italic">1. We Understand Your Vision</h3>
+<p class="text-on-surface/50 text-sm leading-relaxed">
+                            Our advisors meticulously study your travel preferences, desired mood, and logistical requirements.
+                        </p>
+</div>
+<!-- Step 2 -->
+<div class="group p-8 border border-white/5 bg-white/[0.02] rounded-xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 200ms;">
+<div class="mb-10 text-primary">
+<span class="material-symbols-outlined text-5xl font-light" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+</div>
+<h3 class="font-headline text-xl mb-4 text-primary italic">2. We Curate Your Journey</h3>
+<p class="text-on-surface/50 text-sm leading-relaxed">
+                            A bespoke experience design process follows, where every route and vehicle is selected to resonate with your goals.
+                        </p>
+</div>
+<!-- Step 3 -->
+<div class="group p-8 border border-white/5 bg-white/[0.02] rounded-xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 300ms;">
+<div class="mb-10 text-primary">
+<span class="material-symbols-outlined text-5xl font-light" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h3 class="font-headline text-xl mb-4 text-primary italic">3. You Travel Beautifully</h3>
+<p class="text-on-surface/50 text-sm leading-relaxed">
+                            Execution is flawless. Your journey begins in a perfectly prepared vehicle, driven by career professionals.
+                        </p>
+</div>
+<!-- Step 4 -->
+<div class="group p-8 border border-white/5 bg-white/[0.02] rounded-xl hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 reveal" style="transition-delay: 400ms;">
+<div class="mb-10 text-primary">
+<span class="material-symbols-outlined text-5xl font-light" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<h3 class="font-headline text-xl mb-4 text-primary italic">4. Ongoing Support</h3>
+<p class="text-on-surface/50 text-sm leading-relaxed">
+                            Our 24/7 bespoke concierge remains in step with you, handling real-time adjustments for a perfect narrative.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="py-12 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[16/9] md:aspect-[21/9] reveal">
+<img class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105 brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI9QVGDh0Rn9wxOtgYU4g_7EXYiq3_kY12N4XPGiHy46lj2Je-T_LDFvkjlzzmnm2ZDYjLFCtwtP2wqypVs54vxMtsYsImeab5LsNiWEEtTcwFnQYC3rqfHfJf_guMFQXMnZ0d97YrLjYOwKDREalpS-FlFBzAWf4JF5mpRcxvyQw45o8ifx8GgfijmeJcznOADLFuvvLsiDKn54UqPjfL1yQeZ5lF3p8VK38uWHSR1wQ9MGrOJ5rVn-E0xtlcUroiKELxVDBkYzo"/>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all flex items-center justify-center">
+<div class="text-center px-6">
+<h2 class="font-headline text-4xl md:text-[64px] text-primary mb-8 italic text-glow-gold">Experience Perfection</h2>
+<button class="border-2 border-primary text-primary px-12 py-5 text-xs font-bold uppercase tracking-[0.4em] hover:bg-primary hover:text-on-primary transition-all duration-500 backdrop-blur-sm">
+                            Explore Fleet
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full py-16 bg-black border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="font-headline text-2xl text-primary font-bold italic tracking-tighter">LUXE JOURNEYS</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="text-[10px] uppercase tracking-[0.2em] text-on-surface/40 hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-[10px] uppercase tracking-[0.2em] text-on-surface/40 hover:text-primary transition-colors" href="#">Terms</a>
+<a class="text-[10px] uppercase tracking-[0.2em] text-on-surface/40 hover:text-primary transition-colors" href="#">Contact</a>
+<a class="text-[10px] uppercase tracking-[0.2em] text-on-surface/40 hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="text-[10px] uppercase tracking-[0.2em] text-on-surface/40 hover:text-primary transition-colors" href="#">LinkedIn</a>
+</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-on-surface/30">
+                © 2024 LUXE JOURNEYS. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+<script>
+        // Particle Effect for Hero
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(242, 202, 80, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            particles = [];
+            const count = window.innerWidth < 768 ? 40 : 80;
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            initCanvas();
+            createParticles();
+        });
+        
+        initCanvas();
+        createParticles();
+        animate();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2', 'h-16');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.remove('py-2', 'h-16');
+                nav.classList.add('h-20');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body></html>

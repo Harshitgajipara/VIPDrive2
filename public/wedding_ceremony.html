@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vivah Cinema | Luxury Wedding Car Rental</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "midnight": "#0a0a0a",
+                        "heritage-gold": "#D4AF37",
+                        "bright-gold": "#f2ca50",
+                        "surface": "#121411",
+                        "surface-container": "#1a1c19",
+                        "on-surface": "#e3e3de",
+                        "glass-surface": "rgba(10, 10, 10, 0.7)"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.4rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "section-gap": "120px"
+                    },
+                    fontFamily: {
+                        "display-hero": ["Playfair Display", "serif"],
+                        "headline": ["Playfair Display", "serif"],
+                        "body": ["Montserrat", "sans-serif"],
+                        "label-caps": ["Montserrat", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { 
+            background-color: #0a0a0a; 
+            color: #e3e3de; 
+            overflow-x: hidden; 
+            font-family: 'Montserrat', sans-serif;
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Cinematic Glassmorphism */
+        .glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15); 
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Hero Scrim */
+        .hero-overlay { 
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.95) 100%); 
+        }
+
+        /* Gold Glow Effect */
+        .gold-glow:hover {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            border-color: rgba(242, 202, 80, 0.6);
+        }
+
+        /* Liquid Hover Button */
+        .btn-liquid {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+        .btn-liquid::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+        .btn-liquid:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+        .btn-liquid:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll Reveal */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
+        }
+        .reveal.active { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .parallax { 
+            background-attachment: fixed; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover; 
+        }
+
+        @media (max-width: 768px) {
+            .parallax { background-attachment: scroll; }
+        }
+    </style>
+</head>
+<body class="selection:bg-heritage-gold/30">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-glass-surface backdrop-blur-xl border-b border-heritage-gold/10">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 w-full max-w-[1440px] mx-auto">
+<span class="font-display-hero text-2xl md:text-3xl text-heritage-gold tracking-tighter">VIVAH CINEMA</span>
+<div class="hidden lg:flex gap-10 items-center">
+<a class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-heritage-gold border-b border-heritage-gold pb-1" href="#">PORTFOLIO</a>
+<a class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-on-surface/70 hover:text-heritage-gold transition-colors" href="#">THEMES</a>
+<a class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-on-surface/70 hover:text-heritage-gold transition-colors" href="#">PROCESS</a>
+<a class="font-label-caps text-[11px] uppercase tracking-[0.2em] text-on-surface/70 hover:text-heritage-gold transition-colors" href="#">EXPERIENCE</a>
+</div>
+<button class="btn-liquid bg-heritage-gold text-midnight px-8 py-2.5 rounded-lg font-label-caps text-[10px] font-bold tracking-widest gold-glow">
+            BOOK NOW
+        </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-start overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Royal Wedding Entry" class="w-full h-full object-cover scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0uhOfJRHeOM8z4ShQ8u9HSmL9VKIkqS87Qj9RYfOmOrCtRhPzf2G8mWlLQD8k07gWGZ6u0J_h9YDfQl-F3zZPqqU_h82Nj-wkpAOX2s0WsqH7waghgUSt40yT7wsLnKylxtmLa2BBFYIVklTJiLWbr1NaXTEBGmpFW5649Es-SFF0u36M8DfOUb2-gNrtItbMj1LaCGIcaBUQAZOCo-UAHtsLFVTOiDtPTTHzTF7KHXyjXLb-fBwCdMQaQ"/>
+<div class="absolute inset-0 hero-overlay"></div>
+</div>
+<div class="relative z-10 max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop w-full">
+<div class="max-w-4xl">
+<span class="reveal font-label-caps text-heritage-gold tracking-[0.5em] block uppercase text-[12px] mb-6">The Art of Arrival</span>
+<h1 class="reveal font-display-hero text-5xl md:text-7xl lg:text-8xl text-white leading-[1.05] mb-8" style="transition-delay: 200ms">
+                Arrive Like <span class="italic text-heritage-gold">Royalty</span>
+</h1>
+<p class="reveal font-body text-on-surface/80 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed" style="transition-delay: 400ms">
+                From luxurious decorated wedding cars to premium chauffeur-driven experiences, we create unforgettable arrivals for couples who demand elegance and heritage grandeur.
+            </p>
+<div class="reveal flex flex-col sm:flex-row gap-5" style="transition-delay: 600ms">
+<button class="btn-liquid bg-heritage-gold text-midnight px-10 py-5 rounded-lg font-label-caps text-[12px] font-bold tracking-[0.2em] gold-glow">
+                    RESERVE YOUR CAR
+                </button>
+<button class="btn-liquid border border-heritage-gold/30 text-white px-10 py-5 rounded-lg font-label-caps text-[12px] tracking-[0.2em] bg-white/5 hover:bg-white/10 backdrop-blur-sm">
+                    VIEW THE GALLERY
+                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Excellence Section -->
+<section class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="text-center mb-24 reveal">
+<span class="font-label-caps text-heritage-gold tracking-[0.3em] text-xs uppercase">The Crown Standard</span>
+<h2 class="font-display-hero text-4xl md:text-5xl mt-4">Why Vivah Cinema</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Feature cards -->
+<div class="glass p-12 space-y-8 group transition-all duration-500 hover:-translate-y-2 gold-glow reveal" style="transition-delay: 100ms">
+<div class="w-14 h-14 rounded-full border border-heritage-gold/20 flex items-center justify-center text-heritage-gold bg-heritage-gold/5 group-hover:bg-heritage-gold group-hover:text-midnight transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="directions_car">directions_car</span>
+</div>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4">Elite Fleet</h3>
+<p class="font-body text-on-surface/60 text-sm leading-relaxed">A curated selection of the world's most prestigious marques, from vintage classics to modern flagship sedans.</p>
+</div>
+</div>
+<div class="glass p-12 space-y-8 group transition-all duration-500 hover:-translate-y-2 gold-glow reveal" style="transition-delay: 200ms">
+<div class="w-14 h-14 rounded-full border border-heritage-gold/20 flex items-center justify-center text-heritage-gold bg-heritage-gold/5 group-hover:bg-heritage-gold group-hover:text-midnight transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="local_florist">local_florist</span>
+</div>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4">Artistic Decor</h3>
+<p class="font-body text-on-surface/60 text-sm leading-relaxed">Exquisite floral artistry and ornate detailing customized to harmonize with your unique wedding theme.</p>
+</div>
+</div>
+<div class="glass p-12 space-y-8 group transition-all duration-500 hover:-translate-y-2 gold-glow reveal" style="transition-delay: 300ms">
+<div class="w-14 h-14 rounded-full border border-heritage-gold/20 flex items-center justify-center text-heritage-gold bg-heritage-gold/5 group-hover:bg-heritage-gold group-hover:text-midnight transition-colors duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="person_celebrate">person_celebrate</span>
+</div>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4">White Glove Service</h3>
+<p class="font-body text-on-surface/60 text-sm leading-relaxed">Professional, highly-trained chauffeurs dedicated to your absolute comfort, timing, and royal experience.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Signature Section -->
+<section class="py-section-gap bg-[#0c0c0c] border-y border-heritage-gold/5 overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative group reveal">
+<div class="aspect-[4/5] overflow-hidden rounded-xl">
+<img alt="Baraat Entry" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ugcW1Ut8-KU0vOqJJSUOMdy2Tc2j-cqT21f3DWsHdbgqRpg0MqqIqohkE_QW61Cs9h6_OJMrW7SPMNMFYSyWBaoSoiAXUpQnSbZSPT8VDDi_lu7d_OkETEM3FBpo_LhO91GDAnu0JHlLiT5Q5SNvlDw8F1I_DHcev16rUavX-XGtOmkgr3kvaM9nAPnb1YFJXJu8pPy88H1j8jT-qX2tFaRTCEY9KbS91j5KfljQAHfwZluQpqA2upeX0c"/>
+</div>
+<div class="absolute -bottom-10 -right-6 glass-dark p-10 max-w-xs hidden md:block rounded-lg shadow-2xl gold-glow">
+<p class="font-display-hero text-2xl text-heritage-gold italic leading-tight">"A cinematic entry that defined our night."</p>
+<p class="font-label-caps text-[10px] mt-4 tracking-widest text-on-surface/40 uppercase">— Ananya &amp; Vikram</p>
+</div>
+</div>
+<div class="space-y-10 reveal" style="transition-delay: 200ms">
+<span class="font-label-caps text-heritage-gold tracking-[0.4em] uppercase text-xs">A Grand Royal Narrative</span>
+<h2 class="font-display-hero text-4xl md:text-5xl lg:text-6xl text-white leading-tight">More Than Just <span class="text-heritage-gold">Travel.</span></h2>
+<div class="space-y-8 font-body text-on-surface/70 text-lg leading-relaxed">
+<p>At Vivah Cinema, we believe your arrival is the first chapter of your wedding story. It's about the prestige of your union and the heritage you carry forward.</p>
+<p>Our royal entry experiences are meticulously choreographed for emotional impact, ensuring every camera captures the majesty of your arrival amidst family celebration.</p>
+</div>
+<div class="pt-6">
+<button class="group flex items-center gap-4 text-heritage-gold font-label-caps text-xs tracking-[0.3em] uppercase">
+                    Explore Experience
+                    <span class="w-12 h-[1px] bg-heritage-gold group-hover:w-20 transition-all duration-500"></span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Fleet Showcase -->
+<section class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
+<div class="max-w-2xl">
+<span class="font-label-caps text-heritage-gold tracking-[0.3em] uppercase text-xs">Premium Collection</span>
+<h2 class="font-display-hero text-4xl md:text-5xl mt-4">Select Your Chariot</h2>
+</div>
+<p class="font-body text-on-surface/50 max-w-xs text-sm">Each vehicle in our exclusive fleet is maintained to concours standards of excellence.</p>
+</div>
+<div class="space-y-12">
+<!-- Main Fleet Item -->
+<div class="relative group h-[600px] overflow-hidden rounded-xl reveal gold-glow">
+<img alt="Fleet Showcase" class="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uhbelQecS3HLnhzNsQPICJQkkzJfexGPIYozmboAVttTCzjlruzC6bJnK33zUNUW8WYBo73MRnNuGD0WA2lCdGtAtJyhBSaNz1-D-5R71lvjBkS-IeVskWL64W3lod-E0mV3_O4i5xr7BQwGNholW3-VdBz9ICIsjgp5nnQRZpSUeD5ntfwoHJ7nSE6CeFhRkCbJTz7-lDDyEIzkNRUgYcLmy83aLZarLZyQega4QgHoMi_0YnWDrkqPrE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent"></div>
+<div class="absolute inset-x-0 bottom-0 p-12 flex flex-col md:flex-row md:items-end justify-between">
+<div class="max-w-xl">
+<span class="font-label-caps text-heritage-gold mb-3 tracking-widest text-[10px] block">THE HERITAGE COLLECTION</span>
+<h3 class="font-display-hero text-4xl text-white mb-6">Vintage Masterpieces</h3>
+<p class="font-body text-white/70 mb-0 max-w-md">Authentic vintage masterpieces restored to their original glory for the modern royal entrance.</p>
+</div>
+<button class="btn-liquid bg-heritage-gold text-midnight px-10 py-5 rounded-lg font-label-caps text-[12px] font-bold tracking-[0.2em] mt-8 md:mt-0">
+                    VIEW DETAILS
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative group h-[450px] overflow-hidden rounded-xl reveal gold-glow" style="transition-delay: 200ms">
+<img alt="Elite Sedans" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0uhOfJRHeOM8z4ShQ8u9HSmL9VKIkqS87Qj9RYfOmOrCtRhPzf2G8mWlLQD8k07gWGZ6u0J_h9YDfQl-F3zZPqqU_h82Nj-wkpAOX2s0WsqH7waghgUSt40yT7wsLnKylxtmLa2BBFYIVklTJiLWbr1NaXTEBGmpFW5649Es-SFF0u36M8DfOUb2-gNrtItbMj1LaCGIcaBUQAZOCo-UAHtsLFVTOiDtPTTHzTF7KHXyjXLb-fBwCdMQaQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/30 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10">
+<h3 class="font-display-hero text-3xl text-white">Elite Modern Sedans</h3>
+<p class="font-body text-on-surface/60 mt-4 text-sm tracking-wide uppercase">Bentley • Rolls Royce • Mercedes S-Class</p>
+</div>
+</div>
+<div class="relative group h-[450px] overflow-hidden rounded-xl reveal gold-glow" style="transition-delay: 400ms">
+<img alt="VIP Support" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida/ADBb0ugcW1Ut8-KU0vOqJJSUOMdy2Tc2j-cqT21f3DWsHdbgqRpg0MqqIqohkE_QW61Cs9h6_OJMrW7SPMNMFYSyWBaoSoiAXUpQnSbZSPT8VDDi_lu7d_OkETEM3FBpo_LhO91GDAnu0JHlLiT5Q5SNvlDw8F1I_DHcev16rUavX-XGtOmkgr3kvaM9nAPnb1YFJXJu8pPy88H1j8jT-qX2tFaRTCEY9KbS91j5KfljQAHfwZluQpqA2upeX0c"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/30 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10">
+<h3 class="font-display-hero text-3xl text-white">VIP Family Fleet</h3>
+<p class="font-body text-on-surface/60 mt-4 text-sm tracking-wide uppercase">Range Rover • G-Wagon • Vellfire</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Decoration Themes -->
+<section class="py-section-gap bg-[#080808]">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-24 reveal">
+<span class="font-label-caps text-heritage-gold tracking-widest uppercase text-xs">Exquisite Artistry</span>
+<h2 class="font-display-hero text-4xl md:text-5xl mt-4">Floral Design Themes</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Theme Cards -->
+<div class="relative group aspect-[3/4] overflow-hidden rounded-lg reveal gold-glow" style="transition-delay: 100ms">
+<img alt="Imperial White" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0ugJnYbOTy9zPincIIGCt_JdP1sqGMBNcvdvWeLn6Uz05B5D0P3HPXHIkfJtZQhgYvxON1ywrHB162JeCaRCz_kiG_8YIxCWPJGAfSNnBpqcWuFLhPiR2phJNfTfdETfhnsAsJyhRpNW0LAuWU4UXgJQvkkiGmLCOefAbX2fIW83DnhM4-CMrzf_Uz7lGnIpzIg6TliXgKCrJrH9Lm8COUvpstbxtooyvO8bp_uQVjh-vmSFuZawIfsGFA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/90 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="font-headline text-2xl text-heritage-gold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Imperial White</h4>
+<p class="font-label-caps text-[9px] text-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 uppercase tracking-[0.2em]">Orchids • Gold • Ivory</p>
+</div>
+</div>
+<div class="relative group aspect-[3/4] overflow-hidden rounded-lg reveal gold-glow" style="transition-delay: 200ms">
+<img alt="Royal Heritage" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uhOfJRHeOM8z4ShQ8u9HSmL9VKIkqS87Qj9RYfOmOrCtRhPzf2G8mWlLQD8k07gWGZ6u0J_h9YDfQl-F3zZPqqU_h82Nj-wkpAOX2s0WsqH7waghgUSt40yT7wsLnKylxtmLa2BBFYIVklTJiLWbr1NaXTEBGmpFW5649Es-SFF0u36M8DfOUb2-gNrtItbMj1LaCGIcaBUQAZOCo-UAHtsLFVTOiDtPTTHzTF7KHXyjXLb-fBwCdMQaQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/90 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="font-headline text-2xl text-heritage-gold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Royal Heritage</h4>
+<p class="font-label-caps text-[9px] text-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 uppercase tracking-[0.2em]">Maroon • Gold • Jasmine</p>
+</div>
+</div>
+<div class="relative group aspect-[3/4] overflow-hidden rounded-lg reveal gold-glow" style="transition-delay: 300ms">
+<img alt="Festive Gilded" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0ugcW1Ut8-KU0vOqJJSUOMdy2Tc2j-cqT21f3DWsHdbgqRpg0MqqIqohkE_QW61Cs9h6_OJMrW7SPMNMFYSyWBaoSoiAXUpQnSbZSPT8VDDi_lu7d_OkETEM3FBpo_LhO91GDAnu0JHlLiT5Q5SNvlDw8F1I_DHcev16rUavX-XGtOmkgr3kvaM9nAPnb1YFJXJu8pPy88H1j8jT-qX2tFaRTCEY9KbS91j5KfljQAHfwZluQpqA2upeX0c"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/90 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="font-headline text-2xl text-heritage-gold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Festive Gilded</h4>
+<p class="font-label-caps text-[9px] text-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 uppercase tracking-[0.2em]">Marigold • Vermilion • Rose</p>
+</div>
+</div>
+<div class="relative group aspect-[3/4] overflow-hidden rounded-lg reveal gold-glow" style="transition-delay: 400ms">
+<img alt="Midnight Luxe" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uhbelQecS3HLnhzNsQPICJQkkzJfexGPIYozmboAVttTCzjlruzC6bJnK33zUNUW8WYBo73MRnNuGD0WA2lCdGtAtJyhBSaNz1-D-5R71lvjBkS-IeVskWL64W3lod-E0mV3_O4i5xr7BQwGNholW3-VdBz9ICIsjgp5nnQRZpSUeD5ntfwoHJ7nSE6CeFhRkCbJTz7-lDDyEIzkNRUgYcLmy83aLZarLZyQega4QgHoMi_0YnWDrkqPrE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-midnight/90 via-transparent to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8">
+<h4 class="font-headline text-2xl text-heritage-gold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Midnight Luxe</h4>
+<p class="font-label-caps text-[9px] text-white/50 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 uppercase tracking-[0.2em]">LED • Velvet • Crystal</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="relative py-48 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center parallax" style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0uhbelQecS3HLnhzNsQPICJQkkzJfexGPIYozmboAVttTCzjlruzC6bJnK33zUNUW8WYBo73MRnNuGD0WA2lCdGtAtJyhBSaNz1-D-5R71lvjBkS-IeVskWL64W3lod-E0mV3_O4i5xr7BQwGNholW3-VdBz9ICIsjgp5nnQRZpSUeD5ntfwoHJ7nSE6CeFhRkCbJTz7-lDDyEIzkNRUgYcLmy83aLZarLZyQega4QgHoMi_0YnWDrkqPrE');"></div>
+<div class="absolute inset-0 bg-midnight/90"></div>
+<div class="relative z-10 max-w-5xl mx-auto text-center px-margin-mobile reveal">
+<span class="font-label-caps text-heritage-gold tracking-[0.5em] text-[10px] uppercase mb-8 block">Ready for the Grand Entry?</span>
+<h2 class="font-display-hero text-4xl md:text-7xl text-white mb-16 leading-tight">
+            Your Wedding Entrance Should Be As Special As The <span class="text-heritage-gold italic">Union Itself.</span>
+</h2>
+<button class="btn-liquid bg-heritage-gold text-midnight px-16 py-7 rounded-lg font-label-caps text-[14px] font-bold tracking-[0.3em] gold-glow uppercase">
+            Reserve Your Experience
+        </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-24 pb-12 bg-[#050505] border-t border-heritage-gold/10">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<div class="lg:col-span-2">
+<span class="font-display-hero text-4xl text-heritage-gold block mb-8">VIVAH CINEMA</span>
+<p class="font-body text-on-surface/50 max-w-md text-sm leading-relaxed mb-8">Premium heritage pre-wedding experiences and luxury transportation services for those who demand absolute distinction on their special day.</p>
+<div class="flex gap-6">
+<a class="w-10 h-10 rounded-full border border-heritage-gold/20 flex items-center justify-center text-heritage-gold hover:bg-heritage-gold hover:text-midnight transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-xl">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-heritage-gold/20 flex items-center justify-center text-heritage-gold hover:bg-heritage-gold hover:text-midnight transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-xl">camera</span>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-label-caps text-white text-[10px] tracking-widest uppercase mb-8">Quick Links</h5>
+<ul class="space-y-4 font-body text-on-surface/40 text-sm">
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Our Collection</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Floral Themes</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Luxury Entry</a></li>
+<li><a class="hover:text-heritage-gold transition-colors" href="#">Booking Process</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-white text-[10px] tracking-widest uppercase mb-8">Contact Us</h5>
+<ul class="space-y-4 font-body text-on-surface/40 text-sm">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-heritage-gold text-lg">mail</span> concierge@vivahcinema.com</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-heritage-gold text-lg">call</span> +91 98765 43210</li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-6">
+<p class="font-body text-on-surface/30 text-[10px] tracking-widest uppercase">© 2024 VIVAH CINEMA. ROYAL HERITAGE PRE-WEDDING EXPERIENCES.</p>
+<div class="flex gap-8 font-label-caps text-on-surface/30 text-[10px] tracking-widest">
+<a class="hover:text-heritage-gold" href="#">PRIVACY POLICY</a>
+<a class="hover:text-heritage-gold" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky Navbar Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-midnight/90', 'shadow-2xl');
+                nav.classList.remove('bg-glass-surface');
+            } else {
+                nav.classList.remove('bg-midnight/90', 'shadow-2xl');
+                nav.classList.add('bg-glass-surface');
+            }
+        });
+    });
+</script>
+</body></html>
