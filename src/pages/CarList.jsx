@@ -1,10 +1,12 @@
-import React from 'react';
-import PageLayout from '../layouts/PageLayout';
+import React, { useEffect } from 'react';
 import '../styles/CarList.css';
 
 function CarList() {
+  useEffect(() => {
+    document.title = 'Available Cars | VIPDrive';
+  }, []);
+
   return (
-    <PageLayout title="Available Cars">
     <div className="carlist-wrapper">
       {/* Mobile phone frame container */}
       <div
@@ -296,7 +298,6 @@ function CarList() {
         </article>
       </div>
     </div>
-    </PageLayout>
   );
 }
 
