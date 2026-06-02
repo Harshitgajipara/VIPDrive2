@@ -36,7 +36,7 @@ const TripHeroSection = ({
   tagline,
   duration,
   backLink,
-  backLabel = '← Back to trips',
+  backLabel = 'Back to trips',
 
   // ── Band 2: Intro ─────────────────────────────────────────────────────────
   intro,        // { headline?: string, text: string, images: string[] }
@@ -51,12 +51,12 @@ const TripHeroSection = ({
   onTabKeyDown,
 }) => {
   const bgImgRef = useRef(null);
-  const rafRef   = useRef(null);
+  const rafRef = useRef(null);
 
   // Derived helpers
-  const pkgKeys     = packages ? Object.keys(packages) : [];
+  const pkgKeys = packages ? Object.keys(packages) : [];
   const hasPackages = pkgKeys.length > 0;
-  const introParas  = intro?.text
+  const introParas = intro?.text
     ? intro.text.split('\n\n').filter(Boolean)
     : [];
 
