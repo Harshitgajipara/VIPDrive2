@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIPDrive | Kasol &amp; Manali Itinerary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,700;1,400&amp;family=Playfair+Display:wght@400;600;700&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#dae2fd",
+                        "tertiary-container": "#3bbffa",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "background": "#131313",
+                        "on-tertiary-fixed": "#001e2c",
+                        "surface-tint": "#e9c349",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-primary-container": "#554300",
+                        "on-primary-fixed": "#241a00",
+                        "surface-variant": "#353534",
+                        "on-secondary-container": "#adb4ce",
+                        "on-tertiary": "#00354a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#283044",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-container": "#d4af37",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-container": "#004b67",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#bec6e0",
+                        "surface-dim": "#131313",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "outline": "#99907c",
+                        "primary-fixed": "#ffe088",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#4d4635",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary": "#93d7ff",
+                        "on-error": "#690005",
+                        "inverse-primary": "#735c00",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#004c69",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed-dim": "#7bd0ff",
+                        "primary": "#f2ca50",
+                        "tertiary-fixed": "#c4e7ff",
+                        "secondary-container": "#3f465c",
+                        "surface-container": "#201f1f",
+                        "on-primary": "#3c2f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "160px",
+                        "unit": "8px",
+                        "gutter": "32px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["DM Sans"],
+                        "label-caps": ["Geist"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["DM Sans"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["20px", {"lineHeight": "1.8", "letterSpacing": "0.01em", "fontWeight": "300"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["84px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(19, 19, 19, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #f2ca50;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.8;
+            filter: blur(0.5px);
+            z-index: 45;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Speedometer Styles */
+        .speed-tick {
+            width: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+        .speed-tick.active {
+            background: #f2ca50;
+            box-shadow: 0 0 8px rgba(242, 202, 80, 0.6);
+        }
+        .speed-tick-large {
+            height: 24px;
+        }
+        .speed-tick-medium {
+            height: 14px;
+        }
+        .speed-tick-small {
+            height: 8px;
+        }
+        .speed-number {
+            font-family: 'Geist', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        #car-indicator {
+            will-change: left;
+            transition: left 0.1s linear;
+        }
+    </style>
+<style>
+    #progress-line {
+        background: linear-gradient(to right, #4ade80, #f87171) !important;
+        box-shadow: -10px 0 20px rgba(74, 222, 128, 0.4), 10px 0 20px rgba(248, 113, 113, 0.4) !important;
+    }
+    .car-image-container {
+        width: 80px;
+        height: auto;
+        filter: drop-shadow(0 0 12px rgba(242, 202, 80, 0.4));
+    }
+</style><style>
+    @keyframes modalFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes modalScaleUp {
+        from { transform: scale(0.95) translateY(10px); opacity: 0; }
+        to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .modal-backdrop {
+        animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .modal-content {
+        animation: modalScaleUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+</style></head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-white/10">
+<nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="text-headline-md font-headline-md font-bold tracking-tighter text-primary">
+            VIPDrive
+        </div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-primary border-b-2 border-primary pb-1 text-label-caps font-label-caps" href="#">Itineraries</a>
+<a class="text-on-surface/70 hover:text-primary transition-colors duration-300 text-label-caps font-label-caps" href="#">Experiences</a>
+<a class="text-on-surface/70 hover:text-primary transition-colors duration-300 text-label-caps font-label-caps" href="#">Gallery</a>
+<a class="text-on-surface/70 hover:text-primary transition-colors duration-300 text-label-caps font-label-caps" href="#">About</a>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-label-caps text-label-caps tracking-widest hover:scale-95 transition-all active:opacity-80">
+            Book Journey
+        </button>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic Himalayan peaks" class="w-full h-full object-cover scale-110" id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-uSjIiEhDfeoA9ZciRtGnUYKgZw_nXqdx1bS6VDM1CcsBCpy1nNrG7M2xiYo8PrdI4Wgwt0grHRypVUVS_Inh8LojqP8QmF6NghDDnAjlylqcVstMXRszDzBDzUZWUsYSh-nkw4vhJXDMyuIb9BHzCZscXGW7NwWPy0DyfYDMcoACC6HOgXju0KU6pjaOSyatHi1SCpj-hlpKubuQFwXgdj-DPTQ93tp6LpdsG1Kkxhlpz_D3rbjoTBc4q4Ae2tBQI8MnmQEsk-o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/40"></div>
+</div>
+<div class="relative z-10 text-center px-gutter">
+<span class="text-label-caps font-label-caps text-primary tracking-[0.4em] mb-6 block reveal active">SPECIAL ORGANIZED TRIP</span>
+<h1 class="font-display-lg text-display-lg text-white mb-6 reveal active" style="transition-delay: 200ms;">Kasol &amp; Manali</h1>
+<p class="font-body-lg text-body-lg text-on-surface/80 max-w-2xl mx-auto reveal active" style="transition-delay: 400ms;">
+            Mountains, rivers, cafes, forests, and unforgettable Himalayan memories.
+        </p>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+<span class="text-label-caps font-label-caps text-on-surface/40 uppercase tracking-widest">Scroll</span>
+<div class="w-[1px] h-20 bg-gradient-to-b from-primary to-transparent animate-pulse"></div>
+</div>
+</section>
+<!-- Narrative Intro -->
+<section class="py-section-gap max-w-container-max mx-auto px-gutter">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="reveal active">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8">A Tale of Two Valleys</h2>
+<div class="space-y-6 text-on-surface/80 font-body-lg text-body-lg">
+<p class="">Nestled deep in the folds of the Parvati Valley and the Kullu highlands, Kasol and Manali offer two very different yet equally enchanting faces of Himachal Pradesh. Kasol — the "Amsterdam of India" — is a tiny riverside village where Israeli cafes, pine forests and the cold rush of the Parvati River create a dreamlike atmosphere.</p>
+<p class="">Manali, perched at 2,050 metres, is where the mountains truly announce themselves. From the snow-dusted peaks of Rohtang to the adrenaline-charged circuits of Solang Valley, every moment here feels cinematic.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 reveal active" style="transition-delay: 300ms;">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mt-12">
+<img alt="Pine Forest" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH3XpkF98vsSs-wxdMDJVr9p-fTrExemAaK_4P_RH8_TBzJGk4T7pw81x1ewEKxgG5-9k9aL5tPcGwhkCMNYmA1fQDTQERYW3ZXj0b7E14EIQ8A67Y9hI7F_uIJ-_uIOeRj19jGiT5WB_PCUVlcwNVpnZ6jSGnyVT1jNkt-ZXDcethtCfAOv4xwiEU0FdN_9lH7IKwL9D0ziX0iWXACZ1TzWqJ9-kRHE3eunggm5HaBggauVidLrXf8aIshP1G-LGyLFmKC_Vm4K4"/>
+</div>
+<div class="aspect-[3/4] rounded-xl overflow-hidden">
+<img alt="Parvati River" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeVSjZuTOIpaMx_WA2ADxvbMW7EK1_xL_r6caGb4qOqeO_rUjOrunr062qpPR5-TzthkWhDiiEKujS6zRKUxvm1p3UpVYtzcxd4jQV45fko-JlVWvqozmlHjTUrXstDIAUw70nrOnY6ObPZwjv45r4LLBx98djSKWKRYdUFgsrPqmuHkYpi2MeMBMBfOJ3rpNPDsXXQRpRJUXXlzOQOp0jnEZM3FvdpINSR1AjL6zZEaE1lBpzy7I7MHwrUT3hIWQHncwPobC-kRg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Package Selector -->
+<section class="pb-24 max-w-3xl mx-auto px-gutter reveal active">
+<div class="flex items-center justify-center gap-1 text-center mb-12">
+<div class="glass-panel p-2 rounded-full flex gap-1">
+<button class="px-12 py-4 rounded-full bg-primary text-on-primary font-label-caps text-label-caps transition-all" id="pkg-basic">BASIC PACKAGE</button>
+<button class="px-12 py-4 rounded-full text-on-surface/50 font-label-caps text-label-caps hover:text-white transition-all" id="pkg-discovery">DISCOVERY PACKAGE</button>
+</div>
+</div>
+<p class="text-center text-on-surface/40 font-label-caps text-[10px] tracking-widest uppercase">Choose your package to see the full itinerary</p>
+</section>
+<!-- JOURNEY SPEEDOMETER (New Redesign) -->
+<div class="sticky top-20 z-40 w-full py-10 glass-panel border-x-0 overflow-hidden" id="tracker-container">
+<div class="max-w-container-max mx-auto px-gutter relative"><!-- Day Labels (Speedometer Style) - Moved to Top -->
+<div class="flex justify-between mb-4 px-2 relative">
+<div class="speed-number text-primary" data-day="1">01</div>
+<div class="speed-number text-white/30" data-day="2">02</div>
+<div class="speed-number text-white/30" data-day="3">03</div>
+<div class="speed-number text-white/30" data-day="4">04</div>
+<div class="speed-number text-white/30" data-day="5">05</div>
+<div class="speed-number text-white/30" data-day="6">06</div>
+<div class="speed-number text-white/30" data-day="7">07</div>
+<div class="speed-number text-white/30" data-day="8">08</div>
+<div class="speed-number text-white/30" data-day="9">09</div>
+<div class="speed-number text-white/30" data-day="10">10</div>
+</div>
+<!-- Speedometer Gauge Line -->
+<div class="relative h-12 flex items-end justify-between" id="gauge-track">
+<div class="absolute inset-0 flex items-end justify-between px-2" id="ticks-container"><div class="speed-tick speed-tick-large" data-index="0"></div><div class="speed-tick speed-tick-small" data-index="1"></div><div class="speed-tick speed-tick-small" data-index="2"></div><div class="speed-tick speed-tick-small" data-index="3"></div><div class="speed-tick speed-tick-small" data-index="4"></div><div class="speed-tick speed-tick-medium" data-index="5"></div><div class="speed-tick speed-tick-small" data-index="6"></div><div class="speed-tick speed-tick-small" data-index="7"></div><div class="speed-tick speed-tick-small" data-index="8"></div><div class="speed-tick speed-tick-small" data-index="9"></div><div class="speed-tick speed-tick-large" data-index="10"></div><div class="speed-tick speed-tick-small" data-index="11"></div><div class="speed-tick speed-tick-small" data-index="12"></div><div class="speed-tick speed-tick-small" data-index="13"></div><div class="speed-tick speed-tick-small" data-index="14"></div><div class="speed-tick speed-tick-medium" data-index="15"></div><div class="speed-tick speed-tick-small" data-index="16"></div><div class="speed-tick speed-tick-small" data-index="17"></div><div class="speed-tick speed-tick-small" data-index="18"></div><div class="speed-tick speed-tick-small" data-index="19"></div><div class="speed-tick speed-tick-large" data-index="20"></div><div class="speed-tick speed-tick-small" data-index="21"></div><div class="speed-tick speed-tick-small" data-index="22"></div><div class="speed-tick speed-tick-small" data-index="23"></div><div class="speed-tick speed-tick-small" data-index="24"></div><div class="speed-tick speed-tick-medium" data-index="25"></div><div class="speed-tick speed-tick-small" data-index="26"></div><div class="speed-tick speed-tick-small" data-index="27"></div><div class="speed-tick speed-tick-small" data-index="28"></div><div class="speed-tick speed-tick-small" data-index="29"></div><div class="speed-tick speed-tick-large" data-index="30"></div><div class="speed-tick speed-tick-small" data-index="31"></div><div class="speed-tick speed-tick-small" data-index="32"></div><div class="speed-tick speed-tick-small" data-index="33"></div><div class="speed-tick speed-tick-small" data-index="34"></div><div class="speed-tick speed-tick-medium" data-index="35"></div><div class="speed-tick speed-tick-small" data-index="36"></div><div class="speed-tick speed-tick-small" data-index="37"></div><div class="speed-tick speed-tick-small" data-index="38"></div><div class="speed-tick speed-tick-small" data-index="39"></div><div class="speed-tick speed-tick-large" data-index="40"></div><div class="speed-tick speed-tick-small" data-index="41"></div><div class="speed-tick speed-tick-small" data-index="42"></div><div class="speed-tick speed-tick-small" data-index="43"></div><div class="speed-tick speed-tick-small" data-index="44"></div><div class="speed-tick speed-tick-medium" data-index="45"></div><div class="speed-tick speed-tick-small" data-index="46"></div><div class="speed-tick speed-tick-small" data-index="47"></div><div class="speed-tick speed-tick-small" data-index="48"></div><div class="speed-tick speed-tick-small" data-index="49"></div><div class="speed-tick speed-tick-large" data-index="50"></div><div class="speed-tick speed-tick-small" data-index="51"></div><div class="speed-tick speed-tick-small" data-index="52"></div><div class="speed-tick speed-tick-small" data-index="53"></div><div class="speed-tick speed-tick-small" data-index="54"></div><div class="speed-tick speed-tick-medium" data-index="55"></div><div class="speed-tick speed-tick-small" data-index="56"></div><div class="speed-tick speed-tick-small" data-index="57"></div><div class="speed-tick speed-tick-small" data-index="58"></div><div class="speed-tick speed-tick-small" data-index="59"></div><div class="speed-tick speed-tick-large" data-index="60"></div><div class="speed-tick speed-tick-small" data-index="61"></div><div class="speed-tick speed-tick-small" data-index="62"></div><div class="speed-tick speed-tick-small" data-index="63"></div><div class="speed-tick speed-tick-small" data-index="64"></div><div class="speed-tick speed-tick-medium" data-index="65"></div><div class="speed-tick speed-tick-small" data-index="66"></div><div class="speed-tick speed-tick-small" data-index="67"></div><div class="speed-tick speed-tick-small" data-index="68"></div><div class="speed-tick speed-tick-small" data-index="69"></div><div class="speed-tick speed-tick-large" data-index="70"></div><div class="speed-tick speed-tick-small" data-index="71"></div><div class="speed-tick speed-tick-small" data-index="72"></div><div class="speed-tick speed-tick-small" data-index="73"></div><div class="speed-tick speed-tick-small" data-index="74"></div><div class="speed-tick speed-tick-medium" data-index="75"></div><div class="speed-tick speed-tick-small" data-index="76"></div><div class="speed-tick speed-tick-small" data-index="77"></div><div class="speed-tick speed-tick-small" data-index="78"></div><div class="speed-tick speed-tick-small" data-index="79"></div><div class="speed-tick speed-tick-large" data-index="80"></div><div class="speed-tick speed-tick-small" data-index="81"></div><div class="speed-tick speed-tick-small" data-index="82"></div><div class="speed-tick speed-tick-small" data-index="83"></div><div class="speed-tick speed-tick-small" data-index="84"></div><div class="speed-tick speed-tick-medium" data-index="85"></div><div class="speed-tick speed-tick-small" data-index="86"></div><div class="speed-tick speed-tick-small" data-index="87"></div><div class="speed-tick speed-tick-small" data-index="88"></div><div class="speed-tick speed-tick-small" data-index="89"></div><div class="speed-tick speed-tick-large" data-index="90"></div><div class="speed-tick speed-tick-small" data-index="91"></div><div class="speed-tick speed-tick-small" data-index="92"></div><div class="speed-tick speed-tick-small" data-index="93"></div><div class="speed-tick speed-tick-small" data-index="94"></div><div class="speed-tick speed-tick-medium" data-index="95"></div><div class="speed-tick speed-tick-small" data-index="96"></div><div class="speed-tick speed-tick-small" data-index="97"></div><div class="speed-tick speed-tick-small" data-index="98"></div><div class="speed-tick speed-tick-small" data-index="99"></div><div class="speed-tick speed-tick-large" data-index="100"></div><div class="speed-tick speed-tick-large" data-index="0"></div><div class="speed-tick speed-tick-small" data-index="1"></div><div class="speed-tick speed-tick-small" data-index="2"></div><div class="speed-tick speed-tick-small" data-index="3"></div><div class="speed-tick speed-tick-small" data-index="4"></div><div class="speed-tick speed-tick-medium" data-index="5"></div><div class="speed-tick speed-tick-small" data-index="6"></div><div class="speed-tick speed-tick-small" data-index="7"></div><div class="speed-tick speed-tick-small" data-index="8"></div><div class="speed-tick speed-tick-small" data-index="9"></div><div class="speed-tick speed-tick-large" data-index="10"></div><div class="speed-tick speed-tick-small" data-index="11"></div><div class="speed-tick speed-tick-small" data-index="12"></div><div class="speed-tick speed-tick-small" data-index="13"></div><div class="speed-tick speed-tick-small" data-index="14"></div><div class="speed-tick speed-tick-medium" data-index="15"></div><div class="speed-tick speed-tick-small" data-index="16"></div><div class="speed-tick speed-tick-small" data-index="17"></div><div class="speed-tick speed-tick-small" data-index="18"></div><div class="speed-tick speed-tick-small" data-index="19"></div><div class="speed-tick speed-tick-large" data-index="20"></div><div class="speed-tick speed-tick-small" data-index="21"></div><div class="speed-tick speed-tick-small" data-index="22"></div><div class="speed-tick speed-tick-small" data-index="23"></div><div class="speed-tick speed-tick-small" data-index="24"></div><div class="speed-tick speed-tick-medium" data-index="25"></div><div class="speed-tick speed-tick-small" data-index="26"></div><div class="speed-tick speed-tick-small" data-index="27"></div><div class="speed-tick speed-tick-small" data-index="28"></div><div class="speed-tick speed-tick-small" data-index="29"></div><div class="speed-tick speed-tick-large" data-index="30"></div><div class="speed-tick speed-tick-small" data-index="31"></div><div class="speed-tick speed-tick-small" data-index="32"></div><div class="speed-tick speed-tick-small" data-index="33"></div><div class="speed-tick speed-tick-small" data-index="34"></div><div class="speed-tick speed-tick-medium" data-index="35"></div><div class="speed-tick speed-tick-small" data-index="36"></div><div class="speed-tick speed-tick-small" data-index="37"></div><div class="speed-tick speed-tick-small" data-index="38"></div><div class="speed-tick speed-tick-small" data-index="39"></div><div class="speed-tick speed-tick-large" data-index="40"></div><div class="speed-tick speed-tick-small" data-index="41"></div><div class="speed-tick speed-tick-small" data-index="42"></div><div class="speed-tick speed-tick-small" data-index="43"></div><div class="speed-tick speed-tick-small" data-index="44"></div><div class="speed-tick speed-tick-medium" data-index="45"></div><div class="speed-tick speed-tick-small" data-index="46"></div><div class="speed-tick speed-tick-small" data-index="47"></div><div class="speed-tick speed-tick-small" data-index="48"></div><div class="speed-tick speed-tick-small" data-index="49"></div><div class="speed-tick speed-tick-large" data-index="50"></div><div class="speed-tick speed-tick-small" data-index="51"></div><div class="speed-tick speed-tick-small" data-index="52"></div><div class="speed-tick speed-tick-small" data-index="53"></div><div class="speed-tick speed-tick-small" data-index="54"></div><div class="speed-tick speed-tick-medium" data-index="55"></div><div class="speed-tick speed-tick-small" data-index="56"></div><div class="speed-tick speed-tick-small" data-index="57"></div><div class="speed-tick speed-tick-small" data-index="58"></div><div class="speed-tick speed-tick-small" data-index="59"></div><div class="speed-tick speed-tick-large" data-index="60"></div><div class="speed-tick speed-tick-small" data-index="61"></div><div class="speed-tick speed-tick-small" data-index="62"></div><div class="speed-tick speed-tick-small" data-index="63"></div><div class="speed-tick speed-tick-small" data-index="64"></div><div class="speed-tick speed-tick-medium" data-index="65"></div><div class="speed-tick speed-tick-small" data-index="66"></div><div class="speed-tick speed-tick-small" data-index="67"></div><div class="speed-tick speed-tick-small" data-index="68"></div><div class="speed-tick speed-tick-small" data-index="69"></div><div class="speed-tick speed-tick-large" data-index="70"></div><div class="speed-tick speed-tick-small" data-index="71"></div><div class="speed-tick speed-tick-small" data-index="72"></div><div class="speed-tick speed-tick-small" data-index="73"></div><div class="speed-tick speed-tick-small" data-index="74"></div><div class="speed-tick speed-tick-medium" data-index="75"></div><div class="speed-tick speed-tick-small" data-index="76"></div><div class="speed-tick speed-tick-small" data-index="77"></div><div class="speed-tick speed-tick-small" data-index="78"></div><div class="speed-tick speed-tick-small" data-index="79"></div><div class="speed-tick speed-tick-large" data-index="80"></div><div class="speed-tick speed-tick-small" data-index="81"></div><div class="speed-tick speed-tick-small" data-index="82"></div><div class="speed-tick speed-tick-small" data-index="83"></div><div class="speed-tick speed-tick-small" data-index="84"></div><div class="speed-tick speed-tick-medium" data-index="85"></div><div class="speed-tick speed-tick-small" data-index="86"></div><div class="speed-tick speed-tick-small" data-index="87"></div><div class="speed-tick speed-tick-small" data-index="88"></div><div class="speed-tick speed-tick-small" data-index="89"></div><div class="speed-tick speed-tick-large" data-index="90"></div><div class="speed-tick speed-tick-small" data-index="91"></div><div class="speed-tick speed-tick-small" data-index="92"></div><div class="speed-tick speed-tick-small" data-index="93"></div><div class="speed-tick speed-tick-small" data-index="94"></div><div class="speed-tick speed-tick-medium" data-index="95"></div><div class="speed-tick speed-tick-small" data-index="96"></div><div class="speed-tick speed-tick-small" data-index="97"></div><div class="speed-tick speed-tick-small" data-index="98"></div><div class="speed-tick speed-tick-small" data-index="99"></div><div class="speed-tick speed-tick-large" data-index="100"></div></div>
+</div>
+<!-- Progress Overlay Line (Amber) -->
+<div class="absolute bottom-[3px] left-gutter right-gutter h-[2px] bg-white/5">
+<div class="absolute h-full bg-primary transition-all duration-300 shadow-[0_0_10px_#f2ca50]" id="progress-line" style="width: 0%"></div>
+</div>
+<!-- Distance/KM Labels (Added Below) -->
+<div class="flex justify-between mt-4 px-2 relative">
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">0 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">50 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">100 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">150 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">200 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">250 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">300 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">350 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">400 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">450 KM</div>
+<div class="text-label-caps font-label-caps text-white/20 text-[10px]">500 KM</div>
+</div>
+<!-- Car Indicator -->
+<div class="absolute bottom-2 transition-all duration-100 ease-out flex flex-col items-center z-50 pointer-events-none" id="car-indicator" style="left: calc(0% + 32px); transform: translateY(-50%); bottom: 33px;">
+<div class="car-image-container relative group">
+<svg class="w-[50px] h-auto drop-shadow-[0_0_12px_rgba(242,202,80,0.8)] transition-all duration-300" style="transform: scaleX(-1);" viewbox="0 0 1536 1536" xmlns="http://www.w3.org/2000/svg">
+<g fill="#f2ca50" stroke="none">
+<path d="M471,895 L468,897 L468,899 L465,902 L465,904 L460,909 L457,914 L447,924 L441,928 L442,932 L445,932 L451,931 L470,932 L472,930 Z" fill-rule="evenodd"></path>
+<path d="M273,894 L272,899 L273,920 L274,931 L276,933 L298,932 L299,933 L303,932 L303,929 L301,927 L292,920 L289,915 L284,910 L281,906 L280,903 L277,900 L277,898 L276,896 L275,895 Z" fill-rule="evenodd"></path>
+<path d="M1421,810 L1418,809 L1412,813 L1410,813 L1398,820 L1393,825 L1392,828 L1380,844 L1371,852 L1369,855 L1364,858 L1362,858 L1358,861 L1355,861 L1353,863 L1353,869 L1351,873 L1350,881 L1347,890 L1344,895 L1344,898 L1341,902 L1341,905 L1335,915 L1335,917 L1333,919 L1333,923 L1335,923 L1336,922 L1402,923 L1410,919 L1411,915 L1413,912 L1414,901 L1414,886 L1416,877 L1417,848 L1419,839 Z" fill-rule="evenodd"></path>
+<path d="M174,802 L153,802 L150,801 L145,796 L143,790 L138,789 L135,792 L133,793 L131,793 L115,804 L113,804 L101,815 L100,818 L99,841 L99,863 L97,873 L97,882 L98,884 L103,888 L103,892 L104,894 L108,896 L114,895 L125,895 L131,896 L141,895 L142,893 L142,869 L143,861 L145,855 L145,849 L148,842 L148,838 L151,831 L157,821 L160,817 L169,808 L172,807 L174,804 Z" fill-rule="evenodd"></path>
+<path d="M241,758 L240,756 L238,754 L236,753 L222,753 L218,754 L215,756 L210,756 L207,757 L204,759 L201,759 L198,760 L196,762 L186,765 L170,772 L151,782 L148,785 L148,790 L150,794 L152,796 L171,796 L178,797 L184,799 L186,801 L186,802 L203,803 L206,802 L225,783 L232,775 L238,767 L238,765 L240,763 L241,761 Z" fill-rule="evenodd"></path>
+<path d="M353,747 L326,756 L312,765 L298,777 L282,798 L274,817 L271,830 L270,845 L271,873 L276,886 L288,907 L298,918 L317,933 L330,940 L349,946 L355,946 L361,948 L383,948 L388,946 L395,946 L413,940 L435,927 L448,916 L466,892 L472,878 L471,827 L466,809 L459,794 L450,781 L431,763 L412,753 L392,747 L383,746 Z" fill-rule="evenodd"></path>
+<path d="M380,870 L383,873 L384,876 L387,879 L393,888 L397,896 L400,899 L399,903 L394,906 L384,907 L381,909 L376,908 L376,885 L377,872 Z" fill-rule="evenodd"></path>
+<path d="M363,870 L366,871 L367,881 L368,899 L367,909 L363,909 L359,907 L355,907 L351,906 L349,904 L346,904 L344,903 L343,901 L346,898 L348,893 L351,890 L351,888 L354,885 L358,877 L361,874 L361,872 Z" fill-rule="evenodd"></path>
+<path d="M391,862 L395,863 L397,865 L399,865 L417,874 L420,877 L423,877 L426,881 L420,888 L414,894 L410,897 L406,896 L406,894 L404,892 L403,888 L397,879 L397,877 L391,868 L390,865 Z" fill-rule="evenodd"></path>
+<path d="M353,863 L353,866 L351,871 L340,890 L339,892 L339,894 L338,896 L334,897 L330,894 L322,886 L319,882 L319,880 L322,877 L326,876 L333,871 L339,868 L343,867 L345,865 L347,865 L350,862 Z" fill-rule="evenodd"></path>
+<path d="M307,854 L308,848 L339,850 L341,850 L342,849 L345,850 L345,853 L343,855 L340,856 L337,859 L334,861 L332,861 L325,867 L323,867 L320,870 L318,871 L317,872 L314,873 L312,871 L310,866 Z" fill-rule="evenodd"></path>
+<path d="M432,870 L429,872 L425,870 L415,864 L412,861 L410,861 L404,856 L399,854 L397,851 L399,849 L415,849 L426,847 L431,847 L436,848 L436,856 L435,861 L432,866 Z" fill-rule="evenodd"></path>
+<path d="M307,833 L310,826 L310,822 L312,818 L315,816 L320,820 L322,820 L336,829 L339,832 L341,832 L344,834 L346,837 L344,839 L332,840 L309,841 L307,839 Z" fill-rule="evenodd"></path>
+<path d="M432,818 L435,827 L436,833 L435,840 L426,840 L408,839 L397,836 L401,832 L403,832 L410,826 L412,826 L415,823 L426,816 L429,815 Z" fill-rule="evenodd"></path>
+<path d="M331,793 L335,791 L337,793 L342,801 L343,805 L345,807 L346,811 L351,818 L351,820 L353,822 L353,824 L350,826 L348,825 L346,823 L342,822 L330,816 L319,810 L318,807 L321,803 Z" fill-rule="evenodd"></path>
+<path d="M409,790 L410,792 L415,795 L421,801 L425,807 L422,810 L417,813 L415,813 L406,819 L402,820 L400,822 L398,822 L395,825 L390,824 L390,822 L391,819 L394,813 L403,798 L405,792 L407,790 Z" fill-rule="evenodd"></path>
+<path d="M353,781 L359,780 L365,780 L367,782 L367,795 L364,819 L360,815 L358,810 L352,801 L349,798 L343,789 L344,785 L346,784 L351,783 Z" fill-rule="evenodd"></path>
+<path d="M399,785 L399,788 L398,790 L394,796 L387,808 L384,811 L383,814 L381,816 L381,817 L378,818 L376,816 L375,790 L375,782 L379,779 L384,781 L390,781 L395,783 Z" fill-rule="evenodd"></path>
+<path d="M1202,741 L1181,747 L1161,758 L1140,777 L1131,789 L1122,807 L1116,833 L1117,863 L1128,894 L1143,914 L1158,928 L1172,937 L1175,937 L1183,942 L1190,943 L1193,945 L1209,948 L1232,948 L1254,943 L1273,934 L1287,924 L1301,910 L1311,895 L1320,875 L1324,856 L1323,825 L1318,807 L1309,789 L1300,777 L1285,762 L1268,751 L1251,744 L1231,740 Z" fill-rule="evenodd"></path>
+<path d="M1227,870 L1230,871 L1233,876 L1236,880 L1246,897 L1249,900 L1248,903 L1241,906 L1229,908 L1228,909 L1226,909 L1224,907 L1225,872 Z" fill-rule="evenodd"></path>
+<path d="M1213,870 L1215,872 L1216,890 L1215,909 L1212,909 L1208,907 L1203,907 L1199,906 L1194,904 L1192,902 L1192,900 L1196,895 L1207,876 L1209,873 Z" fill-rule="evenodd"></path>
+<path d="M1239,862 L1242,862 L1245,865 L1257,871 L1261,872 L1263,874 L1265,874 L1271,877 L1274,881 L1270,886 L1262,894 L1258,897 L1256,897 L1254,895 L1254,893 L1249,886 L1246,880 L1246,878 L1245,876 L1240,869 L1240,867 L1238,865 Z" fill-rule="evenodd"></path>
+<path d="M1201,863 L1201,867 L1200,869 L1197,873 L1194,879 L1192,885 L1189,889 L1188,891 L1188,893 L1187,895 L1185,897 L1182,897 L1178,894 L1170,886 L1167,882 L1168,879 L1169,879 L1171,877 L1176,874 L1182,871 L1184,871 L1186,870 L1193,865 L1195,865 L1198,862 Z" fill-rule="evenodd"></path>
+<path d="M1156,858 L1156,850 L1159,848 L1186,850 L1192,849 L1194,851 L1194,853 L1192,855 L1190,855 L1187,858 L1185,858 L1178,864 L1170,868 L1164,873 L1161,872 L1159,868 L1159,864 Z" fill-rule="evenodd"></path>
+<path d="M1285,849 L1285,851 L1284,858 L1282,861 L1282,865 L1281,868 L1280,870 L1278,872 L1276,872 L1273,870 L1270,867 L1265,864 L1263,864 L1260,861 L1249,855 L1246,852 L1247,849 L1277,847 L1283,847 Z" fill-rule="evenodd"></path>
+<path d="M1161,817 L1162,817 L1164,816 L1167,819 L1170,820 L1173,823 L1175,823 L1183,828 L1186,831 L1189,832 L1192,834 L1194,836 L1193,839 L1184,840 L1157,841 L1155,838 L1156,830 L1159,824 L1159,821 Z" fill-rule="evenodd"></path>
+<path d="M1285,836 L1285,838 L1283,840 L1273,840 L1258,838 L1253,839 L1246,837 L1246,835 L1248,833 L1251,832 L1254,829 L1262,825 L1268,820 L1270,820 L1273,817 L1277,815 L1279,817 L1281,820 L1284,830 Z" fill-rule="evenodd"></path>
+<path d="M1182,791 L1185,792 L1188,797 L1188,799 L1190,801 L1191,805 L1197,814 L1201,822 L1201,824 L1198,826 L1196,825 L1194,823 L1188,820 L1178,816 L1175,813 L1173,813 L1166,808 L1167,806 L1174,798 L1179,793 Z" fill-rule="evenodd"></path>
+<path d="M1257,790 L1260,793 L1261,793 L1269,801 L1272,805 L1273,808 L1271,810 L1269,810 L1267,811 L1260,816 L1256,817 L1249,822 L1243,825 L1238,824 L1238,822 L1240,820 L1240,818 L1249,800 L1254,791 Z" fill-rule="evenodd"></path>
+<path d="M1227,779 L1233,781 L1238,781 L1244,784 L1248,785 L1248,787 L1245,791 L1239,802 L1236,807 L1233,810 L1233,812 L1230,815 L1230,816 L1228,818 L1225,817 L1225,800 L1223,784 L1223,782 Z" fill-rule="evenodd"></path>
+<path d="M1192,785 L1197,784 L1202,781 L1208,781 L1212,779 L1215,780 L1215,816 L1213,818 L1210,817 L1209,814 L1195,793 L1192,790 Z" fill-rule="evenodd"></path>
+<path d="M1312,765 L1300,753 L1277,738 L1255,730 L1228,726 L1199,727 L1177,732 L1156,741 L1138,754 L1122,772 L1110,792 L1102,814 L1098,835 L1099,874 L1117,937 L1145,933 L1151,929 L1132,910 L1123,896 L1114,874 L1111,859 L1111,828 L1120,798 L1133,777 L1154,756 L1178,742 L1205,735 L1234,735 L1262,742 L1286,756 L1311,782 L1327,818 L1330,841 L1329,860 L1317,896 L1299,919 L1300,922 L1325,922 L1341,890 L1347,870 L1348,855 L1344,830 L1336,804 L1324,781 Z" fill-rule="evenodd"></path>
+<path d="M64,900 L70,912 L96,921 L202,934 L267,934 L265,833 L274,802 L314,757 L339,745 L374,740 L427,754 L464,792 L477,828 L478,931 L1024,934 L992,912 L960,900 L557,909 L539,865 L640,826 L641,821 L527,837 L499,789 L464,750 L431,733 L384,726 L324,733 L296,747 L274,768 L249,817 L241,901 L235,908 L96,901 L91,889 L74,891 Z" fill-rule="evenodd"></path>
+<path d="M829,659 L822,648 L815,643 L810,642 L805,639 L795,638 L765,639 L757,640 L752,642 L739,643 L735,645 L729,645 L721,648 L716,648 L709,651 L705,651 L689,657 L685,657 L680,660 L674,661 L647,673 L639,678 L627,688 L621,699 L621,707 L624,710 L654,708 L662,706 L688,705 L696,703 L724,702 L731,700 L758,699 L765,697 L782,697 L801,694 L817,693 L820,694 L824,691 L829,681 L830,675 Z" fill-rule="evenodd"></path>
+<path d="M1427,768 L1408,752 L1382,679 L1389,648 L1370,643 L1355,606 L1333,597 L1264,598 L1248,608 L1252,637 L1301,649 L1293,678 L1222,672 L986,615 L832,600 L706,600 L647,612 L434,705 L313,715 L231,744 L246,755 L243,769 L210,806 L180,807 L165,820 L151,848 L147,893 L230,901 L241,825 L267,768 L314,731 L362,721 L418,724 L462,742 L498,778 L529,832 L644,816 L643,831 L546,868 L560,903 L964,895 L1034,934 L1111,937 L1092,866 L1099,802 L1117,767 L1158,733 L1199,721 L1239,721 L1291,739 L1331,780 L1354,852 L1392,813 L1422,796 Z" fill-rule="evenodd"></path>
+<path d="M1033,726 L1029,745 L1002,784 L959,826 L926,846 L876,858 L622,894 L613,891 L615,886 L624,883 L840,853 L925,764 L925,759 L702,758 L705,754 L798,739 L935,724 L1026,721 Z" fill-rule="evenodd"></path>
+<path d="M842,627 L844,623 L864,625 L1008,649 L1056,661 L1062,664 L1065,671 L1057,675 L1043,678 L873,697 L871,695 L875,686 L881,682 L935,681 L995,676 L1016,672 L1021,669 L1020,666 L1011,661 L970,651 L917,642 L908,642 L904,640 L846,633 Z" fill-rule="evenodd"></path>
+<path d="M852,693 L851,699 L672,717 L599,721 L527,720 L525,718 L526,715 L541,705 L561,707 L606,706 L610,693 L609,683 L606,677 L600,673 L588,675 L586,672 L625,652 L681,634 L708,628 L750,622 L830,622 L834,628 L846,676 Z" fill-rule="evenodd"></path>
+<path d="M1361,603 L1361,610 L1362,617 L1365,626 L1369,634 L1375,640 L1379,642 L1386,643 L1423,643 L1430,642 L1434,640 L1440,640 L1444,639 L1447,637 L1450,637 L1453,636 L1455,634 L1459,633 L1468,628 L1472,624 L1473,622 L1474,597 L1473,593 L1469,589 L1376,589 L1369,591 L1367,593 L1366,593 L1363,597 Z" fill-rule="evenodd"></path>
+</g>
+</svg>
+<div class="absolute -right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary/20 blur-xl rounded-full"></div>
+</div>
+</div></div>
+</div>
+<!-- Itinerary Content -->
+<main class="space-y-section-gap py-section-gap">
+<!-- Day 1 -->
+<section class="day-section max-w-container-max mx-auto px-gutter reveal active" id="day-1">
+<div class="grid lg:grid-cols-12 gap-8">
+<div class="lg:col-span-9 space-y-8">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Volvo Bus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-YJq5Unkgq4pFUdB08gnz1NL1JWnPkmpWp1WhfkSdCbglVZMcIL-XgkkCrLAGMRy-QP_jxOv_hw-5ihUwW3jeIUO00F8sCep4HyuM1qkQjtY0RC0VNgUKr2l3M5KeOnQcl2yHccKIkZtsQjlM6G6URg7V_3lADnNp893N2DXjhni9YrBsyQidRSCGHae6QcsyHjpl-Jo-b8WgnEY64XqE-JH3IGrfCLnpX0dlhlYe8ofnRidqrDo_I5sSG1BlCAWJBrbOktYPNUE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="bg-primary text-on-primary px-4 py-1 font-label-caps text-label-caps rounded-full mb-4 inline-block">DAY 01</span>
+<h3 class="text-headline-lg font-headline-lg text-white">Departure — Delhi to Kasol</h3>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface/70 leading-relaxed">
+                Your Himalayan adventure begins tonight. Board your overnight Volvo from Delhi's ISBT Kashmiri Gate as the city slowly gives way to the foothills. Our VIPDrive representative will be at the departure point to ensure a smooth start. Sleep under the stars while the bus winds through the mountain passes, and wake up to your first glimpse of pine-covered slopes.
+            </p>
+</div>
+<div class="lg:col-span-3 flex flex-col gap-4">
+<img alt="Luggage" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT6VpPN7MEttHZOYfJK8awE_wFTjH8ze3FE-46bFu9bJPYmQazr9dTuRRJX_lDKAG2ZK8OYInQ80yVHOuc_EkKRX1o0PZJ7x3y_rW_Xk7R_jIA4BBXtDad71sjIQDJGVGNM9JOaAN6VrpxYAB6JwCQNQLUAbnO9Gp6knOMBJJ4A-Wx87tfxaIP3qNyLpJm-ZvYcorjeIr6ReGngZejiDg0X060XjfrVJQOfw7n79QSOWOl0G-t_enYmZChEr01lgES1qCDqtrG5Qw"/>
+<img alt="Night Highway" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaatU7Usn0KC7KHpZy5C25m-myL2BcI1EOTMUt_SlufUQMQ02XqCIaBG07u16tKG6x8Sx5GM6cZclNQRQcy7SpyAQZ8H1n3cl2hA354RQlm52szwxdDy5do9q6OwbQP1CYVtVAMFDqMxhWs2LC7OCvRkeNnZH9cy4AJJGvXAXexMQ6jddZuBwyYQrhuiKH5XyalCNfnr6qkYyaNNvdwe0sfjOBYLXPlIA-3KYR4zZh37c88qF1KqqD94lQfU5sI9ucWYQa-bNq9Mk"/>
+<img alt="Bus Interior" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB94gDNaKpJT2L5ZrLYXmOt1gERbFsxevY4-3cIu7wwoDQO35W_NF0ELep6rmmuHKH0EKQbfJwIjkX_RVVNcXpotnevjuolDBbZaT37PwA2Sk_egXeIiIxshnVNKK83jTGdR4lShPKd5_7cTUgIL2Xzb68r7wJ_DdhOdWr2c_UPPsiPPoU8igcZuIi-a2Wu8p_1fAbnArmXZU5oOHrkjk1iaLsByc7DVOAKSzgrF7IvnXArbNkzHeHANK5QUSU578DckqGKV91ejMI"/>
+</div>
+</div>
+</section>
+<!-- Day 2 -->
+<section class="day-section max-w-container-max mx-auto px-gutter reveal active" id="day-2">
+<div class="grid lg:grid-cols-12 gap-8">
+<div class="lg:col-span-3 flex flex-col gap-4">
+<img alt="Cafe" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBho0RC8qa27Yut6YbYmFQQtpo8X6vMxguMs6EcvnwgJQhtB7e79P2DdLIt0PQp2qXh3TluANNWSoX6x4taIY0qGF0Dw-m_t-ZULCtg7-NcdosLqtIuX5YdMukNwWeQIA7nKFcWsKa20EfmgXjs2jlHSmvTcPx5PVTGx1_vreNCTXPvmzJPX5K6mfuiqVPFhzbLF_dVe6hB6sQFJcNtS54yE11cqnGIlHhsFOzf2mIq1KXTNAXLPUfcO5oxKS4lVU-CLoe34RjxcnQ"/>
+<img alt="Bonfire" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiJizMIgKSn94Rj7mU4aARI0R-G2Hp1gI2YKR0DrXU1ObM3kSfiMp9i-WS7qgOyNpgVn8k1YBmTHLfcZSkDnBeuoezgjq1x-bf3cuaoati51ThL4wiJTtAmQC6XnT4pyK1mdfruwNHb-BXrPU2DC27-qIalbJz1_KBajv0gfbs8IERVElUKBm7fSRnvbeeyOzsHVhAbWZb2whCgZsrFJamvZ3ecKb-pB33pqO4EdCxlFvVb03nALvdzhFCtPQsG0vJnWavmzOtfCo"/>
+<img alt="Village" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9qaOumOJASFSIxHzDhzNYtF5igj6oCj9GgzA8wOTfi7h7i4p67jJF_uGL_J2VuXchQifqfheZx413PKX_ylpen7Itf3W_h3bKz_Ax4Y2VQ0esfrni5NKE-Gl30srwhf9v0L5WaTVDAEpi7bmgKRrJqVfhb_bvILTpmm6K7gOFME5UNiNREKBnayKqfmoRvjPoXIIXR8aS6pdDZa2HiI3v1hhgr0417JiOVcnAFNYErbg1M0IfsD3NtkxQquXF7loWuXg6eaVu5C0"/>
+</div>
+<div class="lg:col-span-9 space-y-8">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Parvati River" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp-6ERddlshyZxcs5cUQD8WsTAdLmSoGo_rPx8_0KuQrIEgoITmIkFm9nC8hPqBeZrbVe5UpHxgbXuS6vtdkdALU3J4txZlmx_7Hvhf7PHDTCpeJDYJadAilJqe96mLzXxS1uwZgoHRqSjcKiz-cno98qasyyZJgcdwOB0FRWN6hzE6XwpTDIf-Ev2lExJezkIoA33Wz0ML73uHIU1nqCDq42K_IA5490Fz7X_nAE_mOl0Z2GoJOlx45Ic9I4DEZgUvTNKOtBOWSw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="bg-primary text-on-primary px-4 py-1 font-label-caps text-label-caps rounded-full mb-4 inline-block">DAY 02</span>
+<h3 class="text-headline-lg font-headline-lg text-white">Arrival in Kasol — River &amp; Rest</h3>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface/70 leading-relaxed">
+                Arrive in Bhuntar by morning and transfer to Kasol in a premium VIPDrive vehicle winding through the Parvati Valley. Check into your cozy riverside camp or boutique guesthouse. Spend the afternoon exploring Kasol village — tiny cafes, the Parvati River rushing ice-cold, and pine trees that tower overhead.
+            </p>
+</div>
+</div>
+</section>
+<!-- Day 3 -->
+<section class="day-section max-w-container-max mx-auto px-gutter reveal active" id="day-3">
+<div class="grid lg:grid-cols-12 gap-8">
+<div class="lg:col-span-9 space-y-8">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Kheerganga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCge0Fv3NfYwguIQjo-kjUTURQBcmXVx1EVeGbuWR3csDW4RLR6SBVZ585md0HFG4kMaLNyJWAXErwlPK04jBBvNKg0o7DmGKk3sDCrdrTpB1ZfDkCw0SgIhj5jP5lX6HkodzxqaTiq56gA6jBqNo_EWIJzoUrQqlKP2iL-NPFUTpJJaGW2P2O5hbYAt23BSXaV73Vq1-asPZ7UzXudGYo47GXLJztyEYhUkaf-pmZ9hPu-kmC85RTjyGzUM96xmyBl28YCYwBhKM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="bg-primary text-on-primary px-4 py-1 font-label-caps text-label-caps rounded-full mb-4 inline-block">DAY 03</span>
+<h3 class="text-headline-lg font-headline-lg text-white">Kheerganga Trek — Sacred Hot Springs</h3>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface/70 leading-relaxed">
+                Today is the crown jewel of the Kasol experience — the trek to Kheerganga. A 12km trail through dense forests, meadows dotted with wildflowers, and open ridges with 360-degree mountain views leads you to the sacred hot springs at 2,950 metres.
+            </p>
+</div>
+<div class="lg:col-span-3 flex flex-col gap-4">
+<img alt="Trail" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVin1PGWFdsYxOmzQukwutP_Ab46URxV_w9EDGOY9DuM-ReYRga0zjqExE1N_INUsf8VhstScwyZoh3gTlC8AJ3TTJOvBuH8Q_pGwM7akPjHqhdV1cPiHZh_XvfdlRQfOSzgq2qWvdKJDIuoCD1mg-CUXHjz4UjrPPUYgS7B0jzW6l1DYOsVEMpLBhsDSPOQtDM5icp17Q-wKyMqGfqB2VAv1iilthEx648wY6IH3hibgnCI78H2iT-9wg9x_6HTfMaSvwIFz456Y"/>
+<img alt="Himalayan House" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu7k2V-Ah3fKi3QFhvPt2DkV0m042Zq3Y6UWNAvpVCA6FX_OnnrMNd0JgceAU5fTlba9UPfKYCXUep8HBRm7FklGlfbqPwgQA12LNDWLUevuCAR-kp3Lv7Zjx2MFyy_dIozT8FdUg1JH3I_-_CPXVXrKD9pCYPYN9zGyJbk-68BzqNePMJ8Qndx7PplYvv0TPDRNAsafr8aDHgnadn7HQjRjdv6a2UncP5okZ870Z9HIhJpW_LRWEPtOIZeeyt3Q1toC6lbL76pnM"/>
+<img alt="Local Food" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ4DuVuRpzTqBD58RHWc4Jb_wq3Nb3bXpSprIYtCnCiEyF9B1II-PW-FbtVK7T5dZW7o8-4uPY_r5U8KflZByvAu5efQvhyEcA-WC0rx_Gu5VjFnQqEjL27wEAikiCwzBDNhvB5I1R15kcaESVbiqdxJZkCbilysek6nsyY1eePMaU-QkJd7mX3b45ULc4W77W-2wTp-SPl_EaNqK36g-0NO1GAFh2aFCyqoGx53K5tp04Uoe3KwsKPoYydq_h2wVEeBsqc4QpVos"/>
+</div>
+</div>
+</section>
+<!-- Day 8 -->
+<section class="day-section max-w-container-max mx-auto px-gutter reveal active" id="day-8">
+<div class="grid lg:grid-cols-12 gap-8">
+<div class="lg:col-span-3 flex flex-col gap-4">
+<img alt="Snow" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPlc8zNc8dnKlV4R9P8nbcvbPcb9iqZ0afajsB5070wbyURpdb3MZ0kDAHzc2y5x7K0QVeHN1s9eI96A6huVYj8fMbcXAvvuzKC0AHoN-_zlimMxzVNdRR3a8UFWdxetY4z1WpRF_OXu63OIg6tjZDE90mVORNuHOq_woD4u96hBFat-ZR0EY-4xj15vNLvJc29YHfvaXZPsFekBYkYKsZgjlnT1l_A7cfgj8Etdj_PjYEKgOzASgPJRMpQUfsoL0G_AT5pOQK7wo"/>
+<img alt="Snow Mountains" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_HjA3vLSd-nRKCXtpgbMqf8vrZ2O4v2rlZnImo4db4v3VHu3DR4hDi_5vdg2T4jB3Rbk8QzoYHqASNTY6H3hF2frvJ4OWzjCJ50dHHvcuYe08OADRyiLk7Z92YebaFHZaOElMRmYrk4xGl8KI9IpculRakU6LpX2DCxAyqDUqJVBQgenybyqEaOb2QsklNAxUeYxc_1guuxeXtuZ45fSjb-BlEdJuHaA3UmjW1NL3Lb3KtZcI0dht3SSKDgEJKRLz-NatFc3QrBw"/>
+<img alt="Guide" class="rounded-lg flex-1 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIQgtBRcQfQY-GV0K6NrzrQDfoUTlFu8xDS73_Qq1t6Bw7_Lu1BWhTXp3hwin0p9rXdGwK4wPI0d4IX76RVjdIQFCwLU_TWAZtNLUuU5CjoO5xqNyX4SdB7nux7SnwhM5sJ1r9T0l4BevmRAX8NWvntorFliuUqx3Y0eeP_lNGHQ9RYEpkfTxRRTr1AXKWC527OHRbtMZDEpgEX52KIFVgi7TKqPzzDIsOXFPo3PHbCmwbZiqEW-pvRscWNmnV0qHv5oak--7MBQY"/>
+</div>
+<div class="lg:col-span-9 space-y-8">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl aspect-[16/9]">
+<img alt="Rohtang Pass" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLmGmhXvjmOpE19uvrjBv57YCyGaghswWD7ShffXyzMnE-0xWwsyC_Bw8XxEBr_d6rYhjguL8Ozi215FtNi7WiSy4wXsCk2QSc7Xy36m4ZSl4M6___VfivW2R-_xN7zFKD7-5rdh4JiBWAjJ37AY1DdDLcYk9W3Nx1Q8oZ9cCp8lXj347VkA2WagGxi9ccgbNoYOO55moZJf1pk8LNxgaB4aR-uswSTd0mN5mvOMKMXVUXGw4XPcM6wBHmRgslhaygzHhuCi-lLi0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="bg-primary text-on-primary px-4 py-1 font-label-caps text-label-caps rounded-full mb-4 inline-block">DAY 08</span>
+<h3 class="text-headline-lg font-headline-lg text-white">Rohtang Pass — Top of the World</h3>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface/70 leading-relaxed">
+                At 3,978 metres, the Rohtang Pass is the gateway to Lahaul &amp; Spiti and one of the most dramatic drives in the entire Himalayas. Your expert VIPDrive driver navigates the steep switchbacks as the landscape transforms.
+            </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background border-t border-white/10 w-full py-section-gap">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="space-y-6">
+<div class="text-headline-md font-headline-md text-primary">VIPDrive</div>
+<p class="text-on-surface/40 font-body-md text-body-md leading-relaxed">© 2024 VIPDrive Himalayas. <br/>Editorial Travel Experiences.</p>
+</div>
+<div>
+<h4 class="text-label-caps font-label-caps text-on-surface/80 mb-6 tracking-widest">LINKS</h4>
+<div class="flex flex-col gap-4 text-on-surface/40 font-body-md text-body-md">
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+<div class="lg:col-span-2">
+<h4 class="text-label-caps font-label-caps text-on-surface/80 mb-6 tracking-widest">NEWSLETTER</h4>
+<div class="flex border-b border-white/20 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-on-surface w-full font-label-caps text-label-caps" placeholder="YOUR EMAIL ADRESS" type="email"/>
+<button class="text-primary"><span class="material-symbols-outlined">east</span></button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Intersection Observer for Scroll Reveals
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Speedometer Gauge Generation
+    const ticksContainer = document.getElementById('ticks-container');
+    const totalTicks = 100; // Total small ticks across the gauge
+
+    for (let i = 0; i <= totalTicks; i++) {
+        const tick = document.createElement('div');
+        tick.className = 'speed-tick';
+        
+        // Large ticks for every day (10 days total)
+        if (i % 10 === 0) {
+            tick.classList.add('speed-tick-large');
+        } 
+        // Medium ticks for half days
+        else if (i % 5 === 0) {
+            tick.classList.add('speed-tick-medium');
+        } 
+        // Small ticks for intervals
+        else {
+            tick.classList.add('speed-tick-small');
+        }
+        
+        tick.dataset.index = i;
+        ticksContainer.appendChild(tick);
+    }
+
+    // Journey Tracker Logic
+    const carIndicator = document.getElementById('car-indicator');
+    const progressLine = document.getElementById('progress-line');
+    const dayLabels = document.querySelectorAll('.speed-number');
+    const allTicks = document.querySelectorAll('.speed-tick');
+
+    function updateTracker() {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = window.scrollY;
+        
+        // Progress Calculation
+        let progress = (scrolled / totalHeight) * 100;
+        progress = Math.min(Math.max(progress, 0), 100);
+        
+        // Update Bar and Car
+        progressLine.style.width = `${progress}%`;
+        // Car stays within the gutter bounds
+        carIndicator.style.left = `calc(${progress}% + 32px - 18px)`;
+
+        // Highlight ticks based on progress
+        const activeTickThreshold = Math.floor(progress);
+        allTicks.forEach((tick, idx) => {
+            if (idx <= activeTickThreshold) {
+                tick.classList.add('active');
+            } else {
+                tick.classList.remove('active');
+            }
+        });
+
+        // Highlight Day Numbers based on progress
+        const currentDay = Math.ceil((progress / 100) * 10) || 1;
+        dayLabels.forEach((label, idx) => {
+            if (idx + 1 <= currentDay) {
+                label.classList.add('text-primary');
+                label.classList.remove('text-white/30');
+            } else {
+                label.classList.remove('text-primary');
+                label.classList.add('text-white/30');
+            }
+        });
+
+        // Create Sparkles
+        if (scrolled > 100 && Math.random() > 0.7) {
+            createSparkle(progress);
+        }
+    }
+
+    function createSparkle(progress) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `calc(${progress}% + 32px)`;
+        sparkle.style.bottom = '12px';
+        carIndicator.parentNode.appendChild(sparkle);
+        
+        setTimeout(() => {
+            sparkle.style.opacity = '0';
+            sparkle.style.transform = `translateY(${Math.random() * 30}px) scale(0)`;
+            setTimeout(() => sparkle.remove(), 500);
+        }, 50);
+    }
+
+    window.addEventListener('scroll', updateTracker);
+
+    // Package Selector Toggle
+    const pkgBasic = document.getElementById('pkg-basic');
+    const pkgDiscovery = document.getElementById('pkg-discovery');
+
+    pkgBasic.addEventListener('click', () => {
+        pkgBasic.className = 'px-12 py-4 rounded-full bg-primary text-on-primary font-label-caps text-label-caps transition-all';
+        pkgDiscovery.className = 'px-12 py-4 rounded-full text-on-surface/50 font-label-caps text-label-caps hover:text-white transition-all';
+    });
+
+    pkgDiscovery.addEventListener('click', () => {
+        pkgDiscovery.className = 'px-12 py-4 rounded-full bg-primary text-on-primary font-label-caps text-label-caps transition-all';
+        pkgBasic.className = 'px-12 py-4 rounded-full text-on-surface/50 font-label-caps text-label-caps hover:text-white transition-all';
+    });
+
+    // Initialize state
+    updateTracker();
+</script>
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4" id="image-modal">
+<div class="absolute inset-0 bg-background/90 backdrop-blur-xl cursor-pointer modal-backdrop" id="modal-overlay"></div>
+<div class="relative w-full max-w-2xl bg-surface-container rounded-xl overflow-hidden shadow-2xl border border-white/10 modal-content">
+<button class="absolute top-4 right-4 z-10 text-on-surface/50 hover:text-primary transition-colors" id="close-modal">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<div class="p-8 flex flex-col gap-6">
+<div class="font-headline-md text-headline-md text-primary tracking-wider border-b border-primary/20 pb-4 italic" id="modal-day"></div>
+<div class="aspect-video rounded-lg overflow-hidden border border-white/5 shadow-inner">
+<img alt="Enlarged view" class="w-full h-full object-cover" id="modal-img" src=""/>
+</div>
+<div class="text-center space-y-2 py-4">
+<p class="font-body-lg text-body-lg text-on-surface italic leading-relaxed px-6" id="modal-quote"></p>
+<div class="w-12 h-[1px] bg-primary/40 mx-auto mt-4"></div>
+</div>
+</div>
+</div>
+</div><script>
+    const quotes = [
+        "The mountains are calling and I must go.",
+        "Every mountain top is within reach if you just keep climbing.",
+        "In the presence of eternity, the mountains are as transient as the clouds.",
+        "The best view comes after the hardest climb.",
+        "Mountains are not stadiums where I satisfy my ambition to achieve, they are the cathedrals where I practice my religion.",
+        "Climb the mountains and get their good tidings.",
+        "Somewhere between the bottom of the climb and the summit is the answer to the mystery why we climb."
+    ];
+
+    const modal = document.getElementById('image-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalDay = document.getElementById('modal-day');
+    const modalQuote = document.getElementById('modal-quote');
+
+    function openModal(imgSrc, dayText) {
+        modalImg.src = imgSrc;
+        modalDay.textContent = dayText;
+        modalQuote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    // Add click listeners to sub-images in itinerary sections
+    document.querySelectorAll('.day-section .lg\\:col-span-3 img, .day-section .lg\\:col-span-9 .group img').forEach(img => {
+        img.classList.add('cursor-zoom-in');
+        img.addEventListener('click', (e) => {
+            const section = img.closest('.day-section');
+            const dayLabel = section.querySelector('.bg-primary')?.textContent || "Adventure";
+            openModal(img.src, dayLabel);
+        });
+    });
+
+    modalOverlay.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+</script></body></html>

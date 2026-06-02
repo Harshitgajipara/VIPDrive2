@@ -4,12 +4,18 @@ import { tripDetails } from '../../data/sotDestinations';
 import CarJourneyMeter from '../../components/special-organized-trips/CarJourneyMeter';
 import ItineraryDay from '../../components/special-organized-trips/ItineraryDay';
 import ImageModal from '../../components/special-organized-trips/ImageModal';
+import TripHeroSection from '../../components/special-organized-trips/trip-details/TripHeroSection';
 import '../../styles/special-organized-trips/TripDetailPage.css';
 
 // ─────────────────────────────────────────────────────────────
 // TripDetailPage
 // Supports: kasol-manali (packages.basic / packages.discovery)
 //           and any trip with legacy .itinerary array
+//
+// Data flow: Backend (Spring Boot API) → tripDetails → props
+//   TripHeroSection  handles: hero image, intro text + gallery, package tabs
+//   CarJourneyMeter  handles: sticky day progress tracker
+//   ItineraryDay     handles: each day card
 // ─────────────────────────────────────────────────────────────
 const TripDetailPage = () => {
   const { dest, tripId } = useParams();
@@ -18,8 +24,11 @@ const TripDetailPage = () => {
   // Does this trip have the new packages structure?
   const hasPackages = !!(trip?.packages);
 
-  // Active package key ('basic' | 'discovery') — default 'basic'
-  const [activePkg, setActivePkg] = useState('basic');
+  // Active package key ('basic' | 'discovery') — default first key
+  const [activePkg, setActivePkg] = useState(() => {
+    if (trip?.packages) return Object.keys(trip.packages)[0];
+    return 'basic';
+  });
 
   // Derived days array (whichever tab is active)
   const currentDays = hasPackages
@@ -33,47 +42,30 @@ const TripDetailPage = () => {
   // resetKey: increments on tab switch to reset CarJourneyMeter
   const [resetKey, setResetKey] = useState(0);
 
-  const heroImgRef   = useRef(null);
-  const itineraryRef = useRef(null);
-  const itineraryTopRef = useRef(null); // anchor for scroll-to-top on tab switch
-  const tabsRef      = useRef(null);
-  const dayRefs      = useRef([]);
+  // Modal state for intro gallery image lightbox
   const [introModal, setIntroModal] = useState(null);
-  const rafRef       = useRef(null);
 
+  // Refs forwarded into TripHeroSection for package tab behaviour
+  const itineraryTopRef = useRef(null); // scroll anchor on tab switch
+  const tabsRef         = useRef(null); // tablist element for keyboard nav
+  const itineraryRef    = useRef(null); // itinerary section for CarJourneyMeter
+  const dayRefs         = useRef([]);
+
+  // ── Document title ────────────────────────────────────────
   useEffect(() => {
     document.title = `${trip?.title || 'Trip Detail'} | VIPDrive`;
-    // ScrollRestoration in PageLayout handles scroll-to-top on navigation
   }, [trip]);
-
-  // ── Hero parallax ─────────────────────────────────────────
-  useEffect(() => {
-    const handleScroll = () => {
-      if (rafRef.current) return;
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = null;
-        const img = heroImgRef.current;
-        if (!img) return;
-        img.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-      });
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
 
   // ── Reset dayRefs array size when days change ─────────────
   useEffect(() => {
     dayRefs.current = dayRefs.current.slice(0, currentDays.length);
   }, [currentDays.length]);
 
-  // ── Tab switch handler ────────────────────────────────────
-  const handleTabSwitch = useCallback((pkgKey) => {
+  // ── Tab switch handler (passed to TripHeroSection) ────────
+  const handlePkgChange = useCallback((pkgKey) => {
     if (pkgKey === activePkg) return;
     setActivePkg(pkgKey);
-    setResetKey(k => k + 1);
+    setResetKey((k) => k + 1);
 
     // Smooth scroll to itinerary section after state settles
     setTimeout(() => {
@@ -81,29 +73,33 @@ const TripDetailPage = () => {
     }, 80);
   }, [activePkg]);
 
-  // ── Keyboard nav for tabs ─────────────────────────────────
+  // ── Keyboard nav for tabs (passed to TripHeroSection) ─────
   const handleTabKeyDown = useCallback((e, pkgKey, pkgKeys) => {
     const idx = pkgKeys.indexOf(pkgKey);
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       const next = pkgKeys[(idx + 1) % pkgKeys.length];
-      handleTabSwitch(next);
+      handlePkgChange(next);
       tabsRef.current?.querySelector(`[data-pkg="${next}"]`)?.focus();
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       e.preventDefault();
       const prev = pkgKeys[(idx - 1 + pkgKeys.length) % pkgKeys.length];
-      handleTabSwitch(prev);
+      handlePkgChange(prev);
       tabsRef.current?.querySelector(`[data-pkg="${prev}"]`)?.focus();
     }
-  }, [handleTabSwitch]);
+  }, [handlePkgChange]);
 
+  // ── Not found state ───────────────────────────────────────
   if (!trip) {
     return (
       <div style={{ minHeight: '100vh', background: '#05070b', paddingTop: '50px' }}>
         <div className="trip-not-found">
           <h2>Trip not found</h2>
           <p>We couldn't find details for this trip.</p>
-          <Link to={`/packages/sot/${dest}`} style={{ color: '#c9a84c' }}>
+          <Link
+            to={`/packages/special-organized-trips/statecategory/${dest}`}
+            style={{ color: '#c9a84c' }}
+          >
             ← Back to trips
           </Link>
         </div>
@@ -111,105 +107,58 @@ const TripDetailPage = () => {
     );
   }
 
-  const pkgKeys = hasPackages ? Object.keys(trip.packages) : [];
+  // Build packages map for TripHeroSection (label + duration per key)
+  const packagesMeta = hasPackages
+    ? Object.fromEntries(
+        Object.entries(trip.packages).map(([key, pkg]) => [
+          key,
+          { label: pkg.label, duration: pkg.duration },
+        ])
+      )
+    : null;
 
   return (
     <div className="trip-detail">
 
-      {/* ══════════════════════════════════════
-          HERO SECTION
-      ══════════════════════════════════════ */}
-      <section className="trip-hero" aria-label="Trip hero">
-        <img
-          ref={heroImgRef}
-          src={trip.heroImage}
-          alt={trip.title}
-          className="trip-hero-img"
-          loading="eager"
-        />
-        <div className="trip-hero-overlay" aria-hidden="true" />
-        <div className="trip-hero-content">
-          <Link to={`/packages/sot/${dest}`} className="trip-hero-back">
-            ← Back to trips
-          </Link>
-          <span className="trip-hero-tag">Special Organized Trip</span>
-          <h1>{trip.title}</h1>
-          <p className="trip-hero-tagline">
-            Mountains, rivers, cafes, forests, and unforgettable Himalayan memories.
-          </p>
-          <p className="trip-hero-duration">
-            <span>📅</span> {currentDuration}
-          </p>
-        </div>
-        <div className="trip-hero-scroll" aria-hidden="true">Scroll</div>
-      </section>
+      {/* ══════════════════════════════════════════════════════
+          HERO SECTION — Band 1 (hero) + Band 2 (intro) + Band 3 (pkg tabs)
+          All managed by TripHeroSection component
+      ══════════════════════════════════════════════════════ */}
+      <TripHeroSection
+        /* Band 1 — Hero */
+        heroImage={trip.heroImage}
+        title={trip.title}
+        tagline={
+          trip.tagline ||
+          'Mountains, rivers, cafes, forests, and unforgettable Himalayan memories.'
+        }
+        duration={!hasPackages ? currentDuration : undefined}
+        backLink={`/packages/special-organized-trips/statecategory/${dest}`}
 
-      {/* ══════════════════════════════════════
-          INTRO SECTION
-      ══════════════════════════════════════ */}
-      <section className="trip-intro" aria-label="Trip introduction">
-        <div className="trip-intro-text">
-          {trip.intro.text.split('\n\n').map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
+        /* Band 2 — Intro narrative */
+        intro={
+          trip.intro
+            ? {
+                headline: trip.intro.headline,   // from data / Spring Boot API
+                text:     trip.intro.text,
+                images:   trip.intro.images,
+              }
+            : undefined
+        }
 
-        <div className="trip-intro-gallery" role="list" aria-label="Intro gallery">
-          {trip.intro.images.map((src, i) => (
-            <div
-              key={i}
-              className="trip-intro-img-wrap"
-              role="listitem"
-              onClick={() => setIntroModal(src)}
-              aria-label={`View gallery image ${i + 1}`}
-            >
-              <img src={src} alt={`${trip.title} highlight ${i + 1}`} loading="lazy" />
-              <div className="trip-intro-img-hover" aria-hidden="true">🔍</div>
-            </div>
-          ))}
-        </div>
-      </section>
+        /* Band 3 — Package selector */
+        packages={packagesMeta}
+        activePkg={activePkg}
+        onPkgChange={handlePkgChange}
+        onImageClick={(src) => setIntroModal(src)}
+        itineraryTopRef={itineraryTopRef}
+        tabsRef={tabsRef}
+        onTabKeyDown={handleTabKeyDown}
+      />
 
-      {/* ══════════════════════════════════════
-          PACKAGE TABS (only if trip has packages)
-      ══════════════════════════════════════ */}
-      {hasPackages && (
-        <div className="pkg-tabs-wrapper" ref={itineraryTopRef}>
-          <div
-            className="pkg-tabs"
-            role="tablist"
-            aria-label="Trip packages"
-            ref={tabsRef}
-          >
-            {pkgKeys.map((key) => {
-              const pkg = trip.packages[key];
-              return (
-                <button
-                  key={key}
-                  data-pkg={key}
-                  role="tab"
-                  aria-selected={activePkg === key}
-                  className={`pkg-tab ${activePkg === key ? 'active' : ''}`}
-                  onClick={() => handleTabSwitch(key)}
-                  onKeyDown={(e) => handleTabKeyDown(e, key, pkgKeys)}
-                  id={`tab-${key}`}
-                  aria-controls={`itinerary-panel-${key}`}
-                >
-                  <span className="pkg-tab-label">{pkg.label}</span>
-                  <span className="pkg-tab-duration">{pkg.duration}</span>
-                </button>
-              );
-            })}
-          </div>
-          <p className="pkg-tabs-hint">
-            Choose your package to see the full itinerary
-          </p>
-        </div>
-      )}
-
-      {/* ══════════════════════════════════════
-          CAR JOURNEY METER (Sticky)
-      ══════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════════════
+          CAR JOURNEY METER (Sticky tracker)
+      ══════════════════════════════════════════════════════ */}
       <CarJourneyMeter
         totalDays={currentDays.length}
         itineraryRef={itineraryRef}
@@ -217,9 +166,9 @@ const TripDetailPage = () => {
         resetKey={resetKey}
       />
 
-      {/* ══════════════════════════════════════
+      {/* ══════════════════════════════════════════════════════
           DAY-WISE ITINERARY
-      ══════════════════════════════════════ */}
+      ══════════════════════════════════════════════════════ */}
       <section
         className="trip-itinerary"
         ref={itineraryRef}
@@ -231,8 +180,7 @@ const TripDetailPage = () => {
         <p className="trip-itinerary-heading">
           {hasPackages
             ? `${trip.packages[activePkg]?.label} Package — Day-Wise Itinerary`
-            : 'Day-Wise Itinerary'
-          }
+            : 'Day-Wise Itinerary'}
         </p>
 
         {currentDays.map((dayData, i) => (
@@ -246,7 +194,7 @@ const TripDetailPage = () => {
         ))}
       </section>
 
-      {/* Intro image modal */}
+      {/* Intro image modal / lightbox */}
       {introModal && (
         <ImageModal
           src={introModal}

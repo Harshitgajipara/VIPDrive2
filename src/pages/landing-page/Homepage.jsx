@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import HeroSection from '../../components/landing-page/HeroSection';
-import CardSection from '../../components/landing-page/CardSection';
+import PackageSection from '../../components/landing-page/PackageSection';
 import FeaturesSection from '../../components/landing-page/FeaturesSection';
 import TestimonialsSection from '../../components/landing-page/TestimonialsSection';
 import AboutUsSection from '../../components/landing-page/AboutUsSection';
@@ -15,7 +15,7 @@ function Homepage() {
   return (
     <>
       <HeroSection />
-      <CardSection />
+      <PackageSection />
       <FeaturesSection />
       <TestimonialsSection />
       <AboutUsSection />

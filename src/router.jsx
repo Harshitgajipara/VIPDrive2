@@ -4,16 +4,16 @@ import PageLoader from './components/general/PageLoader';
 import RootLayout from './layouts/PageLayout';
 
 // ── Lazy page chunks ───────────────────────────────────────────────────────
-const Homepage      = lazy(() => import('./pages/landing-page/Homepage'));
+const Homepage = lazy(() => import('./pages/landing-page/Homepage'));
 const CustomBooking = lazy(() => import('./pages/general/CustomBooking'));
-const CarList       = lazy(() => import('./pages/CarList'));
-const SpecialTrips  = lazy(() => import('./pages/SpecialTrips'));
-const NotFound      = lazy(() => import('./pages/general/NotFound'));
+const CarList = lazy(() => import('./pages/CarList'));
+const SpecialTrips = lazy(() => import('./pages/SpecialTrips'));
+const NotFound = lazy(() => import('./pages/general/NotFound'));
 
 // Special Organized Trips flow
-const TripPackagePage   = lazy(() => import('./pages/special-organized-trips/TripPackagePage'));
+const TripPackagePage = lazy(() => import('./pages/special-organized-trips/TripPackagePage'));
 const StateCategoryPage = lazy(() => import('./pages/special-organized-trips/StateCategoryPage'));
-const TripDetailPage    = lazy(() => import('./pages/special-organized-trips/TripDetailPage'));
+const TripDetailPage = lazy(() => import('./pages/special-organized-trips/TripDetailPage'));
 
 // ── Suspense wrapper shared by all lazy children ──────────────────────────
 const LazyPage = ({ children }) => (
@@ -51,15 +51,15 @@ const router = createBrowserRouter([
 
       // ── Special Organized Trips ──────────────────────────────────────
       {
-        path: 'packages/sot',
+        path: 'packages/special-organized-trips/statecategory',
         element: <LazyPage><TripPackagePage /></LazyPage>,
       },
       {
-        path: 'packages/sot/:dest',
+        path: 'packages/special-organized-trips/statecategory/:dest',
         element: <LazyPage><StateCategoryPage /></LazyPage>,
       },
       {
-        path: 'packages/sot/:dest/:tripId',
+        path: 'packages/special-organized-trips/statecategory/:dest/:tripId',
         element: <LazyPage><TripDetailPage /></LazyPage>,
       },
 

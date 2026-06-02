@@ -4,7 +4,7 @@
 
 export const destinations = [
   {
-    id: 'hp',
+    id: 'himachal-pradesh',
     label: 'HP – Himachal Pradesh',
     description: 'Snow-capped peaks, pine forests, river valleys and Himalayan adventures await you.',
     image: 'https://images.unsplash.com/photo-1598977990672-43cf1875b42e?auto=format&fit=crop&w=900&q=80',
@@ -34,7 +34,7 @@ export const destinations = [
 // ============================================================
 
 export const trips = {
-  hp: [
+  'himachal-pradesh': [
     {
       id: 'kasol-manali',
       title: 'Kasol & Manali',
@@ -140,7 +140,7 @@ export const trips = {
 // ============================================================
 
 export const destinationMeta = {
-  hp: {
+  'himachal-pradesh': {
     label: 'HP – Himachal Pradesh',
     subtitle: 'Explore mountains, valleys, rivers, and unforgettable Himalayan adventures.',
     heroImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=80',
@@ -171,15 +171,16 @@ export const tripDetails = {
     title: 'Kasol & Manali',
     heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1600&q=85',
     intro: {
+      headline: 'A Tale of Two Valleys',
       text: `Nestled deep in the folds of the Parvati Valley and the Kullu highlands, Kasol and Manali offer two very different yet equally enchanting faces of Himachal Pradesh. Kasol — the "Amsterdam of India" — is a tiny riverside village where Israeli cafes, pine forests and the cold rush of the Parvati River create a dreamlike atmosphere. The trails here lead to sacred Kheerganga and the mystical Pin Parvati Pass, drawing trekkers and soul-seekers from across the world.
 
 Manali, perched at 2,050 metres, is where the mountains truly announce themselves. From the snow-dusted peaks of Rohtang to the adrenaline-charged circuits of Solang Valley, from the ancient wooden temples of Old Manali to the thundering Beas River — every moment here feels cinematic. Together, these two destinations form one of India's most iconic travel circuits, a perfect blend of spiritual stillness and mountain adventure.
 
 This journey with VIPDrive takes you through the very soul of the Himalayas — in absolute comfort, style and luxury. Choose the Basic 10-day circuit or the immersive 15-day Discovery package that adds Spiti Valley, Chandratal Lake and the ancient Dhankar Monastery to your Himalayan story.`,
       images: [
-        'https://images.unsplash.com/photo-1543162862-3afe3f394b26?auto=format&fit=crop&w=600&q=80',
-        'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?auto=format&fit=crop&w=600&q=80',
-        'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDH3XpkF98vsSs-wxdMDJVr9p-fTrExemAaK_4P_RH8_TBzJGk4T7pw81x1ewEKxgG5-9k9aL5tPcGwhkCMNYmA1fQDTQERYW3ZXj0b7E14EIQ8A67Y9hI7F_uIJ-_uIOeRj19jGiT5WB_PCUVlcwNVpnZ6jSGnyVT1jNkt-ZXDcethtCfAOv4xwiEU0FdN_9lH7IKwL9D0ziX0iWXACZ1TzWqJ9-kRHE3eunggm5HaBggauVidLrXf8aIshP1G-LGyLFmKC_Vm4K4',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuBeVSjZuTOIpaMx_WA2ADxvbMW7EK1_xL_r6caGb4qOqeO_rUjOrunr062qpPR5-TzthkWhDiiEKujS6zRKUxvm1p3UpVYtzcxd4jQV45fko-JlVWvqozmlHjTUrXstDIAUw70nrOnY6ObPZwjv45r4LLBx98djSKWKRYdUFgsrPqmuHkYpi2MeMBMBfOJ3rpNPDsXXQRpRJUXXlzOQOp0jnEZM3FvdpINSR1AjL6zZEaE1lBpzy7I7MHwrUT3hIWQHncwPobC-kRg',
+        'https://images.pexels.com/photos/2407751/pexels-photo-2407751.jpeg',
       ],
     },
 
@@ -497,11 +498,11 @@ This journey with VIPDrive takes you through the very soul of the Himalayas — 
       ],
     },
     itinerary: [
-      { day: 1, title: 'Arrival in Shimla', mainImage: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80', description: 'Arrive in Shimla and soak in the colonial charm of this beloved hill station.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75'] },
-      { day: 2, title: 'Mall Road & Christ Church', mainImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=80', description: 'Explore the iconic Mall Road, visit Christ Church and taste local street food.', gallery: ['https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75'] },
-      { day: 3, title: 'Toy Train to Kalka', mainImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=900&q=80', description: 'Board the UNESCO Heritage Kalka-Shimla toy train for the most scenic rail journey in India.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75'] },
-      { day: 4, title: 'Jakhu Temple & Kufri', mainImage: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80', description: 'Trek to Jakhu Temple, visit Kufri for snow activities and enjoy panoramic Himalayan views.', gallery: ['https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75'] },
-      { day: 5, title: 'Departure', mainImage: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80', description: 'A final morning stroll before your VIPDrive vehicle takes you back, carrying mountain memories.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75','https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75'] },
+      { day: 1, title: 'Arrival in Shimla', mainImage: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80', description: 'Arrive in Shimla and soak in the colonial charm of this beloved hill station.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75'] },
+      { day: 2, title: 'Mall Road & Christ Church', mainImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=80', description: 'Explore the iconic Mall Road, visit Christ Church and taste local street food.', gallery: ['https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75'] },
+      { day: 3, title: 'Toy Train to Kalka', mainImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=900&q=80', description: 'Board the UNESCO Heritage Kalka-Shimla toy train for the most scenic rail journey in India.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75'] },
+      { day: 4, title: 'Jakhu Temple & Kufri', mainImage: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=900&q=80', description: 'Trek to Jakhu Temple, visit Kufri for snow activities and enjoy panoramic Himalayan views.', gallery: ['https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=75'] },
+      { day: 5, title: 'Departure', mainImage: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80', description: 'A final morning stroll before your VIPDrive vehicle takes you back, carrying mountain memories.', gallery: ['https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=75', 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=400&q=75'] },
     ],
   },
 };

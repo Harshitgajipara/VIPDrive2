@@ -56,7 +56,7 @@ const TripPackagePage = () => {
           {destinations.map((dest, i) => (
             <Link
               key={dest.id}
-              to={`/packages/sot/${dest.id}`}
+              to={`/packages/special-organized-trips/statecategory/${dest.id}`}
               className="dest-card"
               ref={(el) => (cardRefs.current[i] = el)}
               aria-label={`Explore ${dest.label} trips`}

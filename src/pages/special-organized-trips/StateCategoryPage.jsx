@@ -39,7 +39,7 @@ const StateCategoryPage = () => {
         <div className="dest-not-found">
           <h2>Destination not found</h2>
           <p>The destination you're looking for doesn't exist.</p>
-          <Link to="/packages/sot" style={{ color: '#c9a84c' }}>← Back to SOT</Link>
+          <Link to="/packages/special-organized-trips" style={{ color: '#c9a84c' }}>← Back to SOT</Link>
         </div>
       </div>
     );
@@ -57,7 +57,7 @@ const StateCategoryPage = () => {
         />
         <div className="dest-page-hero-overlay" aria-hidden="true" />
         <div className="dest-page-hero-content">
-          <Link to="/packages/sot" className="dest-page-back">
+          <Link to="/packages/special-organized-trips" className="dest-page-back">
             ← Back to Destinations
           </Link>
           <h1>{meta.label}</h1>
@@ -71,7 +71,7 @@ const StateCategoryPage = () => {
           {destTrips.map((trip, i) => (
             <Link
               key={trip.id}
-              to={`/packages/sot/${dest}/${trip.id}`}
+              to={`/packages/special-organized-trips/statecategory/${dest}/${trip.id}`}
               className="trip-card"
               ref={(el) => (cardRefs.current[i] = el)}
               aria-label={`View ${trip.title} — ${trip.duration}`}

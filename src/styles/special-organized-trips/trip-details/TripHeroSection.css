@@ -1,0 +1,677 @@
+/* ============================================================
+   TripHeroSection.css
+   Covers three visual bands:
+     Band 1 — Cinematic full-screen hero
+     Band 2 — Narrative intro (headline + text + image grid)
+     Band 3 — Package selector tabs (glass pill style)
+   Design system: Cinematic Alpine Noir (DESIGN.md)
+   Fonts: Playfair Display · DM Sans · Geist
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,700;1,9..40,400&family=Geist+Mono:wght@400;600&display=swap');
+
+/* ── Component tokens ─────────────────────────────────────── */
+:root {
+  --ths-gold:           #f2ca50;
+  --ths-gold-dim:       rgba(242, 202, 80, 0.28);
+  --ths-gold-glow:      rgba(242, 202, 80, 0.14);
+  --ths-bg:             #131313;
+  --ths-surface-glass:  rgba(19, 19, 19, 0.70);
+  --ths-on-surface:     #e5e2e1;
+  --ths-on-surface-80:  rgba(229, 226, 225, 0.80);
+  --ths-on-surface-55:  rgba(229, 226, 225, 0.55);
+  --ths-on-surface-30:  rgba(229, 226, 225, 0.30);
+  --ths-white:          #ffffff;
+  --ths-ease:           cubic-bezier(0.22, 1, 0.36, 1);
+  /* Navbar actual height: 50px desktop / 35px mobile */
+  --ths-nav-h:          50px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   BAND 1 — CINEMATIC HERO
+   ════════════════════════════════════════════════════════════ */
+
+/* Outer wrapper — just provides background continuity */
+.ths-hero-outer {
+  position: relative;
+  width: 100%;
+  background: var(--ths-bg);
+}
+
+/* Back link: lives within .ths-content for flow layout */
+.ths-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ths-on-surface-55);
+  text-decoration: none;
+  padding: 0.58em 1.4em;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(19, 19, 19, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  white-space: nowrap;
+  margin-bottom: 1.6rem;
+  transition:
+    color 0.26s ease,
+    border-color 0.26s ease,
+    background 0.26s ease,
+    transform 0.22s ease;
+  animation: ths-fade-in 0.8s 0.1s var(--ths-ease) both;
+}
+
+.ths-back-link.ths-anim--d4 { animation-delay: 0.4s; }
+
+.ths-back-link:hover,
+.ths-back-link:focus-visible {
+  color: var(--ths-gold);
+  border-color: var(--ths-gold-dim);
+  background: rgba(19, 19, 19, 0.88);
+  transform: translateX(-4px);
+  outline: none;
+}
+
+.ths-back-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.ths-back-link:hover .ths-back-arrow {
+  transform: translateX(-3px);
+}
+
+/* Inner hero section — full-screen image band */
+.ths-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow:clip prevents parallax bleed without creating stacking-context issues */
+  overflow: clip;
+  background: var(--ths-bg);
+}
+
+/* Background container + parallax image */
+.ths-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ths-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 115%;           /* Extra height for parallax travel room */
+  object-fit: cover;
+  object-position: center 30%;
+  will-change: transform;
+  transform: translateY(0);
+  display: block;
+  animation: ths-hero-zoom 9s var(--ths-ease) forwards;
+}
+
+@keyframes ths-hero-zoom {
+  from { transform: translateY(0) scale(1.09); }
+  to   { transform: translateY(0) scale(1.00); }
+}
+
+/* Gradient overlays */
+.ths-overlay-bottom {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    #131313 0%,
+    rgba(19, 19, 19, 0.80) 36%,
+    rgba(19, 19, 19, 0.15) 65%,
+    transparent 100%
+  );
+}
+
+.ths-overlay-top {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45) 0%,
+    transparent 28%
+  );
+}
+
+/* Back link — inline, centered inside .ths-content below tagline */
+.ths-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ths-on-surface-55);
+  text-decoration: none;
+  padding: 0.58em 1.4em;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(19, 19, 19, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  white-space: nowrap;
+  margin-top: 1.6rem;              /* gap below tagline */
+  transition:
+    color 0.26s ease,
+    border-color 0.26s ease,
+    background 0.26s ease,
+    transform 0.22s ease;
+}
+
+.ths-back-link:hover,
+.ths-back-link:focus-visible {
+  color: var(--ths-gold);
+  border-color: var(--ths-gold-dim);
+  background: rgba(19, 19, 19, 0.90);
+  transform: translateX(-4px);
+  outline: none;
+}
+
+.ths-back-arrow {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.ths-back-link:hover .ths-back-arrow {
+  transform: translateX(-3px);
+}
+
+/* Centered content */
+.ths-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 0 2rem;
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh; /* Slight below-center placement */
+}
+
+/* Category label */
+.ths-label {
+  display: inline-block;
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.40em;
+  text-transform: uppercase;
+  color: var(--ths-gold);
+  margin-bottom: 1.5rem;
+}
+
+/* Main title */
+.ths-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 8vw, 84px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ths-white);
+  text-shadow: 0 6px 44px rgba(0, 0, 0, 0.65);
+  margin-bottom: 1.4rem;
+  text-wrap: balance;
+}
+
+/* Short tagline */
+.ths-tagline {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 20px);
+  font-weight: 300;
+  line-height: 1.80;
+  letter-spacing: 0.01em;
+  color: var(--ths-on-surface-80);
+  max-width: 620px;
+  margin-bottom: 1.8rem;
+  text-wrap: balance;
+}
+
+/* Duration badge (non-package trips) */
+.ths-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ths-gold);
+  padding: 0.45em 1.2em;
+  border: 1px solid var(--ths-gold-dim);
+  border-radius: 999px;
+  background: var(--ths-gold-glow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ths-duration-icon {
+  font-size: 0.95rem;
+}
+
+/* Scroll indicator — bottom-center */
+.ths-scroll-indicator {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.72rem;
+  animation: ths-fade-in 1.2s 1.3s var(--ths-ease) both;
+}
+
+.ths-scroll-label {
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ths-on-surface-30);
+}
+
+.ths-scroll-line {
+  width: 1px;
+  height: 70px;
+  background: linear-gradient(to bottom, var(--ths-gold), transparent);
+  animation: ths-scroll-pulse 2.4s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes ths-scroll-pulse {
+  0%, 100% { opacity: 0.55; transform: scaleY(1); }
+  50%       { opacity: 1.00; transform: scaleY(0.82); }
+}
+
+/* ── Hero staggered entrance animations ───────────────────── */
+.ths-anim {
+  opacity: 0;
+  transform: translateY(26px);
+  animation: ths-reveal-up 0.88s var(--ths-ease) forwards;
+}
+
+.ths-anim--d0 { animation-delay: 0.22s; }
+.ths-anim--d1 { animation-delay: 0.44s; }
+.ths-anim--d2 { animation-delay: 0.65s; }
+.ths-anim--d3 { animation-delay: 0.82s; }
+.ths-anim--d4 { animation-delay: 0.98s; }
+
+@keyframes ths-reveal-up {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ths-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   BAND 2 — NARRATIVE INTRO
+   Left: text  |  Right: staggered 2-image portrait grid
+   ════════════════════════════════════════════════════════════ */
+
+.ths-intro {
+  width: 100%;
+  background: var(--ths-bg);
+}
+
+.ths-intro-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8rem 2rem 5rem;       /* generous vertical breathing room */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Headline — gold Playfair Display */
+.ths-intro-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 48px);
+  font-weight: 600;
+  line-height: 1.20;
+  color: var(--ths-gold);
+  margin-bottom: 2rem;
+}
+
+/* Intro body paragraphs */
+.ths-intro-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.ths-intro-para--lead {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 20px);
+  font-weight: 300;
+  line-height: 1.80;
+  letter-spacing: 0.01em;
+  color: var(--ths-on-surface-80);
+}
+
+.ths-intro-para {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.35vw, 16px);
+  font-weight: 400;
+  line-height: 1.72;
+  color: var(--ths-on-surface-55);
+}
+
+/* Right side — two portrait images, staggered vertically */
+.ths-intro-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+/* Top image — normal baseline */
+.ths-intro-img-wrap--top {
+  margin-top: 2.5rem;   /* drops it down for stagger effect */
+}
+
+/* Bottom image — higher up */
+.ths-intro-img-wrap--bottom {
+  margin-top: 0;
+}
+
+.ths-intro-img-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;  /* portrait */
+  cursor: pointer;
+  display: block;
+}
+
+.ths-intro-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s var(--ths-ease);
+}
+
+.ths-intro-img-wrap:hover img,
+.ths-intro-img-wrap:focus-within img {
+  transform: scale(1.07);
+}
+
+/* Hover overlay */
+.ths-intro-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.36);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.30s ease;
+}
+
+.ths-intro-img-wrap:hover .ths-intro-img-overlay,
+.ths-intro-img-wrap:focus-within .ths-intro-img-overlay {
+  opacity: 1;
+}
+
+.ths-intro-img-icon {
+  font-size: 1.4rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   BAND 3 — PACKAGE SELECTOR TABS
+   Centered glass pill container matching original_ss
+   ════════════════════════════════════════════════════════════ */
+
+.ths-pkg-tabs-wrapper {
+  width: 100%;
+  background: var(--ths-bg);
+  padding: 0 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  scroll-margin-top: 100px; /* offset for sticky journey meter */
+}
+
+/* Outer glass pill */
+.ths-pkg-tabs-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ths-pkg-tablist {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(19, 19, 19, 0.70);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+/* Individual tab button */
+.ths-pkg-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.8rem;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ths-on-surface-55);
+  cursor: pointer;
+  transition:
+    background 0.28s ease,
+    color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.18s ease;
+}
+
+.ths-pkg-tab:hover {
+  color: var(--ths-on-surface);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ths-pkg-tab:focus-visible {
+  outline: 2px solid var(--ths-gold);
+  outline-offset: 2px;
+}
+
+.ths-pkg-tab--active {
+  background: var(--ths-gold);
+  color: #1a1100;
+  box-shadow: 0 4px 20px rgba(242, 202, 80, 0.30);
+  transform: scale(1.02);
+}
+
+.ths-pkg-tab--active:hover {
+  background: #e9c349;
+  color: #1a1100;
+}
+
+.ths-pkg-tab-label {
+  pointer-events: none;
+}
+
+/* Hint text below tabs */
+.ths-pkg-tabs-hint {
+  font-family: 'Geist Mono', 'Geist', monospace;
+  font-size: 0.60rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ths-on-surface-30);
+  text-align: center;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCROLL-TRIGGERED REVEAL (Intersection Observer)
+   ════════════════════════════════════════════════════════════ */
+
+.ths-reveal-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.85s var(--ths-ease),
+    transform 0.85s var(--ths-ease);
+}
+
+.ths-reveal-scroll--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .ths-intro-inner {
+    padding: 6rem 2rem 4rem;
+    gap: 3.5rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Band 1 */
+  .ths-hero {
+    min-height: 520px;
+  }
+
+  .ths-content {
+    padding: 0 1.4rem;
+    margin-top: 5vh;
+  }
+
+  .ths-title {
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+
+  .ths-tagline {
+    font-size: 1rem;
+    margin-bottom: 1.3rem;
+  }
+
+  /* Back link on mobile — smaller navbar (35px) */
+  .ths-back-link {
+    --ths-nav-h: 35px;
+    top: calc(var(--ths-nav-h) + 0.7rem);
+    left: 1rem;
+    font-size: 0.60rem;
+    padding: 0.34em 0.70em;
+  }
+
+  .ths-scroll-indicator {
+    bottom: 1.6rem;
+  }
+
+  .ths-scroll-line {
+    height: 50px;
+  }
+
+  /* Band 2 */
+  .ths-intro-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 4rem 1.4rem 3rem;
+  }
+
+  .ths-intro-gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ths-intro-img-wrap--top {
+    margin-top: 1.2rem;
+  }
+
+  /* Band 3 */
+  .ths-pkg-tabs-wrapper {
+    padding: 0 1.2rem 4rem;
+  }
+
+  .ths-pkg-tab {
+    padding: 0.78rem 1.6rem;
+    font-size: 0.60rem;
+    letter-spacing: 0.10em;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤ 480px)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .ths-label {
+    font-size: 0.60rem;
+    letter-spacing: 0.28em;
+  }
+
+  .ths-intro-headline {
+    font-size: 1.7rem;
+  }
+
+  .ths-pkg-tab {
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ths-bg-img,
+  .ths-anim,
+  .ths-back-link,
+  .ths-scroll-indicator,
+  .ths-scroll-line,
+  .ths-reveal-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
