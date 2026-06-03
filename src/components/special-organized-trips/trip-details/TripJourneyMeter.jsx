@@ -35,6 +35,7 @@ const getTickSize = (index) => {
 const TripJourneyMeter = ({
   totalDays = 10,
   dayRefs,
+  itineraryRef,
   resetKey = 0,
   totalKm = 500,
 }) => {
@@ -80,31 +81,42 @@ const TripJourneyMeter = ({
     animFrameRef.current = requestAnimationFrame(() => {
       animFrameRef.current = null;
 
-      const currentScrollY = window.scrollY;
+      const currentScrollY = window.pageYOffset ?? window.scrollY ?? 0;
       setDirection(currentScrollY >= lastScrollY.current ? 'fwd' : 'rev');
       lastScrollY.current = currentScrollY;
 
+      // ── PRIMARY: track progress using the itinerary section ref ────────────
+      // itineraryRef is a single reliable DOM node always available after mount.
+      const section = itineraryRef?.current;
+      if (section) {
+        const rect      = section.getBoundingClientRect();
+        const sectionTop    = rect.top + currentScrollY;
+        const sectionHeight = Math.max(section.scrollHeight || section.offsetHeight, 1);
+        const viewMid       = currentScrollY + window.innerHeight * 0.5;
+        const raw           = (viewMid - sectionTop) / sectionHeight;
+        setProgress(Math.min(1, Math.max(0, raw)));
+      } else {
+        // ── FALLBACK: whole-page scroll % when itineraryRef not yet mounted ──
+        const scrollable = Math.max(
+          document.documentElement.scrollHeight - window.innerHeight, 1
+        );
+        setProgress(Math.min(1, Math.max(0, currentScrollY / scrollable)));
+      }
+
+      // ── ACTIVE DAY: update from dayRefs if available ───────────────────
       const days = dayRefs?.current?.filter(Boolean) || [];
-      if (days.length < 2) return;
-
-      const firstTop = days[0].getBoundingClientRect().top + currentScrollY;
-      const lastTop  = days[days.length - 1].getBoundingClientRect().top + currentScrollY;
-      const range    = lastTop - firstTop || 1;
-
-      const triggerY    = currentScrollY + window.innerHeight / 2;
-      const rawProgress = (triggerY - firstTop) / range;
-
-      setProgress(Math.min(1, Math.max(0, rawProgress)));
-
-      // Active day
-      let bestDay = 0;
-      days.forEach((el, i) => {
-        const elTop = el.getBoundingClientRect().top + currentScrollY;
-        if (triggerY >= elTop - 100) bestDay = i;
-      });
-      setActiveDayIndex(bestDay);
+      if (days.length > 0) {
+        const viewMid = currentScrollY + window.innerHeight * 0.5;
+        let bestDay = 0;
+        days.forEach((el, i) => {
+          const elTop = el.getBoundingClientRect().top + currentScrollY;
+          if (viewMid >= elTop - 100) bestDay = i;
+        });
+        setActiveDayIndex(bestDay);
+      }
     });
-  }, [dayRefs]);
+  }, [dayRefs, itineraryRef]);
+
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -132,8 +144,6 @@ const TripJourneyMeter = ({
     totalDays > 1 ? i / (totalDays - 1) : 0
   );
 
-  // Car horizontal position
-  const carLeftPct    = progressPct;
 
   // Day labels — pad to 2 digits
   const dayLabels = Array.from({ length: totalDays }, (_, i) =>
@@ -216,15 +226,19 @@ const TripJourneyMeter = ({
           {/* Animated car SVG — detailed reference art from Harshit_Info/code.html */}
           <div
             className="tjm-car"
-            style={{ left: `calc(${carLeftPct}% - ${progress * 50}px)` }}
+            style={{
+              // clamp keeps the car fully within track bounds at all times.
+              // 25px = half of 50px car width (matching reference HTML size).
+              left: `clamp(0px, calc(${progressPct}% - 25px), calc(100% - 50px))`,
+            }}
           >
-            {/* Exact reference car — 1536×1536 viewBox, gold fill */}
+            {/* Exact reference car — 1536×1536 viewBox, gold fill, 50px display size */}
             <svg
               className="tjm-car-svg"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1536 1536"
-              width="80"
-              height="80"
+              width="50"
+              height="50"
             >
               <g fill="#f2ca50" stroke="none">
                 <path d="M471,895 L468,897 L468,899 L465,902 L465,904 L460,909 L457,914 L447,924 L441,928 L442,932 L445,932 L451,931 L470,932 L472,930 Z" fillRule="evenodd"/>

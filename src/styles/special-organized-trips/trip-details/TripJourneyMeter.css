@@ -194,16 +194,15 @@
 /* ── Car SVG ──────────────────────────────────────────────── */
 .tjm-car {
   position: absolute;
-  /* Vertically center the car so its midpoint sits on the gauge line */
+  /* bottom: -8px sits the car on top of the gauge line */
   bottom: -8px;
   z-index: 10;
   pointer-events: none;
   display: flex;
   align-items: flex-end;
-  /* smooth horizontal movement */
+  /* left is set via inline style: calc(progress*100% - 40px) */
   transition: left 0.08s linear;
-  /* Offset left so center of car aligns with progress point */
-  transform: translateX(-50%);
+  /* NO translateX here — the inline formula already centers the 80px car */
 }
 
 /* The reference SVG naturally faces LEFT (vehicle front on left side).
@@ -218,9 +217,9 @@
 }
 
 .tjm-car-svg {
-  width: 80px;
-  height: 80px;
-  filter: drop-shadow(0 0 12px rgba(242, 202, 80, 0.8));
+  width: 50px;
+  height: 50px;
+  filter: drop-shadow(0 0 10px rgba(242, 202, 80, 0.85));
   display: block;
 }
 

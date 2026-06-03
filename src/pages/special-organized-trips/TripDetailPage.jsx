@@ -164,6 +164,7 @@ const TripDetailPage = () => {
       <TripJourneyMeter
         totalDays={currentDays.length}
         dayRefs={dayRefs}
+        itineraryRef={itineraryRef}
         resetKey={resetKey}
         totalKm={trip.totalKm || 500}
       />
