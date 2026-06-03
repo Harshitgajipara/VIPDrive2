@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { tripDetails } from '../../data/sotDestinations';
 import CarJourneyMeter from '../../components/special-organized-trips/CarJourneyMeter';
+import TripJourneyMeter from '../../components/special-organized-trips/trip-details/TripJourneyMeter';
 import ItineraryDay from '../../components/special-organized-trips/ItineraryDay';
 import ImageModal from '../../components/special-organized-trips/ImageModal';
 import TripHeroSection from '../../components/special-organized-trips/trip-details/TripHeroSection';
@@ -157,13 +158,14 @@ const TripDetailPage = () => {
       />
 
       {/* ══════════════════════════════════════════════════════
-          CAR JOURNEY METER (Sticky tracker)
+          TRIP JOURNEY METER (Sticky speedometer tracker)
+          Replaces CarJourneyMeter — matches reference design
       ══════════════════════════════════════════════════════ */}
-      <CarJourneyMeter
+      <TripJourneyMeter
         totalDays={currentDays.length}
-        itineraryRef={itineraryRef}
         dayRefs={dayRefs}
         resetKey={resetKey}
+        totalKm={trip.totalKm || 500}
       />
 
       {/* ══════════════════════════════════════════════════════

@@ -1,0 +1,376 @@
+/* ============================================================
+   TripJourneyMeter.css
+   Speedometer-style sticky journey progress bar.
+   Matches the reference design from Harshit_Info/code.html.
+
+   Design system: Cinematic Alpine Noir
+   Fonts: Geist Mono (numbers/labels) · DM Sans (badge text)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&display=swap');
+
+/* ── Component tokens ─────────────────────────────────────── */
+:root {
+  --tjm-gold:         #f2ca50;
+  --tjm-gold-dim:     rgba(242, 202, 80, 0.22);
+  --tjm-gold-glow:    rgba(242, 202, 80, 0.55);
+  --tjm-bg:           rgba(8, 10, 15, 0.92);
+  --tjm-border:       rgba(242, 202, 80, 0.12);
+  --tjm-on:           #e5e2e1;
+  --tjm-on-dim:       rgba(229, 226, 225, 0.25);
+  --tjm-on-faint:     rgba(229, 226, 225, 0.10);
+  --tjm-ease:         cubic-bezier(0.22, 1, 0.36, 1);
+  --tjm-nav-h:        50px;   /* must match Navbar.css */
+}
+
+/* ── Sticky wrapper ───────────────────────────────────────── */
+.tjm-section {
+  position: sticky;
+  top: var(--tjm-nav-h);
+  z-index: 40;
+  width: 100%;
+  background: var(--tjm-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top:    1px solid var(--tjm-border);
+  border-bottom: 1px solid var(--tjm-border);
+  padding: 0.75rem 0 0.6rem;
+  /* subtle gold shimmer on top edge */
+  box-shadow: 0 -1px 0 0 var(--tjm-gold-dim), 0 4px 24px rgba(0,0,0,0.5);
+}
+
+/* ── Inner container ──────────────────────────────────────── */
+.tjm-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* ── Row 0: Title + KM badge ──────────────────────────────── */
+.tjm-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.tjm-title {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tjm-gold);
+}
+
+.tjm-km-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--tjm-gold);
+  opacity: 0.75;
+}
+
+/* ── Row 1: Day number labels ─────────────────────────────────── */
+.tjm-day-labels {
+  position: relative;      /* absolute children anchor here */
+  height: 1.3em;
+  margin-bottom: 0.2rem;
+  /* match the 2px padding of .tjm-ticks-container so coordinates align */
+  padding: 0 2px;
+}
+
+.tjm-day-num {
+  position: absolute;
+  bottom: 0;
+  /* center the text over the tick: left% is set inline, translateX(-50%) centers it */
+  transform: translateX(-50%);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--tjm-on-dim);
+  transition: color 0.3s ease;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tjm-day-num--active {
+  color: var(--tjm-gold);
+}
+
+/* ── Row 2: Gauge track ───────────────────────────────────── */
+.tjm-gauge-track {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Tick marks container */
+.tjm-ticks-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+/* Individual tick */
+.tjm-tick {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+.tjm-tick--large  { height: 24px; }
+.tjm-tick--medium { height: 14px; }
+.tjm-tick--small  { height: 8px;  }
+
+.tjm-tick--active {
+  background: var(--tjm-gold);
+  box-shadow: 0 0 6px var(--tjm-gold-glow);
+}
+
+/* Progress overlay line — sits at the bottom of the gauge */
+.tjm-progress-bg {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.tjm-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4ade80 0%, #f2ca50 60%, #f87171 100%);
+  box-shadow:
+    -6px 0 14px rgba(74, 222, 128, 0.4),
+     6px 0 14px rgba(248, 113, 113, 0.3);
+  border-radius: 2px;
+  transition: width 0.08s linear;
+}
+
+/* Day dots on progress line */
+.tjm-day-dots {
+  position: absolute;
+  bottom: -1px;
+  left: 2px;
+  right: 2px;
+  height: 4px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tjm-day-dot {
+  position: absolute;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.tjm-day-dot--active {
+  background: var(--tjm-gold);
+  border-color: var(--tjm-gold);
+  box-shadow: 0 0 8px var(--tjm-gold-glow);
+  transform: translate(-50%, 50%) scale(1.35);
+}
+
+/* ── Car SVG ──────────────────────────────────────────────── */
+.tjm-car {
+  position: absolute;
+  /* Vertically center the car so its midpoint sits on the gauge line */
+  bottom: -8px;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  /* smooth horizontal movement */
+  transition: left 0.08s linear;
+  /* Offset left so center of car aligns with progress point */
+  transform: translateX(-50%);
+}
+
+/* The reference SVG naturally faces LEFT (vehicle front on left side).
+   scaleX(-1) on the SVG itself flips it to face RIGHT for forward motion.
+   When scrolling in reverse, we undo the flip via scaleX(1). */
+.tjm-gauge-track[data-dir="fwd"] .tjm-car .tjm-car-svg {
+  transform: scaleX(-1);
+}
+
+.tjm-gauge-track[data-dir="rev"] .tjm-car .tjm-car-svg {
+  transform: scaleX(1);
+}
+
+.tjm-car-svg {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 12px rgba(242, 202, 80, 0.8));
+  display: block;
+}
+
+.tjm-car-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(242, 202, 80, 0.22);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+/* ── Row 3: KM labels ───────────────────────────────────────── */
+.tjm-km-labels {
+  position: relative;      /* absolute children anchor here */
+  height: 1.2em;
+  margin-top: 0.18rem;
+  padding: 0 2px;          /* match .tjm-ticks-container padding */
+}
+
+.tjm-km-label {
+  position: absolute;
+  top: 0;
+  /* center under the tick: left% is set inline, translateX(-50%) centers it */
+  transform: translateX(-50%);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tjm-on-faint);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ── Status badge ─────────────────────────────────────────── */
+.tjm-badge {
+  text-align: center;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--tjm-on-dim);
+  margin-top: 0.3rem;
+  min-height: 1em;
+}
+
+.tjm-badge strong {
+  color: var(--tjm-gold);
+  font-weight: 700;
+}
+
+.tjm-badge-km {
+  color: rgba(229, 226, 225, 0.40);
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .tjm-inner {
+    padding: 0 1.5rem;
+  }
+
+  .tjm-day-num {
+    font-size: 0.62rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+   Switches to a compact sidebar-style vertical meter
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Smaller navbar on mobile */
+  .tjm-section {
+    --tjm-nav-h: 35px;
+    top: var(--tjm-nav-h);
+    padding: 0.5rem 0 0.4rem;
+  }
+
+  .tjm-inner {
+    padding: 0 1rem;
+  }
+
+  .tjm-km-badge,
+  .tjm-km-labels,
+  .tjm-badge {
+    display: none;
+  }
+
+  .tjm-day-labels {
+    margin-bottom: 0.1rem;
+  }
+
+  .tjm-day-num {
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
+  }
+
+  .tjm-gauge-track {
+    height: 36px;
+  }
+
+  .tjm-tick--large  { height: 18px; }
+  .tjm-tick--medium { height: 10px; }
+  .tjm-tick--small  { height: 6px;  }
+
+  .tjm-car {
+    bottom: -4px;
+  }
+
+  .tjm-car-svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SMALL MOBILE (≤ 480px)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .tjm-title {
+    font-size: 0.55rem;
+  }
+
+  .tjm-day-num {
+    font-size: 0.50rem;
+  }
+
+  .tjm-gauge-track {
+    height: 30px;
+  }
+
+  .tjm-tick--large  { height: 14px; }
+  .tjm-tick--medium { height: 8px;  }
+  .tjm-tick--small  { height: 5px;  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .tjm-tick,
+  .tjm-day-dot,
+  .tjm-progress-fill,
+  .tjm-car {
+    transition: none !important;
+  }
+}
