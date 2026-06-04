@@ -26,7 +26,7 @@
 /* ── Sticky wrapper ───────────────────────────────────────── */
 .tjm-section {
   position: sticky;
-  top: var(--tjm-nav-h);
+  /* top is set via inline style in JSX — mirrors navbar show/hide (0px ↔ var(--tjm-nav-h)) */
   z-index: 40;
   width: 100%;
   background: var(--tjm-bg);
@@ -34,10 +34,12 @@
   -webkit-backdrop-filter: blur(20px);
   border-top:    1px solid var(--tjm-border);
   border-bottom: 1px solid var(--tjm-border);
-  padding: 0.75rem 0 0.6rem;
-  /* subtle gold shimmer on top edge */
+  padding: 0.4rem 0 0.3rem;   /* was 0.75/0.6 — cuts ~13px of wasted padding */
   box-shadow: 0 -1px 0 0 var(--tjm-gold-dim), 0 4px 24px rgba(0,0,0,0.5);
+  transition: top 0.4s ease-in-out;
 }
+
+
 
 /* ── Inner container ──────────────────────────────────────── */
 .tjm-inner {
@@ -46,20 +48,21 @@
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.08rem;   /* was 0.15rem — tighter rows */
 }
+
 
 /* ── Row 0: Title + KM badge ──────────────────────────────── */
 .tjm-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.12rem;  /* was 0.25rem */
 }
 
 .tjm-title {
   font-family: 'Geist Mono', monospace;
-  font-size: 0.62rem;
+  font-size: 0.65rem;      /* was 0.62rem */
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -68,7 +71,7 @@
 
 .tjm-km-badge {
   font-family: 'Geist Mono', monospace;
-  font-size: 0.60rem;
+  font-size: 0.68rem;      /* was 0.60rem — more readable at a glance */
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--tjm-gold);
@@ -77,20 +80,18 @@
 
 /* ── Row 1: Day number labels ─────────────────────────────────── */
 .tjm-day-labels {
-  position: relative;      /* absolute children anchor here */
-  height: 1.3em;
-  margin-bottom: 0.2rem;
-  /* match the 2px padding of .tjm-ticks-container so coordinates align */
+  position: relative;
+  height: 1.1em;           /* was 1.3em */
+  margin-bottom: 0.12rem;  /* was 0.2rem */
   padding: 0 2px;
 }
 
 .tjm-day-num {
   position: absolute;
   bottom: 0;
-  /* center the text over the tick: left% is set inline, translateX(-50%) centers it */
   transform: translateX(-50%);
   font-family: 'Geist Mono', monospace;
-  font-size: 0.72rem;
+  font-size: 0.78rem;      /* was 0.72rem — key label, needs to be legible */
   font-weight: 700;
   color: var(--tjm-on-dim);
   transition: color 0.3s ease;
@@ -99,6 +100,7 @@
   text-align: center;
 }
 
+
 .tjm-day-num--active {
   color: var(--tjm-gold);
 }
@@ -106,7 +108,7 @@
 /* ── Row 2: Gauge track ───────────────────────────────────── */
 .tjm-gauge-track {
   position: relative;
-  height: 48px;
+  height: 36px;    /* was 48px — main space saving: -12px */
   display: flex;
   align-items: flex-end;
 }
@@ -129,9 +131,10 @@
   flex-shrink: 0;
 }
 
-.tjm-tick--large  { height: 24px; }
-.tjm-tick--medium { height: 14px; }
-.tjm-tick--small  { height: 8px;  }
+.tjm-tick--large  { height: 18px; }  /* was 24px */
+.tjm-tick--medium { height: 10px; }  /* was 14px */
+.tjm-tick--small  { height:  6px; }  /* was  8px */
+
 
 .tjm-tick--active {
   background: var(--tjm-gold);
@@ -238,19 +241,18 @@
 
 /* ── Row 3: KM labels ───────────────────────────────────────── */
 .tjm-km-labels {
-  position: relative;      /* absolute children anchor here */
-  height: 1.2em;
-  margin-top: 0.18rem;
-  padding: 0 2px;          /* match .tjm-ticks-container padding */
+  position: relative;
+  height: 1.1em;          /* was 1.2em */
+  margin-top: 0.1rem;     /* was 0.18rem */
+  padding: 0 2px;
 }
 
 .tjm-km-label {
   position: absolute;
   top: 0;
-  /* center under the tick: left% is set inline, translateX(-50%) centers it */
   transform: translateX(-50%);
   font-family: 'Geist Mono', monospace;
-  font-size: 0.58rem;
+  font-size: 0.65rem;     /* was 0.58rem — now clearly legible */
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -259,14 +261,15 @@
   text-align: center;
 }
 
+
 /* ── Status badge ─────────────────────────────────────────── */
 .tjm-badge {
   text-align: center;
   font-family: 'Geist Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;     /* was 0.65rem — this is the hero readout, make it count */
+  letter-spacing: 0.05em;
   color: var(--tjm-on-dim);
-  margin-top: 0.3rem;
+  margin-top: 0.18rem;    /* was 0.3rem */
   min-height: 1em;
 }
 
@@ -279,6 +282,7 @@
   color: rgba(229, 226, 225, 0.40);
 }
 
+
 /* ════════════════════════════════════════════════════════════
    RESPONSIVE — TABLET (≤ 1024px)
    ════════════════════════════════════════════════════════════ */
@@ -288,79 +292,96 @@
   }
 
   .tjm-day-num {
-    font-size: 0.62rem;
+    font-size: 0.70rem;  /* was 0.62rem */
   }
 }
+
 
 /* ════════════════════════════════════════════════════════════
    RESPONSIVE — MOBILE (≤ 768px)
    Switches to a compact sidebar-style vertical meter
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Smaller navbar on mobile */
+  /* Mobile: override --tjm-nav-h so the inline top: var(--tjm-nav-h) resolves to 35px */
   .tjm-section {
     --tjm-nav-h: 35px;
-    top: var(--tjm-nav-h);
-    padding: 0.5rem 0 0.4rem;
+    padding: 0.3rem 0 0.25rem;  /* even tighter on mobile */
   }
 
   .tjm-inner {
     padding: 0 1rem;
   }
 
-  .tjm-km-badge,
-  .tjm-km-labels,
-  .tjm-badge {
+  /* Per-tick KM numbers are too dense on narrow screens — hide them. */
+  .tjm-km-labels {
     display: none;
   }
 
+  /* KM badge (top-right total) */
+  .tjm-km-badge {
+    font-size: 0.62rem;  /* was 0.55rem */
+  }
+
+  /* Status line ("Day 6 of 10 — 287 km covered") */
+  .tjm-badge {
+    font-size: 0.68rem;  /* was 0.58rem — most important line on mobile */
+    margin-top: 0.12rem;
+  }
+
   .tjm-day-labels {
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.08rem;
   }
 
   .tjm-day-num {
-    font-size: 0.55rem;
-    letter-spacing: 0.04em;
+    font-size: 0.65rem;  /* was 0.55rem — much more readable */
+    letter-spacing: 0.03em;
   }
 
   .tjm-gauge-track {
-    height: 36px;
+    height: 28px;  /* was 36px */
   }
 
-  .tjm-tick--large  { height: 18px; }
-  .tjm-tick--medium { height: 10px; }
-  .tjm-tick--small  { height: 6px;  }
+  .tjm-tick--large  { height: 14px; }  /* was 18px */
+  .tjm-tick--medium { height:  8px; }  /* was 10px */
+  .tjm-tick--small  { height:  4px; }  /* was  6px */
 
   .tjm-car {
-    bottom: -4px;
+    bottom: -3px;
   }
 
   .tjm-car-svg {
-    width: 50px;
-    height: 50px;
+    width: 36px;
+    height: 36px;
   }
 }
+
+
 
 /* ════════════════════════════════════════════════════════════
    SMALL MOBILE (≤ 480px)
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
   .tjm-title {
-    font-size: 0.55rem;
+    font-size: 0.58rem;  /* was 0.55rem */
   }
 
   .tjm-day-num {
-    font-size: 0.50rem;
+    font-size: 0.60rem;  /* was 0.50rem — was almost illegible */
+  }
+
+  .tjm-badge {
+    font-size: 0.62rem;  /* was not set — inherits from 768px block */
   }
 
   .tjm-gauge-track {
-    height: 30px;
+    height: 22px;  /* was 30px */
   }
 
-  .tjm-tick--large  { height: 14px; }
-  .tjm-tick--medium { height: 8px;  }
-  .tjm-tick--small  { height: 5px;  }
+  .tjm-tick--large  { height: 11px; }  /* was 14px */
+  .tjm-tick--medium { height:  6px; }  /* was  8px */
+  .tjm-tick--small  { height:  3px; }  /* was  5px */
 }
+
 
 /* ════════════════════════════════════════════════════════════
    REDUCED MOTION

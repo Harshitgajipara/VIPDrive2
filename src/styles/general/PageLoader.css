@@ -29,6 +29,8 @@
   top: 50%;
   margin: -75px 0 0 -75px;
   border-radius: 50%;
+  /* Scale up visually without breaking internal absolute pixel coordinates */
+  transform: scale(1.2); /* Mobile size: 180px equivalent */
 }
 
 /* ── "Loading" text ───────────────────────────────────────── */
@@ -219,3 +221,17 @@
   0%   { transform: rotate(0deg);   }
   100% { transform: rotate(360deg); }
 }
+
+/* ── Responsive Scaling ───────────────────────────────────── */
+@media (min-width: 768px) {
+  .loader {
+    transform: scale(1.6); /* Tablet/Desktop: 240px equivalent */
+  }
+}
+
+@media (min-width: 1200px) {
+  .loader {
+    transform: scale(1.8); /* Large screens: 270px equivalent */
+  }
+}
+

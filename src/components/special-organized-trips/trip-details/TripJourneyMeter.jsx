@@ -41,79 +41,87 @@ const TripJourneyMeter = ({
 }) => {
   const [progress, setProgress] = useState(0);       // 0..1
   const [direction, setDirection] = useState('fwd'); // 'fwd' | 'rev'
-  const [activeDayIndex, setActiveDayIndex] = useState(0);
-  const [markerPcts, setMarkerPcts] = useState([]);
+  const [isNavVisible, setIsNavVisible] = useState(true); // mirrors Navbar show/hide
 
   const animFrameRef = useRef(null);
   const lastScrollY = useRef(window.scrollY);
   const trackRef = useRef(null);
 
-  // ── Measure day positions relative to scroll range ────────────────────────
-  const measureMarkers = useCallback(() => {
-    const days = dayRefs?.current?.filter(Boolean) || [];
-    if (days.length === 0) { setMarkerPcts([]); return; }
-    if (days.length === 1) { setMarkerPcts([0.5]); return; }
-
-    const firstTop = days[0].getBoundingClientRect().top + window.scrollY;
-    const lastTop  = days[days.length - 1].getBoundingClientRect().top + window.scrollY;
-    const range    = lastTop - firstTop || 1;
-
-    const pcts = days.map(el => {
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      return Math.max(0, Math.min(1, (top - firstTop) / range));
-    });
-    setMarkerPcts(pcts);
-  }, [dayRefs]);
-
-  useEffect(() => {
-    measureMarkers();
-    window.addEventListener('resize', measureMarkers, { passive: true });
-    const timer = setTimeout(measureMarkers, 500);
-    return () => {
-      window.removeEventListener('resize', measureMarkers);
-      clearTimeout(timer);
-    };
-  }, [measureMarkers, resetKey]);
-
-  // ── Scroll tracking ───────────────────────────────────────────────────────
+  // ── Scroll tracking ────────────────────────────────────────────────────────
+  //
+  // Algorithm (PRIMARY — when dayRefs are ready):
+  //   1. Find which day card contains the viewport mid-point.
+  //   2. Measure how far through that card the mid-point is (0 → 1).
+  //   3. Map to ruler: progress = (dayIndex + fraction) / (totalDays - 1)
+  //
+  //   This means the car is exactly at Day N's large tick while the user
+  //   is reading Day N, regardless of whether cards have equal heights.
+  //
   const handleScroll = useCallback(() => {
     if (animFrameRef.current) return;
     animFrameRef.current = requestAnimationFrame(() => {
       animFrameRef.current = null;
 
       const currentScrollY = window.pageYOffset ?? window.scrollY ?? 0;
+
+      // Mirror the navbar's own visibility logic so the ruler tracks its bottom edge.
+      // Matches: setIsVisible(currentScrollY < lastScrollY.current || currentScrollY < 50)
+      const navNowVisible = currentScrollY < lastScrollY.current || currentScrollY < 50;
+      setIsNavVisible(navNowVisible);
+
       setDirection(currentScrollY >= lastScrollY.current ? 'fwd' : 'rev');
       lastScrollY.current = currentScrollY;
 
-      // ── PRIMARY: track progress using the itinerary section ref ────────────
-      // itineraryRef is a single reliable DOM node always available after mount.
-      const section = itineraryRef?.current;
-      if (section) {
-        const rect      = section.getBoundingClientRect();
-        const sectionTop    = rect.top + currentScrollY;
-        const sectionHeight = Math.max(section.scrollHeight || section.offsetHeight, 1);
-        const viewMid       = currentScrollY + window.innerHeight * 0.5;
-        const raw           = (viewMid - sectionTop) / sectionHeight;
+      const viewMid = currentScrollY + window.innerHeight * 0.5;
+      const days    = dayRefs?.current?.filter(Boolean) || [];
+      const N       = days.length;
+
+      if (N >= 2) {
+        // ── PRIMARY: per-day-card interpolation ──────────────────────────────
+
+        // Step 1: Which day card is viewMid inside?
+        let dayIdx = N - 1; // default: already past all cards → last day
+        for (let i = 0; i < N; i++) {
+          const top = days[i].getBoundingClientRect().top + currentScrollY;
+          if (viewMid < top) {
+            dayIdx = Math.max(0, i - 1);
+            break;
+          }
+        }
+
+        // Step 2: How far through this card is viewMid?
+        const currentTop = days[dayIdx].getBoundingClientRect().top + currentScrollY;
+        const nextTop    = dayIdx < N - 1
+          ? days[dayIdx + 1].getBoundingClientRect().top + currentScrollY
+          : currentTop + (days[dayIdx].offsetHeight || window.innerHeight * 0.5);
+
+        const span     = Math.max(nextTop - currentTop, 1);
+        const fraction = Math.min(1, Math.max(0, (viewMid - currentTop) / span));
+
+        // Step 3: Map to ruler position.
+        // Day i sits at i/(N-1) on the ruler. fraction moves it toward (i+1)/(N-1).
+        const raw = (dayIdx + fraction) / (N - 1);
         setProgress(Math.min(1, Math.max(0, raw)));
+
+      } else if (itineraryRef?.current) {
+        // ── FALLBACK: section-level progress (dayRefs not ready yet) ──────────
+        const rect          = itineraryRef.current.getBoundingClientRect();
+        const sectionTop    = rect.top + currentScrollY;
+        const sectionHeight = Math.max(
+          itineraryRef.current.scrollHeight || itineraryRef.current.offsetHeight, 1
+        );
+        setProgress(Math.min(1, Math.max(0, (viewMid - sectionTop) / sectionHeight)));
+
       } else {
-        // ── FALLBACK: whole-page scroll % when itineraryRef not yet mounted ──
+        // ── ULTIMATE FALLBACK: whole-page scroll % ───────────────────────────
         const scrollable = Math.max(
           document.documentElement.scrollHeight - window.innerHeight, 1
         );
         setProgress(Math.min(1, Math.max(0, currentScrollY / scrollable)));
       }
 
-      // ── ACTIVE DAY: update from dayRefs if available ───────────────────
-      const days = dayRefs?.current?.filter(Boolean) || [];
-      if (days.length > 0) {
-        const viewMid = currentScrollY + window.innerHeight * 0.5;
-        let bestDay = 0;
-        days.forEach((el, i) => {
-          const elTop = el.getBoundingClientRect().top + currentScrollY;
-          if (viewMid >= elTop - 100) bestDay = i;
-        });
-        setActiveDayIndex(bestDay);
-      }
+      // ── ACTIVE DAY: kept only for dayRefs-based refinement if available ──
+      // (activeDayIndex is now derived from progress directly — see below)
     });
   }, [dayRefs, itineraryRef]);
 
@@ -123,7 +131,10 @@ const TripJourneyMeter = ({
     handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (animFrameRef.current) {
+        cancelAnimationFrame(animFrameRef.current);
+        animFrameRef.current = null;
+      }
     };
   }, [handleScroll]);
 
@@ -135,15 +146,21 @@ const TripJourneyMeter = ({
   const activeTicks   = Math.round(progress * (TICK_COUNT - 1));
   const currentKm     = Math.round(progress * totalKm);
 
+  // activeDayIndex is derived from progress (same source as the car position).
+  // Dot i sits at equalDotPcts[i] = i/(N-1). It lights when progress >= i/(N-1),
+  // i.e. when floor(progress*(N-1)) >= i — perfectly in sync with the car.
+  const activeDayIndex = Math.min(
+    totalDays - 1,
+    Math.floor(progress * (totalDays - 1))
+  );
+
   // KM labels: same count as day labels so they align with large ticks
   const kmStep        = totalDays > 1 ? totalKm / (totalDays - 1) : totalKm;
 
   // Equal-interval dot positions: i/(N-1) matches large tick positions exactly.
-  // (DOM-based markerPcts are still used for activeDayIndex detection only.)
   const equalDotPcts  = Array.from({ length: totalDays }, (_, i) =>
     totalDays > 1 ? i / (totalDays - 1) : 0
   );
-
 
   // Day labels — pad to 2 digits
   const dayLabels = Array.from({ length: totalDays }, (_, i) =>
@@ -155,7 +172,13 @@ const TripJourneyMeter = ({
       className="tjm-section"
       aria-label="Journey progress tracker"
       role="region"
+      style={{
+        // Tracks the navbar's bottom edge: slides up with it when hidden,
+        // snaps back to var(--tjm-nav-h) when navbar returns.
+        top: isNavVisible ? 'var(--tjm-nav-h)' : '0px',
+      }}
     >
+
       <div className="tjm-inner">
 
         {/* ── Row 0: "Your Journey" label ── */}
