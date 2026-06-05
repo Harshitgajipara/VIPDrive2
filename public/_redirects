@@ -1,0 +1,4 @@
+# Netlify SPA redirect rule
+# All routes that don't match a real file get served index.html (status 200),
+# so React Router can handle client-side navigation on page reload / direct URL access.
+/*    /index.html   200
