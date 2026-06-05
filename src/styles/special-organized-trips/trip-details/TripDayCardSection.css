@@ -1,0 +1,21 @@
+/* ============================================================
+   TripDayCardSection — vertical sidebar stack of 3 cards
+   Matches the height of the hero image and divides height equally.
+   ============================================================ */
+
+/* ── Sidebar card stack ── */
+.tdcs-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Responsive: horizontal row on mobile ── */
+@media (max-width: 768px) {
+  .tdcs-wrap {
+    flex-direction: row;
+    gap: 10px;
+  }
+}

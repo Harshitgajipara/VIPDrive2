@@ -1,0 +1,148 @@
+/* ============================================================
+   TripMainDay — cinematic hero image frame
+   Renders the hero photograph with overlaid day badge + title.
+   Description paragraph is rendered by TripDaySection (row 2 of grid).
+   ============================================================ */
+
+/* ── Hero image frame ── */
+/* height is intentionally NOT set — the img's aspect-ratio:16/9 drives it.
+   This ensures every section's image (and sidebar) is identical height. */
+.tmd-hero {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #2a2a2a;
+  width: 100%;
+  box-shadow: 0 0 0 0 rgba(242, 202, 80, 0);
+  transition: box-shadow 0.4s ease;
+}
+
+.tmd-hero:hover {
+  box-shadow: 0 8px 40px rgba(242, 202, 80, 0.14);
+}
+
+/* Focus ring for keyboard navigation */
+.tmd-hero:focus-visible {
+  outline: 2px solid rgba(242, 202, 80, 0.7);
+  outline-offset: 3px;
+}
+
+/* ── The photograph ── */
+.tmd-img {
+  width: 100%;
+  /* aspect-ratio drives the image height — sidebar stretches to match */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tmd-hero:hover .tmd-img {
+  transform: scale(1.04);
+}
+
+/* ── Gradient overlays ── */
+.tmd-overlay-bottom {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3)  40%,
+    transparent         100%
+  );
+  pointer-events: none;
+}
+
+.tmd-overlay-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.tmd-hero:hover .tmd-overlay-hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* ── "Click Me" hint pill ── */
+.tmd-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.tmd-hero:hover .tmd-hint {
+  opacity: 1;
+}
+
+.tmd-hint-label {
+  font-family: 'Geist', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.42em 1.1em;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Bottom content area (badge + title overlaid on image) ── */
+.tmd-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.75rem 2rem;
+  pointer-events: none;
+}
+
+/* Gold pill — "DAY 01" */
+.tmd-badge {
+  display: inline-block;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #3c2f00;
+  background: #f2ca50;
+  padding: 0.28em 0.85em;
+  border-radius: 9999px;
+  margin-bottom: 0.55rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Playfair Display title */
+.tmd-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.6vw, 2rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tmd-content {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .tmd-title {
+    font-size: 1.2rem;
+  }
+}

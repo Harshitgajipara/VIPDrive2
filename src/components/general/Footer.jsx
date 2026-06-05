@@ -26,7 +26,7 @@ function Footer() {
                 <div className="logo-social">
                     <div className="logo">
                         <Link to="/" aria-label="VIPDrive — Home">
-                            <img src="./images/Logo2.svg" alt="logo" className="logo-icon" />
+                            <img src="/images/Logo2.svg" alt="logo" className="logo-icon" />
                         </Link>
                     </div>
                     <div className="social-icons">

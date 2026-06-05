@@ -44,7 +44,9 @@ const TripJourneyMeter = ({
   const [isNavVisible, setIsNavVisible] = useState(true); // mirrors Navbar show/hide
 
   const animFrameRef = useRef(null);
-  const lastScrollY = useRef(window.scrollY);
+  // Capture scroll at render time so the nav-direction comparison is correct
+  // even when the browser restores scroll before the first rAF fires.
+  const lastScrollY = useRef(typeof window !== 'undefined' ? window.scrollY : 0);
   const trackRef = useRef(null);
 
   // ── Scroll tracking ────────────────────────────────────────────────────────
@@ -138,32 +140,104 @@ const TripJourneyMeter = ({
     };
   }, [handleScroll]);
 
-  // ── Re-measure once day cards have rendered (fixes initial-load car position) ──
-  // On first load, dayRefs are empty when the scroll listener fires. We wait one
-  // animation frame + a tiny timeout so React has flushed all ItineraryDay refs,
-  // then call handleScroll again to place the car correctly.
+
+  // ── Direct progress computation (no rAF) ───────────────────────────────────
+  //
+  // Used for forced snapshots at mount / scroll-restoration checkpoints.
+  // Unlike handleScroll (which queues a requestAnimationFrame), this reads the
+  // DOM and calls setProgress synchronously — so the car is placed correctly
+  // regardless of when the browser finishes restoring scroll.
+  const computeAndApplyProgress = useCallback(() => {
+    const scrollY = window.pageYOffset || window.scrollY || 0;
+    const viewMid = scrollY + window.innerHeight * 0.5;
+    const days = dayRefs?.current?.filter(Boolean) || [];
+    const N = days.length;
+
+    const navNowVisible = scrollY < lastScrollY.current || scrollY < 50;
+    setIsNavVisible(navNowVisible);
+    setDirection(scrollY >= lastScrollY.current ? 'fwd' : 'rev');
+    lastScrollY.current = scrollY;
+
+    if (N >= 2) {
+      let dayIdx = N - 1;
+      for (let i = 0; i < N; i++) {
+        const top = days[i].getBoundingClientRect().top + scrollY;
+        if (viewMid < top) { dayIdx = Math.max(0, i - 1); break; }
+      }
+      const cTop = days[dayIdx].getBoundingClientRect().top + scrollY;
+      const nTop = dayIdx < N - 1
+        ? days[dayIdx + 1].getBoundingClientRect().top + scrollY
+        : cTop + (days[dayIdx].offsetHeight || window.innerHeight * 0.5);
+      const span = Math.max(nTop - cTop, 1);
+      const fraction = Math.min(1, Math.max(0, (viewMid - cTop) / span));
+      setProgress(Math.min(1, Math.max(0, (dayIdx + fraction) / (N - 1))));
+
+    } else if (itineraryRef?.current) {
+      const rect = itineraryRef.current.getBoundingClientRect();
+      const sTop = rect.top + scrollY;
+      const sH = Math.max(
+        itineraryRef.current.scrollHeight || itineraryRef.current.offsetHeight, 1
+      );
+      setProgress(Math.min(1, Math.max(0, (viewMid - sTop) / sH)));
+
+    } else {
+      const scrollable = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight, 1
+      );
+      setProgress(Math.min(1, Math.max(0, scrollY / scrollable)));
+    }
+  }, [dayRefs, itineraryRef]);
+
+  // ── Force-snapshot: survives lazy-image layout shifts + scroll restoration ──
+  //
+  // ROOT CAUSE of the "works only on second load" bug:
+  //   ItineraryDay uses loading="lazy" on all images. On first load the images
+  //   haven't downloaded yet, so getBoundingClientRect() returns wrong top
+  //   values (card height ≈ 0 for un-loaded images). On second load images are
+  //   cached → layout is correct immediately.
+  //
+  // Fix uses three layers:
+  //   1. setTimeout(0/300) — immediate snapshots for cached/fast loads
+  //   2. ResizeObserver   — fires whenever the itinerary section's height
+  //                         changes (lazy images popping in = height change)
+  //   3. window "load"    — guaranteed to fire after ALL resources loaded
+  //                         on a full hard-reload (F5 / Ctrl+R)
   useEffect(() => {
-    let raf;
-    const tid = setTimeout(() => {
-      raf = requestAnimationFrame(() => {
-        // Only re-run if we now actually have day refs populated
-        const hasRefs = dayRefs?.current?.some(Boolean);
-        if (hasRefs) {
-          // Clear any in-flight rAF so handleScroll runs immediately
-          if (animFrameRef.current) {
-            cancelAnimationFrame(animFrameRef.current);
-            animFrameRef.current = null;
-          }
-          handleScroll();
-        }
-      });
-    }, 150); // 150 ms — enough for React to mount all ItineraryDay cards
+    const timerIds = [];
+    let resizeTimer;
+
+    // Layer 1 — fast snapshots
+    timerIds.push(setTimeout(computeAndApplyProgress, 0));
+    timerIds.push(setTimeout(computeAndApplyProgress, 300));
+
+    // Layer 2 — ResizeObserver on the itinerary section.
+    // Each time a lazy image loads inside the section, the section grows taller
+    // → ResizeObserver fires → we recompute the car position with updated rects.
+    const ro = new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(computeAndApplyProgress, 50);
+    });
+    const section = itineraryRef?.current;
+    if (section) ro.observe(section);
+
+    // Layer 3 — window "load" fires after ALL images/fonts/scripts finish.
+    // Only useful during a full page reload; in SPA navigation it has already
+    // fired, so we check readyState first and fall back to a 0-ms timer.
+    const onWindowLoad = () => computeAndApplyProgress();
+    if (document.readyState === 'complete') {
+      timerIds.push(setTimeout(computeAndApplyProgress, 0));
+    } else {
+      window.addEventListener('load', onWindowLoad);
+    }
+
     return () => {
-      clearTimeout(tid);
-      if (raf) cancelAnimationFrame(raf);
+      timerIds.forEach(clearTimeout);
+      clearTimeout(resizeTimer);
+      ro.disconnect();
+      window.removeEventListener('load', onWindowLoad);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resetKey, handleScroll]); // resetKey changes on tab switch — re-measure then too
+  }, [resetKey, computeAndApplyProgress]); // resetKey increments on tab switch → re-measure
 
   // ── Derived values ────────────────────────────────────────────────────────
   // TICK_COUNT: (N-1)*10+1 ensures large ticks fall at 0, 1/(N-1), 2/(N-1)...1

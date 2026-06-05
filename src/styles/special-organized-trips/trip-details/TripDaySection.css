@@ -1,0 +1,185 @@
+/* ============================================================
+   TripDaySection — outer grid shell
+   2-row explicit grid so card heights are ALWAYS equal across sections.
+
+   Row 1 (auto height — driven by 16:9 hero image):
+     Normal:   [hero image 9fr] [sidebar 3fr]
+     Reverse:  [sidebar 3fr]   [hero image 9fr]
+
+   Row 2 (auto height — description text only):
+     Normal:   [description under hero]
+     Reverse:  [description under hero (which is now in col 2)]
+
+   Because description is in its own row, varying text length NEVER
+   changes the sidebar/card height. Cards are identical across all days.
+
+   Sub-component CSS:
+     TripMainDay.css        → hero image, badge, title
+     TripDayCardSection.css → sidebar flex stack
+     TripDayCard.css        → individual thumbnail card
+   ============================================================ */
+
+/* ── Shared design tokens (consumed by all sub-components) ── */
+:root {
+  --tds-primary:          #f2ca50;
+  --tds-primary-dim:      #d4af37;
+  --tds-on-primary:       #3c2f00;
+  --tds-surface:          #131313;
+  --tds-surface-low:      #1c1b1b;
+  --tds-surface-high:     #2a2a2a;
+  --tds-on-surface:       #e5e2e1;
+  --tds-on-surface-muted: rgba(229, 226, 225, 0.65);
+  --tds-outline:          rgba(153, 144, 124, 0.18);
+
+  --tds-radius-img:   12px;
+  --tds-radius-card:  8px;
+  --tds-radius-pill:  9999px;
+  --tds-section-gap:  140px;
+  --tds-card-gap:     14px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION WRAPPER — opacity-only fade-in
+   NO translateY — preserves getBoundingClientRect() for TripJourneyMeter
+   ═══════════════════════════════════════════════════════════ */
+.tds-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem var(--tds-section-gap);
+  opacity: 0;
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+
+.tds-section--visible {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2-ROW EDITORIAL GRID
+   ═══════════════════════════════════════════════════════════ */
+.tds-grid {
+  display: grid;
+  /* 2 named columns: 9fr main + 3fr sidebar */
+  grid-template-columns: 9fr 3fr;
+  /* 2 rows: image row (height driven by hero) + text row (description) */
+  grid-template-rows: auto auto;
+  column-gap: 24px;
+  row-gap: 20px;
+  /* stretch: makes sidebar cells fill the full height of the image row */
+  align-items: stretch;
+}
+
+/* ── Normal layout (odd days): hero left, sidebar right ── */
+.tds-col-hero {
+  grid-column: 1;
+  grid-row: 1;
+  /* Fill full row-1 height so .tmd-hero can be height:100% */
+  display: flex;
+  flex-direction: column;
+}
+
+.tds-col-sidebar {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative; /* Anchor for absolutely positioned sidebar cards */
+}
+
+.tds-col-desc {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* ── Reverse layout (even days): sidebar left, hero right ── */
+.tds-grid--reverse {
+  grid-template-columns: 3fr 9fr;
+}
+.tds-grid--reverse .tds-col-hero    { grid-column: 2; }
+.tds-grid--reverse .tds-col-sidebar { grid-column: 1; }
+.tds-grid--reverse .tds-col-desc    { grid-column: 2; }
+
+/* ═══════════════════════════════════════════════════════════
+   DESCRIPTION PARAGRAPH (row 2 — never affects sidebar height)
+   ═══════════════════════════════════════════════════════════ */
+.tds-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--tds-on-surface-muted);
+  margin: 0;
+  letter-spacing: 0.005em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DAY DIVIDER  (✦ rule between days)
+   ═══════════════════════════════════════════════════════════ */
+.tds-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.tds-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--tds-outline);
+}
+
+.tds-divider-icon {
+  font-family: 'Geist', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(242, 202, 80, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .tds-grid {
+    grid-template-columns: 8fr 4fr;
+  }
+  .tds-grid--reverse {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .tds-section {
+    padding: 0 1.25rem calc(var(--tds-section-gap) * 0.6);
+  }
+
+  /* Stack all cells into a single column on mobile */
+  .tds-grid,
+  .tds-grid--reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+  }
+
+  /* Restore natural document order on mobile (no reversal) */
+  .tds-col-hero,
+  .tds-col-sidebar,
+  .tds-col-desc,
+  .tds-grid--reverse .tds-col-hero,
+  .tds-grid--reverse .tds-col-sidebar,
+  .tds-grid--reverse .tds-col-desc {
+    grid-column: 1;
+  }
+
+  .tds-col-hero,
+  .tds-grid--reverse .tds-col-hero    { grid-row: 1; }
+  .tds-col-desc,
+  .tds-grid--reverse .tds-col-desc    { grid-row: 2; }
+  .tds-col-sidebar,
+  .tds-grid--reverse .tds-col-sidebar { grid-row: 3; }
+
+  /* Sidebar goes horizontal on small screens */
+  .tds-col-sidebar { height: 130px; }
+}
+
+@media (max-width: 480px) {
+  .tds-col-sidebar { height: 100px; }
+}

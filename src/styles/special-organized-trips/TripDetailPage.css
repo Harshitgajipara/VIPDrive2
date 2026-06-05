@@ -281,10 +281,12 @@
 }
 
 /* ── Itinerary Section ── */
+/* TripDaySection manages its own 1280px max-width + padding,
+   so this wrapper is intentionally full-width with minimal padding. */
 .trip-itinerary {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem 2.5rem 6rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem 0 6rem;
 }
 
 .trip-itinerary-heading {
@@ -300,14 +302,14 @@
 /* ── Day Block ── */
 .day-block {
   opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  /* NOTE: No translateY here — getBoundingClientRect() must return the true
+     layout position on first load for TripJourneyMeter car tracking. */
+  transition: opacity 0.8s ease;
   margin-bottom: 0.5rem;
 }
 
 .day-block--visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* Day Header */
@@ -411,15 +413,13 @@
   cursor: pointer;
   position: relative;
   opacity: 0;
-  transform: translateY(16px);
+  /* No translateY — avoids layout-position shift on first paint */
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.5s ease;
 }
 
 .day-block--visible .day-gallery-item {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .day-gallery-item img {
@@ -487,7 +487,7 @@
   .trip-hero-content { padding: 0 1.5rem 3rem; }
   .trip-intro { padding: 3rem 1.5rem 2rem; }
   .trip-intro-gallery { grid-template-columns: 1fr; gap: 12px; }
-  .trip-itinerary { padding: 1rem 1.5rem 4rem; }
+  /* .trip-itinerary padding removed — TripDaySection.css handles responsive */
   .day-gallery { grid-template-columns: 1fr; }
 }
 

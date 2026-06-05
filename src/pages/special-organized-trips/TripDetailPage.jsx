@@ -4,7 +4,7 @@ import { tripDetails } from '../../data/sotDestinations';
 
 
 import TripJourneyMeter from '../../components/special-organized-trips/trip-details/TripJourneyMeter';
-import ItineraryDay from '../../components/special-organized-trips/ItineraryDay';
+import TripDaySection from '../../components/special-organized-trips/trip-details/TripDaySection';
 import ImageModal from '../../components/special-organized-trips/ImageModal';
 import TripHeroSection from '../../components/special-organized-trips/trip-details/TripHeroSection';
 import '../../styles/special-organized-trips/TripDetailPage.css';
@@ -192,12 +192,13 @@ const TripDetailPage = () => {
         </p>
 
         {currentDays.map((dayData, i) => (
-          <ItineraryDay
+          <TripDaySection
             key={`${activePkg}-${dayData.day}-${resetKey}`}
             day={dayData}
             tripTitle={trip.title}
             isLast={i === currentDays.length - 1}
             dayRef={(el) => { dayRefs.current[i] = el; }}
+            reverse={i % 2 !== 0}
           />
         ))}
       </section>
