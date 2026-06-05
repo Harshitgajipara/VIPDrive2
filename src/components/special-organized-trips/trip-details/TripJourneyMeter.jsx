@@ -211,7 +211,17 @@ const TripJourneyMeter = ({
           ref={trackRef}
           data-dir={direction}
           aria-hidden="true"
+          style={{
+            // Force position:relative via inline style — this CANNOT be overridden
+            // by any external stylesheet or production CSS minifier. Without this,
+            // Vite's production build was not applying position:relative from the
+            // CSS file, so the car (position:absolute, bottom:-8px) was falling back
+            // to .tjm-section as its containing block (which is ~48px taller),
+            // causing the car to appear far below the gauge track in production.
+            position: 'relative',
+          }}
         >
+
           {/* Tick marks */}
           <div className="tjm-ticks-container">
             {Array.from({ length: TICK_COUNT }, (_, i) => {
