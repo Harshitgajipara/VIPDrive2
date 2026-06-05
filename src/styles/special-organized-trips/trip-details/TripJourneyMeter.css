@@ -216,23 +216,36 @@
   transform: translate(-50%, 50%) scale(1.35);
 }
 
-/* ── Car SVG ──────────────────────────────────────────────── */
+/* ── Car SVG ──────────────────────────────────────────────────────────────
+   SVG geometry (viewBox 0 0 1536 1536, displayed at 50×50px):
+   ┌──────── 50px SVG box ────────┐
+   │  ~11px transparent space     │  ← car top empty gap
+   │  ┌── car body (≈28px tall) ─┐│
+   │  │    gold vehicle shape    ││
+   │  └──────────────────────────┘│
+   │  ~11px transparent space     │  ← empty below car body
+   └──────────────────────────────┘
+   With bottom:-8px relative to gauge track (36px, position:relative forced
+   via inline style in JSX so it's always the containing block):
+     • SVG bottom edge  = 8px BELOW track bottom
+     • Car body bottom  = SVG_bottom + 11px_empty = 3px ABOVE track bottom
+     • Progress line sits at bottom:2px in track = 2–4px from track bottom
+     → Car body sits ~1px above the progress line — visually "driving on it" ✓
+     → Glow (bottom:0 inside .tjm-car) = at SVG bottom = 8px below track → under wheels ✓
+   ──────────────────────────────────────────────────────────────────────── */
 .tjm-car {
   position: absolute;
-  /* bottom: -8px sits the car on top of the gauge line */
-  /* bottom: 0px; */
-  /* z-index: 10; */
+  bottom: -8px;          /* lift: car body clears the progress line by ~1px */
+  z-index: 10;           /* above ticks (no z-index), dots (z-index:3), progress (z-index:2) */
   pointer-events: none;
-  /* display: flex; */
-  /* align-items: flex-end;  */
-  /* left is set via inline style: calc(progress*100% - 40px) */
+  display: flex;         /* needed so .tjm-car-glow aligns to SVG bottom edge */
+  align-items: flex-end;
+  /* left is set via inline style in JSX: clamp(0px, calc(progress% - 25px), calc(100% - 50px)) */
   transition: left 0.08s linear;
-  /* NO translateX here — the inline formula already centers the 80px car */
 }
 
-/* The reference SVG naturally faces LEFT (vehicle front on left side).
-   scaleX(-1) on the SVG itself flips it to face RIGHT for forward motion.
-   When scrolling in reverse, we undo the flip via scaleX(1). */
+/* The SVG naturally faces LEFT. scaleX(-1) flips it right for forward scroll.
+   data-dir is set on .tjm-gauge-track from the direction React state. */
 .tjm-gauge-track[data-dir="fwd"] .tjm-car .tjm-car-svg {
   transform: scaleX(-1);
 }
@@ -246,20 +259,26 @@
   height: 50px;
   filter: drop-shadow(0 0 10px rgba(242, 202, 80, 0.85));
   display: block;
+  flex-shrink: 0;   /* prevent flex from squishing the SVG */
 }
 
+/* Glow puddle beneath the car wheels.
+   position:absolute + bottom:0 → anchors to SVG bottom (which is 8px below track).
+   This places the gold glow exactly at the wheel/road contact point. */
 .tjm-car-glow {
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   width: 40px;
-  height: 20px;
+  height: 16px;
   border-radius: 50%;
-  background: rgba(242, 202, 80, 0.22);
-  filter: blur(12px);
+  background: rgba(242, 202, 80, 0.28);
+  filter: blur(10px);
   pointer-events: none;
 }
+
+
 
 /* ── Row 3: KM labels ───────────────────────────────────────── */
 .tjm-km-labels {
