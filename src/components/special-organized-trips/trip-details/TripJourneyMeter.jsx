@@ -138,6 +138,33 @@ const TripJourneyMeter = ({
     };
   }, [handleScroll]);
 
+  // ── Re-measure once day cards have rendered (fixes initial-load car position) ──
+  // On first load, dayRefs are empty when the scroll listener fires. We wait one
+  // animation frame + a tiny timeout so React has flushed all ItineraryDay refs,
+  // then call handleScroll again to place the car correctly.
+  useEffect(() => {
+    let raf;
+    const tid = setTimeout(() => {
+      raf = requestAnimationFrame(() => {
+        // Only re-run if we now actually have day refs populated
+        const hasRefs = dayRefs?.current?.some(Boolean);
+        if (hasRefs) {
+          // Clear any in-flight rAF so handleScroll runs immediately
+          if (animFrameRef.current) {
+            cancelAnimationFrame(animFrameRef.current);
+            animFrameRef.current = null;
+          }
+          handleScroll();
+        }
+      });
+    }, 150); // 150 ms — enough for React to mount all ItineraryDay cards
+    return () => {
+      clearTimeout(tid);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey, handleScroll]); // resetKey changes on tab switch — re-measure then too
+
   // ── Derived values ────────────────────────────────────────────────────────
   // TICK_COUNT: (N-1)*10+1 ensures large ticks fall at 0, 1/(N-1), 2/(N-1)...1
   // which perfectly matches justify-between spacing for N items.
