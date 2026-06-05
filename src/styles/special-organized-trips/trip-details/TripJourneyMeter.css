@@ -220,7 +220,7 @@
 .tjm-car {
   position: absolute;
   /* bottom: -8px sits the car on top of the gauge line */
-  bottom: -8px;
+  bottom: 40px;
   z-index: 10;
   pointer-events: none;
   display: flex;
