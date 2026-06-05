@@ -120,7 +120,7 @@
   height: 36px;
   display: flex;
   align-items: flex-end;
-  z-index: 5;
+  /* z-index: 5; */
 }
 
 /* Tick marks container */
@@ -235,10 +235,10 @@
    ──────────────────────────────────────────────────────────────────────── */
 .tjm-car {
   position: absolute;
-  bottom: -8px;          /* lift: car body clears the progress line by ~1px */
-  z-index: 10;           /* above ticks (no z-index), dots (z-index:3), progress (z-index:2) */
+  /* bottom: -8px;          lift: car body clears the progress line by ~1px */
+  /* z-index: 10;           above ticks (no z-index), dots (z-index:3), progress (z-index:2) */
   pointer-events: none;
-  display: flex;         /* needed so .tjm-car-glow aligns to SVG bottom edge */
+  display: flex;
   align-items: flex-end;
   /* left is set via inline style in JSX: clamp(0px, calc(progress% - 25px), calc(100% - 50px)) */
   transition: left 0.08s linear;
@@ -255,11 +255,12 @@
 }
 
 .tjm-car-svg {
-  width: 50px;
-  height: 50px;
+  /* width: 50px; */
+  /* height: 50px; */
   filter: drop-shadow(0 0 10px rgba(242, 202, 80, 0.85));
   display: block;
-  flex-shrink: 0;   /* prevent flex from squishing the SVG */
+  flex-shrink: 0;
+  /* prevent flex from squishing the SVG */
 }
 
 /* Glow puddle beneath the car wheels.
