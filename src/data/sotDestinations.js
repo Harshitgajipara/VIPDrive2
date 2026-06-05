@@ -7,7 +7,7 @@ export const destinations = [
     id: 'himachal-pradesh',
     label: 'HP – Himachal Pradesh',
     description: 'Snow-capped peaks, pine forests, river valleys and Himalayan adventures await you.',
-    image: 'https://images.unsplash.com/photo-1598977990672-43cf1875b42e?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.pexels.com/photos/16108467/pexels-photo-16108467.jpeg',
   },
   {
     id: 'gujarat',
