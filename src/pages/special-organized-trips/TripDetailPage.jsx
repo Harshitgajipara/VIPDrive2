@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { tripDetails } from '../../data/sotDestinations';
-import CarJourneyMeter from '../../components/special-organized-trips/CarJourneyMeter';
+
+
 import TripJourneyMeter from '../../components/special-organized-trips/trip-details/TripJourneyMeter';
 import ItineraryDay from '../../components/special-organized-trips/ItineraryDay';
 import ImageModal from '../../components/special-organized-trips/ImageModal';
@@ -14,10 +15,12 @@ import '../../styles/special-organized-trips/TripDetailPage.css';
 //           and any trip with legacy .itinerary array
 //
 // Data flow: Backend (Spring Boot API) → tripDetails → props
-//   TripHeroSection  handles: hero image, intro text + gallery, package tabs
-//   CarJourneyMeter  handles: sticky day progress tracker
-//   ItineraryDay     handles: each day card
+//   TripHeroSection   handles: hero image, intro text + gallery, package tabs
+//   TripJourneyMeter  handles: sticky day progress ruler
+
+//   ItineraryDay      handles: each day card
 // ─────────────────────────────────────────────────────────────
+
 const TripDetailPage = () => {
   const { dest, tripId } = useParams();
   const trip = tripDetails[tripId];
@@ -40,7 +43,8 @@ const TripDetailPage = () => {
     ? (trip.packages[activePkg]?.duration || '')
     : (trip?.duration || '');
 
-  // resetKey: increments on tab switch to reset CarJourneyMeter
+  // resetKey: increments on tab switch to reset TripJourneyMeter
+
   const [resetKey, setResetKey] = useState(0);
 
   // Modal state for intro gallery image lightbox
@@ -49,7 +53,8 @@ const TripDetailPage = () => {
   // Refs forwarded into TripHeroSection for package tab behaviour
   const itineraryTopRef = useRef(null); // scroll anchor on tab switch
   const tabsRef         = useRef(null); // tablist element for keyboard nav
-  const itineraryRef    = useRef(null); // itinerary section for CarJourneyMeter
+  const itineraryRef    = useRef(null); // itinerary section root ref for TripJourneyMeter
+
   const dayRefs         = useRef([]);
 
   // ── Document title ────────────────────────────────────────
@@ -159,8 +164,8 @@ const TripDetailPage = () => {
 
       {/* ══════════════════════════════════════════════════════
           TRIP JOURNEY METER (Sticky speedometer tracker)
-          Replaces CarJourneyMeter — matches reference design
       ══════════════════════════════════════════════════════ */}
+
       <TripJourneyMeter
         totalDays={currentDays.length}
         dayRefs={dayRefs}
