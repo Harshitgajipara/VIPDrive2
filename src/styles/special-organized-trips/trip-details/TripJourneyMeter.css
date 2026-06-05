@@ -220,11 +220,11 @@
 .tjm-car {
   position: absolute;
   /* bottom: -8px sits the car on top of the gauge line */
-  bottom: 40px;
-  z-index: 10;
+  /* bottom: 0px; */
+  /* z-index: 10; */
   pointer-events: none;
-  display: flex;
-  align-items: flex-end;
+  /* display: flex; */
+  /* align-items: flex-end;  */
   /* left is set via inline style: calc(progress*100% - 40px) */
   transition: left 0.08s linear;
   /* NO translateX here — the inline formula already centers the 80px car */
