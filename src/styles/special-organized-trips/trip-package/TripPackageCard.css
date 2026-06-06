@@ -1,0 +1,136 @@
+/* ============================================================
+   TripPackageCard — Full-bleed destination image card
+   Used on the Special Offers on Trips (SOT) landing grid.
+
+   Design: Cinematic Alpine Noir
+   - Full image background with bottom gradient overlay
+   - Gold "EXPLORE TRIPS →" CTA
+   - Smooth hover parallax + lift effect
+   ============================================================ */
+
+/* ── Card wrapper (is a <Link>) ── */
+.tpc-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease,
+    box-shadow 0.4s ease;
+  will-change: transform, opacity;
+  text-decoration: none;
+  display: block;
+}
+
+.tpc-card.tpc-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tpc-card:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(201, 168, 76, 0.15);
+}
+
+/* Click micro-feedback */
+.tpc-card:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* ── Background image ── */
+.tpc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tpc-card:hover .tpc-img {
+  transform: scale(1.06);
+}
+
+/* ── Dark gradient overlay ── */
+.tpc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.75) 100%);
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+
+.tpc-card:hover .tpc-overlay {
+  background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* ── Text body (bottom-pinned) ── */
+.tpc-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.8rem;
+  transition: transform 0.4s ease;
+}
+
+.tpc-card:hover .tpc-body {
+  transform: translateY(-6px);
+}
+
+/* ── Destination name ── */
+.tpc-title {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.4rem;
+  line-height: 1.2;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ── Short description ── */
+.tpc-desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  margin: 0 0 0.8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── "EXPLORE TRIPS →" CTA label ── */
+.tpc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.tpc-cta::after {
+  content: '→';
+  transition: transform 0.25s ease;
+}
+
+.tpc-card:hover .tpc-cta::after {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tpc-card {
+    aspect-ratio: 16 / 10;
+  }
+}

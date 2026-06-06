@@ -1,0 +1,139 @@
+/* ============================================================
+   StateCategoryCard — Trip listing card
+   Used on the State Category page (trip list grid).
+
+   Design: Dark premium card — thumbnail top, text body below
+   ============================================================ */
+
+/* ── Card wrapper (is a <Link>) ── */
+.scc-trip-card {
+  background: #0d1017;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  will-change: transform, opacity;
+}
+
+.scc-trip-card.scc-trip-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scc-trip-card:hover {
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-8px) !important;
+}
+
+/* ── Thumbnail ── */
+.scc-trip-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.scc-trip-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.scc-trip-card:hover .scc-trip-thumb img {
+  transform: scale(1.06);
+}
+
+/* ── Body ── */
+.scc-trip-body {
+  padding: 1.4rem 1.6rem 1.6rem;
+}
+
+/* Duration badge */
+.scc-trip-duration {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin: 0 0 0.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Title */
+.scc-trip-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin: 0 0 0.7rem;
+  line-height: 1.3;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Teaser (3-line clamp) */
+.scc-trip-teaser {
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0 0 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* CTA pill */
+.scc-trip-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  color: #c9a84c;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5em 1.2em;
+  border-radius: 30px;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
+  font-family: 'Inter', sans-serif;
+}
+
+.scc-trip-card:hover .scc-trip-cta {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #05070b;
+}
+
+.scc-trip-cta::after {
+  content: '→';
+  transition: transform 0.25s;
+}
+
+.scc-trip-card:hover .scc-trip-cta::after {
+  transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .scc-trip-body {
+    padding: 1.1rem 1.2rem 1.3rem;
+  }
+}

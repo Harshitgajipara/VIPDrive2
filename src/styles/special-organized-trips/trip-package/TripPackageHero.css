@@ -1,0 +1,93 @@
+/* ============================================================
+   TripPackageHero — Hero section for the SOT landing page.
+
+   Design: Dark radial gradient with gold accent glows and
+   animated fade-up entrance for each text element.
+   ============================================================ */
+
+.tph-hero {
+  height: 52vh;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at top, #1a1400 0%, #05070b 65%);
+  overflow: hidden;
+  padding-top: 50px; /* clear fixed navbar */
+}
+
+/* Ambient gold glow orbs */
+.tph-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 80% 50%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.tph-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 1.5rem;
+}
+
+/* ── Tag badge ── */
+.tph-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  padding: 0.3em 1.1em;
+  border-radius: 30px;
+  margin-bottom: 1.4rem;
+  animation: tphFadeUp 0.8s 0.1s ease both;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Heading ── */
+.tph-heading {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  color: #f0f0f0;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  animation: tphFadeUp 0.9s 0.25s ease both;
+  font-family: 'Playfair Display', serif;
+}
+
+.tph-heading span {
+  color: #c9a84c;
+}
+
+/* ── Sub-heading ── */
+.tph-subheading {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #8a92a4;
+  line-height: 1.65;
+  margin: 0;
+  animation: tphFadeUp 0.9s 0.45s ease both;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Entrance animation ── */
+@keyframes tphFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tph-hero {
+    height: auto;
+    min-height: 280px;
+    padding: 80px 1rem 3rem;
+  }
+}
